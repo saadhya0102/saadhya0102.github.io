@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saadhya | Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="books-page">
+    <div class="container">
+        
+        <header class="library-header">
+            <a href="index.html" class="btn-gold">← Home</a>
+            <div class="dropdown">
+                <button class="btn-gold">Tags ▼</button>
+                <div class="dropdown-content tags-grid" id="tag-dropdown"></div>
+            </div>
+        </header>
+
+        <section id="search-view">
+            <button id="toggle-search-btn" class="btn-gold">🔍 Open Search</button>
+            
+            <div id="search-bar-container" style="display: none; margin-top: 10px;">
+                <input type="text" id="search-input" placeholder="Search with boolean logic (e.g., tag:fantasy and not author:john)..." style="width: 100%; padding: 10px;">
+            </div>
+
+            <div class="quick-filters" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                <div>
+                    <button class="btn-gold filter-btn" data-sort="rank">By Rank</button>
+                    <button class="btn-gold filter-btn" data-sort="recent">Recent</button>
+                    <button class="btn-gold filter-btn" data-sort="top">Top Rated</button>
+                </div>
+                <button id="about-btn" class="btn-gold" onclick="window.location.hash='about'">About This Site</button>
+            </div>
+        </section>
+
+        <section id="about-view" style="display: none; background: #1a1a1a; padding: 25px; border: 1px solid #d4af37; border-radius: 5px; margin-top: 20px;">
+            <h2 style="color: #d4af37; margin-top: 0;">About The Library</h2>
+            <p>Welcome to the library! This is where I track and review everything I've been reading.</p>
+            
+            <h3 style="color: #d4af37; margin-top: 20px;">Using the Advanced Search</h3>
+            <p>The search bar operates as a powerful query engine. It evaluates your search terms logically to filter the exact books you want.</p>
+            <ul style="line-height: 1.6;">
+                <li><strong>Keywords:</strong> Typing a regular word searches titles and authors.</li>
+                <li><strong>Exact Phrases:</strong> Wrap words in quotes like <code>"time loop"</code> to search titles, authors, and synopses for that exact string.</li>
+                <li><strong>Specific Fields:</strong> Prefix your search with <code>tag:</code> or <code>author:</code> (e.g., <code>tag:fantasy</code>).</li>
+                <li><strong>Logic Operators:</strong> Use <code>and</code>, <code>or</code>, and <code>not</code> to combine terms.</li>
+                <li><strong>Parentheses:</strong> Group conditions together like in math <code>()</code>.</li>
+            </ul>
+            <p style="background: #222; padding: 10px; border-left: 3px solid #d4af37;">
+                <em>Example Query:</em><br>
+                <code>"wind" and (not author:rothfuss) or tag:litrpg</code>
+            </p>
+            
+            <button onclick="window.location.hash='list'" class="btn-gold" style="margin-top: 15px;">Close</button>
+        </section>
+
+        <section id="list-view" style="margin-top: 20px;">
+            <div id="book-list-container"></div>
+            <div class="pagination">
+                <button id="prev-page" class="btn-gold">← Previous</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page" class="btn-gold">Next →</button>
+            </div>
+        </section>
+
+        <section id="detail-view" style="display: none; margin-top: 20px;">
+            <button onclick="window.location.hash='list'" class="btn-gold">← Back to List</button>
+            <div id="single-book-container"></div>
+        </section>
+
+    </div>
+
+    <script src="books.js"></script>
+</body>
+</html>
