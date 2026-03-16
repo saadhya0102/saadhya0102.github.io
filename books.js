@@ -3,6 +3,7 @@ let allBooks = [];
 let filteredBooks = [];
 let currentPage = 1;
 const itemsPerPage = 10;
+const IMAGE_DIR = 'books_images';
 
 let selectedTags = new Set();
 
@@ -13,11 +14,53 @@ let currentQuery = {
 };
 
 // --- INITIALIZATION ---
+function normalizeImagePath(imagePath) {
+    if (!imagePath) return '';
+
+    let clean = imagePath.trim().replace(/\\/g, '/');
+    const lower = clean.toLowerCase();
+
+    // if JSON has `.jpeg` but files are `.jpg`, normalize
+    if (lower.endsWith('.jpeg')) {
+        clean = clean.slice(0, -5) + '.jpg';
+    }
+
+    // remove ./ prefix
+    if (clean.startsWith('./')) {
+        clean = clean.slice(2);
+    }
+    // remove leading slash
+    if (clean.startsWith('/')) {
+        clean = clean.slice(1);
+    }
+
+    // Keep absolute URLs / data URIs untouched
+    if (/^(https?:\/\/|data:)/i.test(clean)) {
+        return clean;
+    }
+
+    // if no directory specified, add IMAGE_DIR
+    if (!clean.startsWith(IMAGE_DIR + '/')) {
+        clean = `${IMAGE_DIR}/${clean}`;
+    }
+
+    return clean;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('books.json');
-        allBooks = await response.json();
-        
+        const rawBooks = await response.json();
+
+        // Remove leftover rank and fix jpeg paths
+        allBooks = rawBooks.map(book => {
+            const { rank, ...rest } = book;
+            if (rest.image) {
+                rest.image = normalizeImagePath(rest.image);
+            }
+            return rest;
+        });
+
         populateTags();
         applyFiltersAndSort();
         setupEventListeners();

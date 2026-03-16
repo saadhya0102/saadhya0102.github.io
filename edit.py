@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import shutil
 
 # Optional dependencies: fallback if unavailable
 
@@ -27,8 +28,9 @@ def sanitize_filename(name):
     return re.sub(r'[^\w\- ]', '', name).replace(" ", "_")
 
 def list_books(books):
-    for b in books:
-        print(f"{b['id']}: {b['title']} by {b['author']}")
+    for i in range(len(books)):
+        b = books[i]
+        print(f"{i + 1}. {b['title']} by {b['author']}")
 
 def next_id(books):
     if not books:
@@ -57,16 +59,54 @@ def handle_image(title):
             return ""
 
         name = sanitize_filename(title)
-        path = f"{IMAGE_DIR}/{name}.png"
+
+        ext = 'png'
+        save_format = 'PNG'
+        if getattr(img, 'format', None):
+            fmt = img.format.lower()
+            if fmt in ['jpeg', 'jpg']:
+                ext = 'jpg'
+                save_format = 'JPEG'
+            elif fmt == 'png':
+                ext = 'png'
+                save_format = 'PNG'
+            elif fmt == 'bmp':
+                ext = 'bmp'
+                save_format = 'BMP'
+
+        path = os.path.join(IMAGE_DIR, f"{name}.{ext}")
 
         os.makedirs(IMAGE_DIR, exist_ok=True)
-        img.save(path)
+        img.save(path, format=save_format)
 
         print("Saved image to", path)
-        return path
+        return path.replace('\\', '/')
 
     elif choice == "2":
-        return input("Enter image path: ").strip()
+        input_path = input("Enter image path: ").strip()
+        if not input_path:
+            return ""
+
+        if not os.path.exists(input_path):
+            print("File not found.")
+            return ""
+
+        ext = os.path.splitext(input_path)[1].lower()
+        if ext not in ['.jpg', '.jpeg', '.png', '.bmp', '.gif']:
+            print("Unsupported image type. Use JPG/JPEG/PNG/BMP/GIF")
+            return ""
+
+        os.makedirs(IMAGE_DIR, exist_ok=True)
+        target_name = sanitize_filename(title) + ext
+        target_path = os.path.join(IMAGE_DIR, target_name)
+
+        try:
+            shutil.copy2(input_path, target_path)
+            print("Copied image to", target_path)
+            return target_path.replace('\\', '/')
+        except Exception as e:
+            print("Failed to copy image:", e)
+            return ""
 
     return ""
 
