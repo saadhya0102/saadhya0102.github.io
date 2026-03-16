@@ -205,3 +205,113 @@ body.books-page {
     line-height: 1.2;
     word-wrap: break-word;
 }
+/* --- STAR RATINGS & FILTERS --- */
+/* Visual 5-Star Display (Hides the out-of-10 number) */
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: #444; /* Empty star color */
+    letter-spacing: 2px;
+}
+.stars-outer::before {
+    content: "☆☆☆☆☆";
+}
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #d4af37; /* Filled star color */
+}
+.stars-inner::before {
+    content: "★★★★★";
+}
+
+/* Interactive Star Filter */
+.interactive-stars {
+    display: inline-flex;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-family: monospace;
+    color: #444;
+    user-select: none;
+}
+.interactive-stars .star {
+    position: relative;
+    transition: 0.2s color;
+}
+.interactive-stars .star.filled {
+    color: #d4af37;
+}
+.interactive-stars .star::before {
+    content: "☆";
+}
+.interactive-stars .star.filled::before {
+    content: "★";
+}
+/* Hover previews for the interactive stars */
+.interactive-stars .star:hover ~ .star {
+    color: #444 !important; 
+}
+.interactive-stars:hover .star {
+    color: #d4af37; 
+}
+
+/* Enforce Aspect Ratios to prevent image warping */
+.book-card img, .similar-book-card img {
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+#single-book-container img {
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* --- UPDATED INTERACTIVE STAR FILTER --- */
+#rating-filter-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* We use the same structure as the display stars for consistency */
+.filter-stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: monospace;
+    font-size: 1.8rem; /* Slightly larger for easier clicking */
+    color: #444;
+    letter-spacing: 2px;
+}
+.filter-stars-outer::before {
+    content: "☆☆☆☆☆";
+}
+
+.filter-stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #d4af37;
+    width: 0%; /* Controlled by JS */
+    pointer-events: none; /* Let clicks pass through to the outer container */
+}
+.filter-stars-inner::before {
+    content: "★★★★★";
+}
+
+#clear-rating-filter {
+    color: #666;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#clear-rating-filter:hover { color: #d4af37; }

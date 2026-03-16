@@ -24,11 +24,17 @@
                 <input type="text" id="search-input" placeholder="Search with boolean logic (e.g., tag:fantasy and not author:john)..." style="width: 100%; padding: 10px;">
             </div>
 
-            <div class="quick-filters" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-                <div>
-                    <button class="btn-gold filter-btn" data-sort="rank">By Rank</button>
+            <div class="quick-filters" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; flex-wrap: wrap; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                     <button class="btn-gold filter-btn" data-sort="recent">Recent</button>
+                    <button class="btn-gold filter-btn" data-sort="random">Random</button>
                     <button class="btn-gold filter-btn" data-sort="top">Top Rated</button>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-left: 10px; border-left: 1px solid #444; padding-left: 15px;">
+                        <span style="color: #d4af37; font-size: 0.9em; text-transform: uppercase;">Min Rating:</span>
+                        <div id="rating-filter-stars" class="filter-stars-outer" title="Filter by Minimum Rating">
+                            <div class="filter-stars-inner"></div>
+                        </div>
+                    </div>
                 </div>
                 <button id="about-btn" class="btn-gold" onclick="window.location.hash='about'">About This Site</button>
             </div>

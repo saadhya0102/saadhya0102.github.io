@@ -8,7 +8,8 @@ let selectedTags = new Set();
 
 let currentQuery = {
     searchTerm: '',
-    sortBy: 'rank' // Default to ranking
+    sortBy: 'recent', 
+    maxRating: 0 // Default: 10 out of 10 (5 stars), shows everything
 };
 
 // --- INITIALIZATION ---
@@ -20,10 +21,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateTags();
         applyFiltersAndSort();
         setupEventListeners();
+        updateFilterStars();
         
-        // Listen for back/forward buttons and initial load
         window.addEventListener('hashchange', handleRouting);
-        handleRouting(); // trigger on load
+        handleRouting(); 
     } catch (error) {
         console.error("Error loading the library:", error);
         document.getElementById('book-list-container').innerHTML = '<p>Could not load books. Check console.</p>';
@@ -34,7 +35,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 function handleRouting() {
     const hash = window.location.hash;
     
-    // Hide everything first
     document.getElementById('search-view').style.display = 'none';
     document.getElementById('list-view').style.display = 'none';
     document.getElementById('about-view').style.display = 'none';
@@ -46,18 +46,17 @@ function handleRouting() {
     } else if (hash === '#about') {
         document.getElementById('about-view').style.display = 'block';
     } else {
-        // Default list view
         document.getElementById('search-view').style.display = 'block';
         document.getElementById('list-view').style.display = 'block';
     }
 }
 
-
 // --- HELPER FUNCTIONS ---
 function getStarsHTML(ratingOutOf10) {
+    // Math: 10/10 = 100% width (5 full stars). 9.5/10 = 95% width (4.75 stars).
     const percentage = (ratingOutOf10 / 10) * 100;
     return `
-    <div class="stars-outer" title="${ratingOutOf10}/10">
+    <div class="stars-outer">
       <div class="stars-inner" style="width: ${percentage}%"></div>
     </div>`;
 }
@@ -107,13 +106,13 @@ function getSimilarBooks(targetBook) {
     return allBooks
         .filter(b => b.id !== targetBook.id)
         .map(b => {
-            // Heavy emphasis on tag overlap (10 points per shared tag)
             const overlapCount = b.tags.filter(t => targetBook.tags.includes(t)).length;
-            
-            // Low-medium emphasis on rating difference (-2 points per rating gap)
             const ratingDiff = Math.abs(b.overallRating - targetBook.overallRating);
             
-            const score = (overlapCount * 10) - (ratingDiff * 2);
+            // Massive weight for having the same author
+            const authorBonus = (b.author === targetBook.author) ? 100 : 0;
+            
+            const score = (overlapCount * 10) - (ratingDiff * 2) + authorBonus;
             return { book: b, score };
         })
         .sort((a, b) => b.score - a.score)
@@ -124,10 +123,16 @@ function getSimilarBooks(targetBook) {
 // --- CORE FILTER & SORT ---
 function applyFiltersAndSort() {
     filteredBooks = allBooks.filter(book => {
+        // LEQ Star filter check
+        if (book.overallRating < currentQuery.maxRating) return false;
+
+        // Tag check
         if (selectedTags.size > 0) {
             const hasAllTags = Array.from(selectedTags).every(t => book.tags.includes(t));
             if (!hasAllTags) return false;
         }
+
+        // Query string check
         return evaluateQuery(book, currentQuery.searchTerm);
     });
 
@@ -135,10 +140,10 @@ function applyFiltersAndSort() {
         filteredBooks.sort((a, b) => new Date(b.dateRead) - new Date(a.dateRead));
     } else if (currentQuery.sortBy === 'top') {
         filteredBooks.sort((a, b) => b.overallRating - a.overallRating);
-    } else if (currentQuery.sortBy === 'rank') {
-        filteredBooks.sort((a, b) => a.rank - b.rank); // Sort 1, 2, 3...
     }
-
+    if (currentQuery.sortBy === 'random') {
+        filteredBooks.sort(() => Math.random() - 0.5);
+    }
     currentPage = 1;
     renderBookList();
 }
@@ -158,43 +163,42 @@ function renderBookList() {
 
     booksToShow.forEach(book => {
         const imageHTML = book.image && book.image !== "" 
-            ? `<img src="${book.image}" alt="${book.title}" style="max-width: 120px; object-fit: cover; border-radius: 4px;">` 
-            : `<div style="width: 120px; min-height: 180px; background-color: #333; border: 1px solid #444; display:flex; align-items:center; justify-content:center; color:#888; text-align:center; font-size:0.8rem;">No Image</div>`;
+            ? `<img src="${book.image}" alt="${book.title}" style="max-width: 150px; border-radius: 4px;">` 
+            : `<div style="width: 150px; height: 225px; background-color: #333; border: 1px solid #444; display:flex; align-items:center; justify-content:center; color:#888; text-align:center; font-size:0.8rem;">No Image</div>`;
 
-        // Snippet pulled from synopsis
-        let snippet = book.synopsis.split('. ')[0];
-        if (book.synopsis.includes('. ')) snippet += '.';
+        let snippet = book.synopsis ? book.synopsis.split('. ')[0] : "No synopsis provided";
+        if (book.synopsis && book.synopsis.includes('. ')) snippet += '.';
         if (snippet.length > 120) snippet = snippet.substring(0, 120) + '...';
 
         const card = document.createElement('div');
         card.className = 'book-card';
-        card.style.cssText = "background: #1a1a1a; padding: 15px; margin-bottom: 15px; border-radius: 8px; border-left: 4px solid #d4af37;";
+        // Enforcing width 100% ensures proper flex spacing overall
+        card.style.cssText = "width: 100%; box-sizing: border-box;"; 
         
         card.innerHTML = `
-            <div style="display: flex; gap: 20px;">
-                ${imageHTML}
-                <div style="flex-grow: 1; display: flex; flex-direction: column;">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div>
-                            <h2 style="margin: 0; color: #d4af37;">#${book.rank} - ${book.title}</h2>
-                            <p style="margin: 5px 0 10px 0; color: #ccc;"><em>by ${book.author}</em></p>
-                        </div>
-                        <div style="max-width: 45%; color: #888; font-size: 0.9em; font-style: italic; text-align: right;">
-                            "${snippet}"
-                        </div>
+            ${imageHTML}
+            <div class="book-info-short" style="width: 100%; min-width: 0; display: flex; flex-direction: column;">
+                
+                <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <div style="flex: 1; min-width: 0; padding-right: 20px;">
+                        <h2 style="margin: 0; color: #d4af37; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${book.title}</h2>
+                        <p style="margin: 5px 0 10px 0; color: #ccc;"><em>by ${book.author}</em></p>
                     </div>
-                    
-                    <div class="subratings-box" style="margin-top: auto; padding-top: 10px;">
-                        <div style="margin-bottom: 5px;"><strong>${getStarsHTML(book.overallRating)}</strong> <span style="font-size: 0.8em; color: #aaa;">(${book.overallRating}/10)</span></div>
+                    <div style="flex: 1; min-width: 0; text-align: right; color: #888; font-size: 0.9em; font-style: italic; display: flex; justify-content: flex-end;">
+                        <span style="max-width: 100%; word-wrap: break-word;">${snippet}</span>
                     </div>
-                    
-                    <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end;">
-                        <div>
-                            <p style="font-size: 0.85em; color: #aaa; margin: 0 0 5px 0;"><strong>Tags:</strong> ${book.tags.join(', ')}</p>
-                            <span style="font-size: 0.8em; color: #666;">Read: ${book.dateRead}</span>
-                        </div>
-                        <button class="btn-gold more-info-btn" onclick="window.location.hash='book-${book.id}'">More Info</button>
+                </div>
+                
+                <div class="subratings-box" style="margin-top: auto; padding-top: 10px; display: flex; align-items: center;">
+                    ${getStarsHTML(book.overallRating)}
+                </div>
+                
+                <div style="margin-top: 15px; display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
+                    <div style="flex: 1; min-width: 0; padding-right: 15px;">
+                        <p style="font-size: 0.85em; color: #aaa; margin: 0 0 5px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><strong>Tags:</strong> ${(book.tags || []).join(', ')}</p>
+                        <span style="font-size: 0.8em; color: #666;">Read: ${book.dateRead || 'Unknown'}</span>
                     </div>
+                    <button class="btn-gold more-info-btn" onclick="window.location.hash='book-${book.id}'" style="flex-shrink: 0;">More Info</button>
                 </div>
             </div>
         `;
@@ -208,15 +212,14 @@ function renderSingleBook(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
 
-    // View toggling is handled by handleRouting() now
     document.getElementById('detail-view').style.display = 'block';
+    window.scrollTo(0, 0);
 
     const container = document.getElementById('single-book-container');
     const imageHTML = book.image && book.image !== "" 
-        ? `<img src="${book.image}" alt="${book.title}" style="width: 100%; max-width: 300px; border: 2px solid #d4af37; border-radius: 5px;">` 
-        : `<div style="width: 300px; height: 450px; background-color: #333; border: 2px solid #d4af37; border-radius: 5px; display:flex; align-items:center; justify-content:center; color:#888;">No Image</div>`;
+        ? `<img src="${book.image}" alt="${book.title}" style="border: 2px solid #d4af37; border-radius: 5px;">` 
+        : `<div style="width: 100%; max-width: 300px; aspect-ratio: 2/3; background-color: #333; border: 2px solid #d4af37; border-radius: 5px; display:flex; align-items:center; justify-content:center; color:#888;">No Image</div>`;
 
-    // Fetch Similar Books
     const similarBooks = getSimilarBooks(book);
     let similarHTML = '';
     if (similarBooks.length > 0) {
@@ -235,7 +238,7 @@ function renderSingleBook(id) {
 
     container.innerHTML = `
         <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #d4af37; margin-bottom: 5px; font-size: 2.5rem;">#${book.rank} - ${book.title}</h1>
+            <h1 style="color: #d4af37; margin-bottom: 5px; font-size: 2.5rem;">${book.title}</h1>
             <h3 style="margin-top: 0; color: #ccc; font-size: 1.2rem;">by ${book.author}</h3>
         </div>
 
@@ -243,27 +246,32 @@ function renderSingleBook(id) {
             <div style="flex: 0 0 auto;">${imageHTML}</div>
             
             <div style="flex-grow: 1; max-width: 450px; display: flex; flex-direction: column; justify-content: center;">
+                
                 <div style="background: #1a1a1a; padding: 25px; border-radius: 8px; border-left: 4px solid #d4af37; margin-bottom: 20px;">
                     <h2 style="margin-top: 0; font-size: 1.2rem; color: #fff;">Overall Rating</h2>
-                    <div style="margin-bottom: 15px; font-size: 1.2rem;">
-                        ${getStarsHTML(book.overallRating)} <span style="font-size: 0.9em; color: #aaa; margin-left: 10px;">(${book.overallRating}/10)</span>
+                    <div style="font-size: 1.2rem;">
+                        ${getStarsHTML(book.overallRating)}
                     </div>
                 </div>
 
-                <div style="background: #111; padding: 15px; border-radius: 8px;">
-                    <p style="color: #888; margin-top: 0;"><strong>Read on:</strong> ${book.dateRead}</p>
-                    <p style="color: #888; margin-bottom: 0;"><strong>Tags:</strong> <br><br>${book.tags.map(t => `<span style="background: #333; padding: 4px 10px; border-radius: 12px; margin-right: 6px; border: 1px solid #d4af37; color: #d4af37; font-size: 0.9em;">${t}</span>`).join('')}</p>
+                <div style="background: #111; padding: 15px; border-radius: 8px; font-size: 0.95em;">
+                    <p style="color: #ccc; margin-top: 0;"><strong>Read on:</strong> ${book.dateRead || 'Unknown'}</p>
+                    <p style="color: #ccc;"><strong>Length:</strong> ${book.length || 'Unknown'}</p>
+                    <p style="color: #ccc;"><strong>Books in Series:</strong> ${book.numberOfBooks || 'Unknown'}</p>
+                    <p style="color: #ccc; margin-bottom: 15px;"><strong>Word Count:</strong> ${book.numberOfWords || 'Unknown'}</p>
+
+                    <p style="color: #888; margin-bottom: 0;"><strong>Tags:</strong> <br><br>${(book.tags || []).map(t => `<span style="background: #333; padding: 4px 10px; border-radius: 12px; margin-right: 6px; display: inline-block; margin-bottom: 6px; border: 1px solid #d4af37; color: #d4af37; font-size: 0.9em;">${t}</span>`).join('')}</p>
                 </div>
             </div>
         </div>
         
         <hr style="border-color: #333; margin: 40px 0 20px 0;">
         <h3 style="color: #d4af37; font-size: 1.5rem;">Synopsis</h3>
-        <p style="line-height: 1.8; white-space: pre-wrap; font-size: 1.1em; color: #ccc; max-width: 900px; margin: 0 auto 30px auto;">${book.synopsis}</p>
+        <p style="line-height: 1.8; white-space: pre-wrap; font-size: 1.1em; color: #ccc; max-width: 900px; margin: 0 auto 30px auto;">${book.synopsis || 'No synopsis available.'}</p>
         
         <h3 style="color: #d4af37; font-size: 1.5rem;">Review</h3>
         <div style="background: #1a1a1a; padding: 20px; border-radius: 8px; max-width: 900px; margin: 0 auto;">
-            <p style="line-height: 1.8; white-space: pre-wrap; font-size: 1.1em; color: #eee; margin: 0;">${book.review}</p>
+            <p style="line-height: 1.8; white-space: pre-wrap; font-size: 1.1em; color: #eee; margin: 0;">${book.review || 'No review available.'}</p>
         </div>
 
         ${similarHTML}
@@ -275,7 +283,9 @@ function populateTags() {
     const tagsContainer = document.getElementById('tag-dropdown');
     const allTags = new Set();
     
-    allBooks.forEach(book => book.tags.forEach(tag => allTags.add(tag)));
+    allBooks.forEach(book => {
+        if (book.tags) book.tags.forEach(tag => allTags.add(tag));
+    });
     
     Array.from(allTags).sort().forEach(tag => {
         const tagEl = document.createElement('div');
@@ -304,6 +314,11 @@ function updatePagination() {
     document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
 }
 
+function updateFilterStars() {
+    const percentage = (currentQuery.maxRating / 10) * 100;
+    document.querySelector('.filter-stars-inner').style.width = `${percentage}%`;
+}
+
 function setupEventListeners() {
     document.getElementById('toggle-search-btn').addEventListener('click', (e) => {
         const searchContainer = document.getElementById('search-bar-container');
@@ -326,6 +341,17 @@ function setupEventListeners() {
             currentQuery.sortBy = e.target.getAttribute('data-sort');
             applyFiltersAndSort();
         });
+    });
+
+    // LEQ Star Filter Listener
+    document.getElementById('rating-filter-stars').addEventListener('click', (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const width = rect.width;
+        const rating = (x / width) * 10;
+        currentQuery.maxRating = Math.round(rating * 10 + 0.01) / 10; // to nearest 0.5
+        updateFilterStars();
+        applyFiltersAndSort();
     });
 
     document.getElementById('prev-page').addEventListener('click', () => {
