@@ -32,7 +32,7 @@ a:hover { text-decoration: underline; }
     border-radius: 5px;
     transition: 0.3s;
 }
-
+ 
 .btn-home:hover { background: var(--accent); color: #fff; }
 
 h1 { border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
