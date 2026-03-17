@@ -299,8 +299,6 @@ function renderSingleBook(id) {
 
                 <div style="background: #111; padding: 15px; border-radius: 8px; font-size: 0.95em;">
                     <p style="color: #ccc; margin-top: 0;"><strong>Read on:</strong> ${book.dateRead || 'Unknown'}</p>
-                    <p style="color: #ccc;"><strong>Length:</strong> ${book.length || 'Unknown'}</p>
-                    <p style="color: #ccc;"><strong>Books in Series:</strong> ${book.numberOfBooks || 'Unknown'}</p>
                     <p style="color: #ccc; margin-bottom: 15px;"><strong>Word Count:</strong> ${book.numberOfWords || 'Unknown'}</p>
 
                     <p style="color: #888; margin-bottom: 0;"><strong>Tags:</strong> <br><br>${(book.tags || []).map(t => `<span style="background: #333; padding: 4px 10px; border-radius: 12px; margin-right: 6px; display: inline-block; margin-bottom: 6px; border: 1px solid #d4af37; color: #d4af37; font-size: 0.9em;">${t}</span>`).join('')}</p>

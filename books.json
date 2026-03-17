@@ -9,10 +9,9 @@
     "tags": [
       "webnovel",
       "fantasy",
-      "time loop",
-      "mystery"
+      "time loop"
     ],
-    "synopsis": "Zorian is a teenage mage of humble skill and slightly above-average power. He gets trapped in a time loop, doomed to repeat the same month over and over before a massive invasion.",
+    "synopsis": "Zorian is a teenage mage of humble skill and slightly above-average power. He gets trapped in a time loop, doomed to repeat the same month over and over before a massive invasion. The novel is about him going through it, learning more about the world and the invasion, and trying to find a way to stop it.",
     "review": "The best single bit of fiction I have ever read. "
   },
   {
@@ -20,16 +19,16 @@
     "title": "The Perfect Run",
     "author": "Maxime J. Durand",
     "image": "the-perfect-run.jpg",
-    "overallRating": 9.6,
+    "overallRating": 9.3,
     "dateRead": "2024-01-05",
     "tags": [
       "time loop",
       "superhero",
-      "comedy",
+      "fantasy",
       "urban fantasy"
     ],
     "synopsis": "Ryan 'Quicksave' Romano can save and load time. He arrives in a chaotic New Rome looking for an old friend, intending to find the 'Perfect Run' where everyone survives.",
-    "review": "Imagine Deadpool in a Groundhog Day scenario. It's fast-paced, hilarious, and has a surprisingly deep emotional core."
+    "review": "A very solid time loop story, with a superhero twist."
   },
   {
     "id": "3",
@@ -39,13 +38,13 @@
     "overallRating": 9.2,
     "dateRead": "2024-05-10",
     "tags": [
+      "webnovel",
       "litrpg",
-      "progression",
       "isekai",
       "fantasy"
     ],
     "synopsis": "Jason wakes up in a world of magic and monsters. He gains a system and a very unique set of dark powers. Now he has to navigate inter-dimensional politics and ancient cults.",
-    "review": "The protagonist is polarizing—you either love his snark or hate it. Personally, I enjoy the magic system more than the dialogue."
+    "review": "A fun progression fantasy story that sometimes just goes on overly long side plots."
   },
   {
     "id": "4",
@@ -56,78 +55,69 @@
     "rank": 1,
     "dateRead": "2023-01-01",
     "tags": [
-      "epic",
-      "high fantasy",
       "fantasy",
-      "classic"
+      "high fantasy"
     ],
-    "synopsis": "An epic tale following a slave fighting in a senseless war, a highprince losing his mind, and a scholar trying to save her family. The world of Roshar is beset by highstorms and ancient secrets.",
-    "review": "The sheer scale of this is unmatched. It’s a 1,000-page book that feels like it’s just the prologue to something even bigger."
+    "synopsis": "An epic tale following a slave fighting in a senseless war, a highprince losing his mind, and a scholar trying to save her family. Set in a world where everything has a spirit.",
+    "review": "Very unique power system and setting. The world-building is as excellent as you would expect from Sanderson. The story can be a bit slow at times, but the characters are interesting and the plot is engaging."
   },
   {
     "id": "5",
     "title": "Iron Prince",
     "author": "Bryce O'Connor",
     "image": "",
-    "overallRating": 8.3,
+    "overallRating": 7.8,
     "dateRead": "2024-06-15",
     "tags": [
-      "progression",
-      "sci-fi",
-      "action",
-      "academy"
+      "sci-fi"
     ],
     "synopsis": "Rei has a genetic condition that makes his bones brittle, but he is accepted into a combat academy where students are assigned AI-controlled combat suits that evolve.",
-    "review": "Zero-to-hero trope done perfectly. The training sequences are addictive and the tournament arcs are top-tier."
+    "review": "Zero-to-hero trope done really well. Sci-fi setting is also quite well-crafted."
   },
   {
     "id": "6",
     "title": "Bastion",
     "author": "Phil Tucker",
     "image": "",
-    "overallRating": 8.6,
+    "overallRating": 7.1,
     "dateRead": "2024-03-22",
     "tags": [
-      "progression",
       "fantasy",
-      "epic",
       "cultivation"
     ],
-    "synopsis": "Scoria is born in Hell, a 'Great Soul' who should have been a hero but is instead branded a failure. He must climb the ranks of a massive city to reclaim his power.",
-    "review": "Very unique setting. The world is weird and hellish, and the power system is much more creative than standard cultivation."
+    "synopsis": "Scoria is born in Hell, a hero that is instead branded a failure and exiled. He must survive in a dangerous city with infernal powers.",
+    "review": "Very unique setting. The world building is done well, and the power system is quite creative."
   },
   {
     "id": "7",
     "title": "Lord of the Mysteries",
     "author": "Cuttlefish That Loves Diving",
-    "image": "",
+    "image": "lord-of-the-mysteries.jpg",
     "overallRating": 8.8,
     "dateRead": "2024-08-10",
     "tags": [
       "webnovel",
-      "mystery",
-      "steampunk",
-      "lovecraftian",
       "fantasy"
     ],
     "synopsis": "Klein Moretti wakes up in a Victorian-era steampunk world with beyonder powers and secret societies. He must unravel the mystery of his own death and the nature of the gods.",
-    "review": "The best world-building in web fiction. The magic system is complex and the 'Horror' elements are genuinely creepy."
+    "review": "Very solid world-building. The magic system is complex and a unique eldritch vibe."
   },
   {
     "id": "8",
     "title": "Beware of Chicken",
     "author": "CasualFarmer",
     "image": "",
-    "overallRating": 9.0,
+    "overallRating": 8.2,
     "dateRead": "2024-04-12",
     "tags": [
-      "cultivation",
+      "webnovel",
+      "isekai",
       "fantasy",
-      "comedy",
+      "cultivation",
       "slice of life"
     ],
     "synopsis": "A man is reincarnated into a high-stakes cultivation world and decides... no thanks. He moves to a remote farm to live a peaceful life, accidentally ascending his farm animals.",
-    "review": "A wholesome subversion of all the annoying cultivation tropes. The rooster is the best character."
+    "review": "A pretty nice slice of life stories out there. Writing is impeccable. Very large cast of characters that are well-developed and interesting."
   },
   {
     "id": "9",
