@@ -50,7 +50,7 @@
     "id": "4",
     "title": "The Stormlight Archive",
     "author": "Brandon Sanderson",
-    "image": "",
+    "image": "stormlight-archieve.jpg",
     "overallRating": 8.0,
     "rank": 1,
     "dateRead": "2023-01-01",
@@ -92,7 +92,7 @@
     "id": "7",
     "title": "Lord of the Mysteries",
     "author": "Cuttlefish That Loves Diving",
-    "image": "lord-of-the-mysteries.jpg",
+    "image": "lord-of-the-mysteries.jpg", 
     "overallRating": 8.8,
     "dateRead": "2024-08-10",
     "tags": [
