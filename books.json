@@ -51,7 +51,7 @@
     "title": "The Stormlight Archive",
     "author": "Brandon Sanderson",
     "image": "stormlight-archieve.jpg",
-    "overallRating": 8.0,
+    "overallRating": 8.5,
     "rank": 1,
     "dateRead": "2023-01-01",
     "tags": [
@@ -65,7 +65,7 @@
     "id": "5",
     "title": "Iron Prince",
     "author": "Bryce O'Connor",
-    "image": "",
+    "image": "iron-prince.jpeg",
     "overallRating": 7.8,
     "dateRead": "2024-06-15",
     "tags": [
@@ -78,7 +78,7 @@
     "id": "6",
     "title": "Bastion",
     "author": "Phil Tucker",
-    "image": "",
+    "image": "bastion.jpg",
     "overallRating": 7.1,
     "dateRead": "2024-03-22",
     "tags": [
@@ -106,7 +106,7 @@
     "id": "8",
     "title": "Beware of Chicken",
     "author": "CasualFarmer",
-    "image": "",
+    "image": "beware-of-chicken.jpg",
     "overallRating": 8.2,
     "dateRead": "2024-04-12",
     "tags": [
@@ -133,5 +133,21 @@
     ],
     "synopsis": "Join an unfortunate nerubian on his journey as he tries to live in a world that would very much prefer him to die. World of Warcraft isekai fanfic, some progression elements but not really the main focus.",
     "review": "I don't usually read fanfics, but this is actually just stellar writing, with a fleshed out plot, reasonable characters, and a fairly rational main character. No part of the story felt slow or rushed, but it moves faster than a lot of the 1000 chapter extended novels that go nowhere. A completed story with solid direction as well."
+  },
+  {
+    "id": "10",
+    "title": "Myriad Rivers to the Sea",
+    "author": "Waspak.Writer",
+    "image": "myriad-rivers-to-the-sea.png",
+    "overallRating": 1.0,
+    "dateRead": "2026-05-01",
+    "tags": [
+      "webnovel",
+      "fantasy",
+      "cultivation"
+    ],
+    "synopsis": "In a world where the strength of one's awakened spirit determines your starting point, the orphaned Li Yu awakens a low grade spirit: a blood-red Koi fish, deemed a Grade One, Inferior spirit fit only for a decorative pond",
+    "review": "Straight cultivation slop of the lowest quality. Pretty sure the prose is AI generated, and the plot is quite literally too unimaginative to even be AI generated. The main character is a Mary Sue with no flaws, and the story is just a series of him getting stronger with no real conflict or stakes. The world-building is non-existent, and the writing is so bad it's almost unreadable."
   }
+
 ]
