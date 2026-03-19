@@ -5,12 +5,13 @@
     "author": "Nobody103",
     "image": "mother-of-learning.jpg",
     "overallRating": 10.0,
-    "dateRead": "2024-01-20",
+    "dateRead": "2026-03-19",
     "tags": [
       "webnovel",
       "fantasy",
       "time loop"
     ],
+    "numberOfWords": 806306,
     "synopsis": "Zorian is a teenage mage of humble skill and slightly above-average power. He gets trapped in a time loop, doomed to repeat the same month over and over before a massive invasion. The novel is about him going through it, learning more about the world and the invasion, and trying to find a way to stop it.",
     "review": "The best single bit of fiction I have ever read. "
   },
@@ -20,13 +21,14 @@
     "author": "Maxime J. Durand",
     "image": "the-perfect-run.jpg",
     "overallRating": 9.3,
-    "dateRead": "2024-01-05",
+    "dateRead": "2026-03-21",
     "tags": [
       "time loop",
       "superhero",
       "fantasy",
       "urban fantasy"
     ],
+    "numberOfWords": 463909,
     "synopsis": "Ryan 'Quicksave' Romano can save and load time. He arrives in a chaotic New Rome looking for an old friend, intending to find the 'Perfect Run' where everyone survives.",
     "review": "A very solid time loop story, with a superhero twist."
   },
@@ -36,13 +38,14 @@
     "author": "Shirtaloon",
     "image": "he-who-fights-with-monsters.jpg",
     "overallRating": 9.2,
-    "dateRead": "2024-05-10",
+    "dateRead": "2026-05-10",
     "tags": [
       "webnovel",
       "litrpg",
       "isekai",
       "fantasy"
     ],
+    "numberOfWords": 2134000,
     "synopsis": "Jason wakes up in a world of magic and monsters. He gains a system and a very unique set of dark powers. Now he has to navigate inter-dimensional politics and ancient cults.",
     "review": "A fun progression fantasy story that sometimes just goes on overly long side plots."
   },
@@ -53,11 +56,12 @@
     "image": "stormlight-archieve.jpg",
     "overallRating": 8.5,
     "rank": 1,
-    "dateRead": "2023-01-01",
+    "dateRead": "2026-03-23",
     "tags": [
       "fantasy",
       "high fantasy"
     ],
+    "numberOfWords": 2275667,
     "synopsis": "An epic tale following a slave fighting in a senseless war, a highprince losing his mind, and a scholar trying to save her family. Set in a world where everything has a spirit.",
     "review": "Very unique power system and setting. The world-building is as excellent as you would expect from Sanderson. The story can be a bit slow at times, but the characters are interesting and the plot is engaging."
   },
@@ -67,10 +71,11 @@
     "author": "Bryce O'Connor",
     "image": "iron-prince.jpeg",
     "overallRating": 7.8,
-    "dateRead": "2024-06-15",
+    "dateRead": "2026-04-15",
     "tags": [
       "sci-fi"
     ],
+    "numberOfWords": 323500,
     "synopsis": "Rei has a genetic condition that makes his bones brittle, but he is accepted into a combat academy where students are assigned AI-controlled combat suits that evolve.",
     "review": "Zero-to-hero trope done really well. Sci-fi setting is also quite well-crafted."
   },
@@ -80,11 +85,12 @@
     "author": "Phil Tucker",
     "image": "bastion.jpg",
     "overallRating": 7.1,
-    "dateRead": "2024-03-22",
+    "dateRead": "2026-03-22",
     "tags": [
       "fantasy",
       "cultivation"
     ],
+    "numberOfWords": 350000,
     "synopsis": "Scoria is born in Hell, a hero that is instead branded a failure and exiled. He must survive in a dangerous city with infernal powers.",
     "review": "Very unique setting. The world building is done well, and the power system is quite creative."
   },
@@ -94,11 +100,12 @@
     "author": "Cuttlefish That Loves Diving",
     "image": "lord-of-the-mysteries.jpg", 
     "overallRating": 8.8,
-    "dateRead": "2024-08-10",
+    "dateRead": "2026-04-01",
     "tags": [
       "webnovel",
       "fantasy"
     ],
+    "numberOfWords":  2711747,
     "synopsis": "Klein Moretti wakes up in a Victorian-era steampunk world with beyonder powers and secret societies. He must unravel the mystery of his own death and the nature of the gods.",
     "review": "Very solid world-building. The magic system is complex and a unique eldritch vibe."
   },
@@ -108,7 +115,7 @@
     "author": "CasualFarmer",
     "image": "beware-of-chicken.jpg",
     "overallRating": 8.2,
-    "dateRead": "2024-04-12",
+    "dateRead": "2026-03-26",
     "tags": [
       "webnovel",
       "isekai",
@@ -116,6 +123,7 @@
       "cultivation",
       "slice of life"
     ],
+    "numberOfWords":  688050,
     "synopsis": "A man is reincarnated into a high-stakes cultivation world and decides... no thanks. He moves to a remote farm to live a peaceful life, accidentally ascending his farm animals.",
     "review": "A pretty nice slice of life stories out there. Writing is impeccable. Very large cast of characters that are well-developed and interesting."
   },
@@ -131,6 +139,7 @@
       "isekai",
       "fantasy"
     ],
+    "numberOfWords": 513538,
     "synopsis": "Join an unfortunate nerubian on his journey as he tries to live in a world that would very much prefer him to die. World of Warcraft isekai fanfic, some progression elements but not really the main focus.",
     "review": "I don't usually read fanfics, but this is actually just stellar writing, with a fleshed out plot, reasonable characters, and a fairly rational main character. No part of the story felt slow or rushed, but it moves faster than a lot of the 1000 chapter extended novels that go nowhere. A completed story with solid direction as well."
   },
@@ -140,14 +149,32 @@
     "author": "Waspak.Writer",
     "image": "myriad-rivers-to-the-sea.png",
     "overallRating": 1.0,
-    "dateRead": "2026-05-01",
+    "dateRead": "2026-04-01",
     "tags": [
       "webnovel",
       "fantasy",
       "cultivation"
     ],
+    "numberOfWords": 1253946,
     "synopsis": "In a world where the strength of one's awakened spirit determines your starting point, the orphaned Li Yu awakens a low grade spirit: a blood-red Koi fish, deemed a Grade One, Inferior spirit fit only for a decorative pond",
     "review": "Straight cultivation slop of the lowest quality. Pretty sure the prose is AI generated, and the plot is quite literally too unimaginative to even be AI generated. The main character is a Mary Sue with no flaws, and the story is just a series of him getting stronger with no real conflict or stakes. The world-building is non-existent, and the writing is so bad it's almost unreadable."
+  },
+  {
+    "id": "11",
+    "title": "Vainqueur the Dragon",
+    "author": "Maxime J. Durand",
+    "image": "vainqueur-the-dragon.jpg",
+    "overallRating": 6.0,
+    "dateRead": "2026-05-02",
+    "tags": [
+      "webnovel",
+      "fantasy",
+      "isekai",
+      "slice of life"
+    ],
+    "numberOfWords": 605730,
+    "synopsis": "Vainqueur Knightsbane is your average dragon: a giant, fire-breathing lizard who loves to take naps on his golden hoard, kidnap princesses for fun, and make the life of adventurers miserable. Vainqueur's only pleasure in life is to watch his treasure get bigger, one coin at a time. So when a would-be thief turned unwilling minion tells him about classes, levels, and quests Vainqueur wonders if maybe, just maybe, he should consider a career change. After all, why bother hunting monsters for free when you can get paid for it?",
+    "review": "A fun and fairly lighthearted story that ends up being more of a slice of life than an actual adventure story. The world-building is pretty solid, and the characters are interesting. The writing is decent, but it can be a bit slow at times, which just goes with the genre."
   }
 
 ]
