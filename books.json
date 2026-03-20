@@ -37,7 +37,7 @@
     "title": "He Who Fights With Monsters",
     "author": "Shirtaloon",
     "image": "he-who-fights-with-monsters.jpg",
-    "overallRating": 9.2,
+    "overallRating": 8.2,
     "dateRead": "2026-05-10",
     "tags": [
       "webnovel",
@@ -153,7 +153,8 @@
     "tags": [
       "webnovel",
       "fantasy",
-      "cultivation"
+      "cultivation",
+      "slice of life"
     ],
     "numberOfWords": 1253946,
     "synopsis": "In a world where the strength of one's awakened spirit determines your starting point, the orphaned Li Yu awakens a low grade spirit: a blood-red Koi fish, deemed a Grade One, Inferior spirit fit only for a decorative pond",
@@ -165,7 +166,7 @@
     "author": "Maxime J. Durand",
     "image": "vainqueur-the-dragon.jpg",
     "overallRating": 6.0,
-    "dateRead": "2026-05-02",
+    "dateRead": "2026-03-28",
     "tags": [
       "webnovel",
       "fantasy",
@@ -175,6 +176,39 @@
     "numberOfWords": 605730,
     "synopsis": "Vainqueur Knightsbane is your average dragon: a giant, fire-breathing lizard who loves to take naps on his golden hoard, kidnap princesses for fun, and make the life of adventurers miserable. Vainqueur's only pleasure in life is to watch his treasure get bigger, one coin at a time. So when a would-be thief turned unwilling minion tells him about classes, levels, and quests Vainqueur wonders if maybe, just maybe, he should consider a career change. After all, why bother hunting monsters for free when you can get paid for it?",
     "review": "A fun and fairly lighthearted story that ends up being more of a slice of life than an actual adventure story. The world-building is pretty solid, and the characters are interesting. The writing is decent, but it can be a bit slow at times, which just goes with the genre."
+  },
+  {
+    "id": "12",
+    "title": "Reincarnated in a Shounen Manga",
+    "author": "CasualBear",
+    "image": "reincarnated-in-a-shounen-manga.png",
+    "overallRating": 7.5,
+    "dateRead": "2026-05-15",
+    "tags": [
+      "webnovel",
+       "isekai",
+       "fantasy",
+       "litrpg"
+     ],
+    "numberOfWords": 434116,
+    "synopsis": " Power of friendship? Getting stronger when you’re enraged? Powerful monster sealed in you by your father? Yeah, that was not me. I was the arrogant youngster who got punched on the first panels of the shounen manga I was reading. I wouldn’t have even remembered his name if I wasn’t stuck in his body. ",
+    "review": "Very tropey isekai story. The plot is somewhat original, but the characters themselves are very one-dimensional, and the world-building is pretty bad. The overall writing quality is fairly solid though."
+  },
+  {
+    "id": "13",
+    "title": "My Best Friend is an Eldritch Horror",
+    "author": "Actus",
+    "image": "my-best-friend-is-an-eldritch-horror.png",
+    "overallRating": 8.0,
+    "dateRead": "2026-05-20",
+    "tags": [
+        "webnovel",
+        "fantasy",
+        "slice of life",
+        "litrpg"
+      ],
+    "numberOfWords": 636900,
+    "synopsis": "Good things come to those who wait. Damien Vale didn't, and now he's bound to an Eldritch creature from beyond the farthest reaches of the universe. It's unfathomable, utterly evil, and likes to be called Henry. To Damien, none of that mattered. He was going to learn magic, and he'd be damned if he let something as small as this set him back.",
+    "review": "A fun story about a fairly stubborn protagonist in a magic academy with a unique powerset. The world-building is pretty solid, with a rather excellent"
   }
-
 ]
