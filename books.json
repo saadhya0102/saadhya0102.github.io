@@ -54,7 +54,7 @@
     "title": "The Stormlight Archive",
     "author": "Brandon Sanderson",
     "image": "stormlight-archieve.jpg",
-    "overallRating": 8.5,
+    "overallRating": 8.8,
     "rank": 1,
     "dateRead": "2026-03-23",
     "tags": [
@@ -99,7 +99,7 @@
     "title": "Lord of the Mysteries",
     "author": "Cuttlefish That Loves Diving",
     "image": "lord-of-the-mysteries.jpg", 
-    "overallRating": 8.8,
+    "overallRating": 8.5,
     "dateRead": "2026-04-01",
     "tags": [
       "webnovel",
@@ -225,5 +225,20 @@
     "numberOfWords": 1280393,
     "synopsis": "A second chance. An opportunity to delve down the Path to Transcendence, where Tiers and Skills reign supreme. Grief took Julian’s family. Fate gave him another life. Reborn as Julius Von Hyperius, he awakens in a world where power is measured in tiers, skills, and the will to keep climbing. Surrounded by ruthless nobles, terrifying monsters, and an unknown system, Julius has only two choices: transcend or die.  With a relentless spirit and questionable decisions, he carves his own path. Each breakthrough brings new foes, higher stakes, and the terrifying truth that transcendence demands sacrifice.",
     "review": "A pretty generic litrpg story with negligible plot or world-building, one-dimensional characters, and a pretty stupid main character."
+  },
+  {
+    "id": "15",
+    "title": "Arcane Ascension",
+    "author": "Andrew Rowe",
+    "image": "arcane_ascension.jpg",
+    "overallRating": 9.1,
+    "dateRead": "2026-04-10",
+    "tags": [
+      "fantasy",
+      "litrpg"
+    ],
+    "numberOfWords":  864000,
+    "synopsis": "Five years ago, Corin Cadence’s brother entered the Serpent Spire — a colossal tower with ever-shifting rooms, traps, and monsters. Those who survive the spire’s trials return home with an attunement: a mark granting the bearer magical powers. According to legend, those few who reach the top of the tower will be granted a boon by the spire’s goddess. He never returned. Now, it’s Corin’s turn. He’s headed to the top floor, on a mission to meet the goddess. If he can survive the trials, Corin will earn an attunement, but that won’t be sufficient to survive the dangers on the upper levels. For that, he’s going to need training, allies, and a lot of ingenuity.",
+    "review": "The series as a whole is very solid, and probably one of my favorite urban litrpg stories. That being said, the plot does get kind of repetitive from a series perspective, especially in the later books. Every book has this foormulaic approach of set-up, power-leveling, random side-quest, then a boss fight at the end. Additionally the power system seems to be plot armored away whenever a relevant character is involved. THe writing itself, as well as the world-building, is very solid though."
   }
 ]
