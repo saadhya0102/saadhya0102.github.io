@@ -95,9 +95,23 @@ function handleRouting() {
 }
 
 // --- HELPER FUNCTIONS ---
+function calculateStarPercentage(ratingOutOf10) {
+    const starsToFill = ratingOutOf10 / 2; 
+    const gapRatio = 0.25; 
+    
+    const fullStars = Math.floor(starsToFill);
+    const fractionalStar = starsToFill - fullStars;
+    
+    const totalWidthUnits = 5 + (4 * gapRatio); 
+    let filledUnits = fullStars * (1 + gapRatio) + fractionalStar;
+    
+    if (fullStars >= 5) filledUnits = totalWidthUnits;
+    
+    return (filledUnits / totalWidthUnits) * 100;
+}
+
 function getStarsHTML(ratingOutOf10) {
-    // Math: 10/10 = 100% width (5 full stars). 9.5/10 = 95% width (4.75 stars).
-    const percentage = (ratingOutOf10 / 10) * 100;
+    const percentage = calculateStarPercentage(ratingOutOf10);
     return `
     <div class="stars-outer">
       <div class="stars-inner" style="width: ${percentage}%"></div>
@@ -144,38 +158,31 @@ function evaluateQuery(book, query) {
     }
 }
 
-// SIMILARITY ENGINE
 function getSimilarBooks(targetBook) {
     return allBooks
         .filter(b => b.id !== targetBook.id)
         .map(b => {
             const overlapCount = b.tags.filter(t => targetBook.tags.includes(t)).length;
             const ratingDiff = Math.abs(b.overallRating - targetBook.overallRating);
-            
-            // Massive weight for having the same author
             const authorBonus = (b.author === targetBook.author) ? 100 : 0;
-            
             const score = (overlapCount * 10) - (ratingDiff * 2) + authorBonus;
             return { book: b, score };
         })
         .sort((a, b) => b.score - a.score)
-        .slice(0, 7) // Top 7
+        .slice(0, 7) 
         .map(item => item.book);
 }
 
 // --- CORE FILTER & SORT ---
 function applyFiltersAndSort() {
     filteredBooks = allBooks.filter(book => {
-        // LEQ Star filter check
         if (book.overallRating < currentQuery.maxRating) return false;
 
-        // Tag check
         if (selectedTags.size > 0) {
             const hasAllTags = Array.from(selectedTags).every(t => book.tags.includes(t));
             if (!hasAllTags) return false;
         }
 
-        // Query string check
         return evaluateQuery(book, currentQuery.searchTerm);
     });
 
@@ -215,7 +222,6 @@ function renderBookList() {
 
         const card = document.createElement('div');
         card.className = 'book-card';
-        // Enforcing width 100% ensures proper flex spacing overall
         card.style.cssText = "width: 100%; box-sizing: border-box;"; 
         
         card.innerHTML = `
@@ -347,16 +353,84 @@ function populateTags() {
     });
 }
 
+// NEW: Overhauled Pagination System
 function updatePagination() {
-    const totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
-    document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages || 1}`;
+    const totalPages = Math.ceil(filteredBooks.length / itemsPerPage) || 1;
     
-    document.getElementById('prev-page').disabled = currentPage === 1;
-    document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
+    // Toggle standard Prev/Next buttons
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    if (prevBtn) prevBtn.disabled = currentPage === 1;
+    if (nextBtn) nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+    
+    const pageInfoContainer = document.getElementById('page-info');
+    if (!pageInfoContainer) return;
+    
+    // Clear out the old "Page X of Y" text
+    pageInfoContainer.innerHTML = ''; 
+    pageInfoContainer.style.display = 'inline-flex';
+    pageInfoContainer.style.gap = '8px';
+    pageInfoContainer.style.alignItems = 'center';
+    pageInfoContainer.style.margin = '0 15px';
+
+    // Figure out which 3 adjacent pages to show
+    let startPage = Math.max(1, currentPage - 1);
+    let endPage = Math.min(totalPages, currentPage + 1);
+
+    // Adjust boundaries to ensure we always show 3 buttons if possible
+    if (currentPage === 1) {
+        endPage = Math.min(totalPages, 3);
+    } else if (currentPage === totalPages) {
+        startPage = Math.max(1, totalPages - 2);
+    }
+
+    // Generate the adjacent numbered buttons
+    for (let i = startPage; i <= endPage; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'btn-gold'; 
+        btn.style.padding = '5px 12px';
+        btn.style.cursor = 'pointer';
+        
+        // Highlight logic for the current page
+        if (i === currentPage) {
+            btn.style.backgroundColor = '#d4af37';
+            btn.style.color = '#111';
+            btn.style.fontWeight = 'bold';
+        }
+
+        btn.onclick = () => {
+            currentPage = i;
+            renderBookList();
+            window.scrollTo(0, 0);
+        };
+        pageInfoContainer.appendChild(btn);
+    }
+
+    // Add visual divider and "Last" button if we aren't near the end
+    if (endPage < totalPages) {
+        const ellipsis = document.createElement('span');
+        ellipsis.textContent = '...';
+        ellipsis.style.color = '#d4af37';
+        pageInfoContainer.appendChild(ellipsis);
+
+        const lastBtn = document.createElement('button');
+        lastBtn.textContent = 'Last';
+        lastBtn.className = 'btn-gold';
+        lastBtn.style.padding = '5px 12px';
+        lastBtn.style.cursor = 'pointer';
+        
+        lastBtn.onclick = () => {
+            currentPage = totalPages;
+            renderBookList();
+            window.scrollTo(0, 0);
+        };
+        pageInfoContainer.appendChild(lastBtn);
+    }
 }
 
 function updateFilterStars() {
-    const percentage = (currentQuery.maxRating / 10) * 100;
+    const percentage = calculateStarPercentage(currentQuery.maxRating);
     document.querySelector('.filter-stars-inner').style.width = `${percentage}%`;
 }
 
@@ -384,17 +458,42 @@ function setupEventListeners() {
         });
     });
 
-    // LEQ Star Filter Listener
+    // LEQ Star Filter Listener - WITH DEAD SPACE FIX
     document.getElementById('rating-filter-stars').addEventListener('click', (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const width = rect.width;
-        const rating = (x / width) * 10;
-        currentQuery.maxRating = Math.round(rating * 10 + 0.01) / 10; // to nearest 0.5
+        
+        const gapRatio = 0.25; 
+        const totalWidthUnits = 5 + (4 * gapRatio);
+        const clickedUnits = (x / width) * totalWidthUnits;
+        
+        const starIndex = Math.floor(clickedUnits / (1 + gapRatio));
+        const remainder = clickedUnits - (starIndex * (1 + gapRatio));
+        
+        let selectedStars;
+        
+        if (remainder > 1) {
+            // Clicked firmly in the gap -> round down to the completed star on the left
+            selectedStars = starIndex + 1; 
+        } else if (remainder < 0.20) {
+            // FIX: If you click the right half of the gap, the math thinks you've entered 
+            // the first ~20% of the NEXT star's bounding box. Force it down to the left star.
+            selectedStars = starIndex;
+        } else {
+            // Clicked firmly on the star itself; respect the fractional rating
+            selectedStars = starIndex + remainder;
+        }
+        
+        selectedStars = Math.min(Math.max(selectedStars, 0), 5);
+        let finalRating = selectedStars * 2;
+        currentQuery.maxRating = Math.round(finalRating * 10) / 10; 
+        
         updateFilterStars();
         applyFiltersAndSort();
     });
 
+    // These still work as normal, but now coordinate with our dynamic middle buttons
     document.getElementById('prev-page').addEventListener('click', () => {
         if (currentPage > 1) {
             currentPage--;
