@@ -1,0 +1,146 @@
+#blog-app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0f0f13;
+  color: #ffffff;
+  font-family: monospace;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#blog-app * {
+  box-sizing: border-box;
+}
+
+#blog-app #controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: rgba(15, 15, 19, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#blog-app button {
+  background: #2a2a35;
+  color: white;
+  border: 1px solid #444;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+#blog-app button:hover {
+  background: #3f3f4e;
+}
+
+#blog-app .slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#blog-app input[type=range] {
+  width: 100px;
+  cursor: pointer;
+}
+
+#blog-app #view-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#blog-app canvas {
+  display: block;
+}
+
+#blog-app #view-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 100px 40px 40px 40px;
+}
+
+#blog-app #post-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#blog-app #post-list li {
+  padding: 20px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s;
+}
+
+#blog-app #post-list li:hover {
+  background: #1a1a24;
+}
+
+#blog-app .hidden {
+  display: none !important;
+}
+
+#blog-app #modal {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+#blog-app #modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  display: flex !important;
+}
+
+#blog-app #modal-content {
+  background: #1e1e26;
+  padding: 40px;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+  border: 1px solid #444;
+}
+
+#blog-app #modal.hidden #modal-content {
+  transform: scale(0.9);
+}
+
+#blog-app #modal-body {
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+#blog-app #modal-close {
+  margin-top: 20px;
+  background: #ef4444;
+  border: none;
+}
+
+#blog-app #modal-close:hover {
+  background: #dc2626;
+}

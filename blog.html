@@ -1,0 +1,28 @@
+<div id="blog-app">
+  <div id="controls">
+    <button id="btn-canvas">Bubble View</button>
+    <button id="btn-list">List View</button>
+    <div class="slider-container">
+      <span>Speed:</span>
+      <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1">
+    </div>
+  </div>
+
+  <div id="view-canvas">
+    <canvas id="bubble-canvas"></canvas>
+  </div>
+
+  <div id="view-list" class="hidden">
+    <ul id="post-list"></ul>
+  </div>
+
+  <div id="modal" class="hidden">
+    <div id="modal-content">
+      <h2 id="modal-title"></h2>
+      <pre id="modal-body"></pre>
+      <button id="modal-close">Close</button>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="blog-styles.css">
+<script src="blog.js"></script>
