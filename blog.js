@@ -121,7 +121,7 @@ function resolveNodeCollision(a, b) {
   const velAlongNormal = rvx * nx + rvy * ny;
   if (velAlongNormal > 0) return;
 
-  const bounce = 0.85;
+  const bounce = 0.99;
   const impulse = -(1 + bounce) * velAlongNormal / 2;
   const ix = impulse * nx;
   const iy = impulse * ny;
