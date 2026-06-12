@@ -79,7 +79,7 @@
     "title": "Bastion",
     "author": "Phil Tucker",
     "image": "bastion.jpg",
-    "overallRating": 7.1,
+    "overallRating": 4.3,
     "tags": [
       "fantasy",
       "cultivation"
@@ -93,7 +93,7 @@
     "title": "Lord of the Mysteries",
     "author": "Cuttlefish That Loves Diving",
     "image": "lord-of-the-mysteries.jpg", 
-    "overallRating": 8.5,
+    "overallRating": 8.9,
     "tags": [
       "webnovel",
       "fantasy"
@@ -156,7 +156,7 @@
     "title": "Vainqueur the Dragon",
     "author": "Maxime J. Durand",
     "image": "vainqueur-the-dragon.jpg",
-    "overallRating": 6.0,
+    "overallRating": 5.0,
     "tags": [
       "webnovel",
       "fantasy",
@@ -218,7 +218,7 @@
     "title": "Arcane Ascension",
     "author": "Andrew Rowe",
     "image": "arcane_ascension.jpg",
-    "overallRating": 9.1,
+    "overallRating": 8.2,
     "tags": [
       "fantasy",
       "litrpg"
@@ -230,7 +230,7 @@
   {
     "id": "16",
     "title": "The Last Dainv",
-    "author": "",
+    "author": "Majon",
     "image": "the-last-dainv.png",
     "overallRating": 4.5,
     "tags": [
@@ -247,7 +247,7 @@
     "title": "Between Two Fires",
     "author": "Christopher Buehlman",
     "image": "between-two-fires.jpg",
-    "overallRating": 8.5,
+    "overallRating": 7.5,
     "tags": [
        "fantasy",
        "high fantasy"
@@ -255,5 +255,84 @@
     "numberOfWords":  134230,
     "synopsis": "The year is 1348. Thomas, a disgraced knight, has found an orphan of the Black Death in a Norman village. An almost unnerving picture of innocence, she tells Thomas that the plague is only part of a larger cataclysm—that the fallen angels under Lucifer are rising in a second war on Heaven. But is it delirium or is it faith? She believes she has seen the angels of God. She believes the dead speak to her in dreams. And now she has convinced the faithless Thomas to shepherd her across an apocalyptic landscape to Avignon. There, she tells Thomas, she will fulfill her mission. There her true nature will be revealed. And there Thomas will confront an evil wrestling for the throne of Heaven, and which has poisoned his own soul.",
     "review": " A pretty fun read. Obviously a lot better written than the average webnovel slop, it's just a solid read overall. Pacing is somewhat on the slower side."
+  },
+  {
+    "id": "18",
+    "title": "Sky Pride",
+    "author": "Warby Picus",
+    "image": "",
+    "overallRating": 5.2,
+    "tags": [
+        "cultivation",
+        "webnovel"
+    ],
+    "numberOfWords": 782359,
+    "synopsis": "The very heavens had decreed his death. He should have died in the womb. Or in infancy. Or when his family was murdered. Or when the house burned around him. Or when he woke up in the dump suffering from innumerable diseases and missing fingers. Even the magic ring with a ghostly grandpa trapped inside of it was sabotaged. A reasonable person would roll over and die. Tian isn't that reasonable. And as it happens, neither is Grandpa Jun. In a world where immortality can be cultivated, miracles are things you make for yourself. A broken boy will defy the heavens, and soar.",
+    "review": "Better written than average cultivation slop, but like always the plot isn't anything special, and it does fall into the same pitfalls as others in it's genre."
+  },
+  {
+    "id": "19",
+    "title": "Mythical Contract",
+    "author": "Shirime",
+    "image": "",
+    "overallRating": "6.3",
+    "tags": [
+        "fantasy",
+        "urban fantasy",
+        "litrpg",
+        "webnovel"
+    ],
+    "numberOfWords": 148275,
+    "synopsis": "Jujutsu Kaisen meets OG Naruto in this fun, action-packed LitRPG! Rui Payne must get stronger if he wants to remove the Fallen Star Curse from his body! In a world where humans and mythical creatures can form Contacts for mutual benefit, there are those who would attempt to make their own Myths for personal gain. These manmade creatures are called Curses, and they are the unpredictable, dangerous versions of the beings they were made to replicate. Now that he's escaped from the Cult of the Fallen Star, Rui Payne has only one goal: Remove the Curse from his body. Unfortunately for him, that's impossible! At least, that's what he thought until a strange man approached him with a proposition...",
+    "review": "Lowkey the same thing as JJK and Naruto. The plot is a copy, the characters are copied, and there's nothing remotely unique about it. That being said, it is well-written, but the pacing is overly fast at times."
+  },
+  {
+    "id": "20",
+    "title": "Are You Even Human",
+    "author": "Thundamoo",
+    "image": "",
+    "overallRating": "7.2",
+    "tags": [
+      "apocalypse",
+      "sci-fi",
+      "superhero",
+      "urban fantasy",
+      "webnovel"
+    ],
+    "numberOfWords": 520129,
+    "synopsis": "In 2025, the moon hatched and its child died. Things have since gotten worse. Some people have super powers now, but so do the extradimensional invaders slowly wiping humanity out. By Julietta's eighteenth birthday, the war has been loss after loss for far longer than she's been alive, so she can't bring herself to be terribly shocked when the sky splits in half and weeps death. Surviving is the real surprise. Unexpectedly gaining the powers of a shapeshifter, Julietta can change into any living thing she has touched, mixing and matching parts with flesh as mutable as flowing water. ...Except when she tries to return to her original form. Trapped behind enemy lines in someone else's skin, Julietta must adapt to new powers, new bodies, and new threats all just to survive. But when she makes it out, will she still be Julietta?",
+    "review": "All this author writes is post-apocalyptic cosmic horror lesbian litrpg, and they're actually quite good at this ridiculously specific niche. Pretty solid webnovel overall, with no glaring flaws, with well fleshed-out characters and development."
+  },
+  {
+    "id": "21",
+    "title": "Nova: The Final Reincarnation",
+    "author": "GoldSphere",
+    "image": "",
+    "overallRating": "5.2",
+    "tags": [
+      "fantasy",
+      "webnovel",
+      "litrpg",
+      "isekai"
+    ],
+    "numberOfWords": 304305,
+    "synopsis": "Many lifetimes ago, Nova was a simple mafia don. Not the kind you often see in movies, but the kind that had no other options. He fought for the young and innocent to have decent lives, and then one day, he was at the top, not quite sure how he got there. As a retired mobster, he started a cat shelter. That’s the kind of guy he was. And since then, he has lived for eight lifetimes. Each one in a different world, and each time sticking to those same values. At the end of his eighth life, as the first archmage to live, he asked for a peaceful world next. But instead, he stands before his greatest challenge yet. And like always, he would either bend this new world to his will, or he would die trying. ",
+    "review": "Generic plot, OP Main Character, nothing special about the plot. Just some more standard (but not necessarily bad) litrpg slop."
+  },
+  {
+    "id": "22",
+    "title": "Jackal Among Snakes",
+    "author": "Nemorosus",
+    "image": "",
+    "overallRating": "8.7",
+    "tags": [
+      "isekai",
+      "litrpg",
+      "fantasy",
+      "webnovel"
+    ],
+    "numberOfWords": 1361000,
+    "synopsis": "The royal bastard of House Vasquer, Argrave, changed after his stay studying magic at the Tower of the Gray Owl. The sickly man's awkward posture and cruel behavior have been replaced with a neat dignity and acerbic wit. Though once listless, he now strives towards his goals with a life-or-death tenacity. Most come away thinking he seems to know too many details about too much. Few can claim to know his motives or his goals. Yet behind that confident appearance, the primary contributor for an open-world RPG's wiki battles existential dread and things far beyond his ken as he struggles to adapt to a grim, gothic fantasy world mirroring his favorite game. The prospect of fighting against a world-ending calamity loses all of its appeal when it transitions from entertainment to reality. Argrave is spurred towards unwanted heroism to preserve his life as he struggles desperately to keep this sinking ship afloat.",
+    "review": "A well-written isekai, although the pacing is less solid in the last third of the series. The main character is prone to solving issues through methods other than plain raw force, and actually utilizes his advantages well. The characters are well-developed throughout the story."
   }
 ]
