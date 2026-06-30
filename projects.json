@@ -1,0 +1,65 @@
+{
+  "categoryOrder": [
+    "Featured",
+    "EdTech",
+    "Games"
+  ],
+  "projects": [
+    {
+      "id": "pathwise",
+      "title": "Pathwise",
+      "image": "brilliant-clone.png",
+      "categories": ["EdTech", "Featured"],
+      "year": 2026,
+      "match": 99,
+      "tags": ["EdTech", "Interactive Learning", "Web App"],
+      "featured": true,
+      "synopsis": "A dark-mode, Brilliant-style learning platform where every concept is taught through short interactive steps, instant feedback, and a path that remembers exactly where you left off. Includes a full course catalog, daily streaks, and a leaderboard to keep you coming back.",
+      "links": [
+        { "label": "Live Site", "url": "https://brilliant-clone-5c11e.web.app" }
+      ]
+    },
+    {
+      "id": "dungeon-core",
+      "title": "Dungeon Core",
+      "image": "dungeon-core.png",
+      "categories": ["Games"],
+      "year": 2026,
+      "match": 97,
+      "tags": ["Strategy", "Roguelike", "Web Game"],
+      "featured": false,
+      "synopsis": "Build your lair, crush the heroes, become legend. A dungeon-building strategy game where you ARE the dungeon - design rooms, lay traps, and fend off waves of adventurers. Features guided fast-start runs, head-to-head mode, achievements, and cloud-saved progress.",
+      "links": [
+        { "label": "Play Now", "url": "https://dungeon-core.web.app" }
+      ]
+    },
+    {
+      "id": "coolhastorgames",
+      "title": "CoolHastorGames",
+      "image": "coolhastorgames.png",
+      "categories": ["Games"],
+      "year": 2026,
+      "match": 96,
+      "tags": ["Arcade", "Multiplayer", "Game Hub"],
+      "featured": false,
+      "synopsis": "A whole arcade in your browser - big full-size games plus 31 classic arcade, puzzle, and party games gathered in one place. Built for game nights with friends, with quick search, featured titles, and player profiles.",
+      "links": [
+        { "label": "Play Now", "url": "https://coolhastorgames.web.app" }
+      ]
+    },
+    {
+      "id": "stacker-wars",
+      "title": "Stacker Wars",
+      "image": "stacker-war.png",
+      "categories": ["Games"],
+      "year": 2026,
+      "match": 95,
+      "tags": ["Strategy", "Multiplayer", "Web Game"],
+      "featured": false,
+      "synopsis": "Freeze. Merge. Conquer. A fantasy strategy game of frozen towers and merged armies set across a sprawling realm of castles and jungles. Fight through a story campaign, test yourself in skirmishes against the AI, go head-to-head in multiplayer, and dig into a full lore codex.",
+      "links": [
+        { "label": "Play Now", "url": "https://stacker-war.web.app/" }
+      ]
+    }
+  ]
+}

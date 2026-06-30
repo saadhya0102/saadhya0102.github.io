@@ -1,0 +1,564 @@
+================================================================================
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+Personal Website - Saadhya
+================================================================================
+
+DOCUMENT PURPOSE
+----------------
+This PRD specifies, in exhaustive detail, the design and implementation of four
+sections of the personal website:
+
+    1. Landing Page        (index.html)   - "The Portal"
+    2. Resume Page         (resume.html)  - "Interactive Resume"
+    3. Project Gallery     (projects.html)- "Netflix Clone"
+    4. Origami Gallery     (origami.html) - "Paper Gallery"
+
+It deliberately EXCLUDES the Book Reviews (books.*) and Blog (blog.*) sections,
+which are considered complete and MUST NOT be modified.
+
+This document is the single source of truth for the build. Each section below
+contains: Goals, Target Feel, Layout/Wireframe, Components, Data Schema,
+Interaction & Animation Spec, Responsive Behavior, Accessibility, and
+Acceptance Criteria.
+
+
+================================================================================
+0. GLOBAL ARCHITECTURE & CONVENTIONS
+================================================================================
+
+0.1 HOSTING / DELIVERY
+    - Static site served from repo root by Firebase Hosting (firebase.json,
+      "public": ".").
+    - No build step, no bundler, no framework. Vanilla HTML + CSS + JS only.
+    - No new runtime dependencies. (Optional: a single web font via <link>.)
+
+0.2 THE "TRIO" PATTERN (existing convention to follow)
+    Each data-driven section is composed of three files:
+        - <section>.html  : static shell / containers
+        - <section>.js     : controller; fetch()es JSON, hash-routing, render
+        - <section>.json   : editable content (so HTML rarely changes)
+    Plus an image directory: <section>_images/ (mirrors books_images/).
+
+    Existing reference implementation: books.html / books.js / books.json with
+    books_images/. Hash-based routing is used for detail views, e.g. "#book-3"
+    drives renderSingleBook(); window.addEventListener('hashchange', ...).
+
+    New sections MUST reuse this pattern:
+        projects.html + projects.js + projects.json + projects_images/
+        origami.html  + origami.js  + origami.json  + origami_images/
+
+    resume.html and index.html are small/content-driven and remain mostly
+    self-contained (inline data acceptable), but follow the same visual system.
+
+0.3 SHARED STYLE SYSTEM
+    - style.css holds shared CSS variables in :root:
+          --bg:        #1a1a1a
+          --text:      #ececec
+          --accent:    #00adb5
+          --secondary: #393e46
+    - Page-specific styles are NAMESPACED via a body class to avoid collisions,
+      e.g. body.books-page. New sections add: body.projects-page,
+      body.origami-page, body.resume-page, and a landing block on body.home-page.
+    - Reuse the existing .btn-home / .btn-gold patterns where it makes sense for
+      consistency, but each section may introduce its own themed controls.
+
+0.4 NAVIGATION
+    - index.html is the hub. It links to: blog.html, books.html, resume.html,
+      projects.html, origami.html.
+    - Every new page provides a clear "Home" affordance (link back to
+      index.html), styled to fit that page's theme.
+
+0.5 ACCESSIBILITY & PERFORMANCE (apply to ALL sections)
+    - Honor prefers-reduced-motion: reduce/disable non-essential animation.
+    - All interactive elements keyboard-focusable with visible focus states.
+    - Images have meaningful alt text; decorative images alt="".
+    - No cumulative layout shift (reserve image space via aspect-ratio).
+    - Semantic HTML (nav, main, section, header, footer, button, a).
+    - Color contrast meets WCAG AA for body text.
+
+0.6 OUT OF SCOPE (DO NOT TOUCH)
+    - books.html, books.js, books.json, books_images/
+    - blog.html, blog.js, blog-posts.json, blog-styles.css, blog_entries/
+    - 404.html, firebase.json, functions/, python utilities.
+
+
+================================================================================
+1. LANDING PAGE  (index.html) - "THE PORTAL"
+================================================================================
+
+1.1 GOAL
+    Replace the placeholder index.html with a single-screen, memorable hub that
+    instantly communicates personality and routes visitors to each section.
+    It should feel like a "portal" where each destination teases its own
+    distinct aesthetic.
+
+1.2 TARGET FEEL
+    Cinematic, modern, alive. A dark canvas with a soft animated background, a
+    bold animated name, and large interactive "portal" cards. Premium but fast.
+    Should make a first-time visitor think "this person cares about craft."
+
+1.3 LAYOUT / WIREFRAME (desktop)
+
+    +--------------------------------------------------------------+
+    |                  [ animated aurora/particles ]               |
+    |                                                              |
+    |                       S A A D H Y A                          |   <- hero name (animated)
+    |              <typed rotating subtitle line>                  |
+    |                  short one-line tagline                      |
+    |                                                              |
+    |   +----------+ +----------+ +----------+ +-------+ +-------+  |
+    |   | Writing  | | Books    | | Resume   | |Projects| |Origami| |   <- 5 portal cards
+    |   | (thoughts)| | (gold)  | | (cv)     | |(red)  | |(paper)| |
+    |   +----------+ +----------+ +----------+ +-------+ +-------+  |
+    |                                                              |
+    |                    scroll / hint footer                      |
+    +--------------------------------------------------------------+
+
+1.4 COMPONENTS
+    - Animated background: a <canvas> rendering a lightweight particle field or
+      flowing gradient ("aurora"). Cursor-reactive (parallax / attraction).
+    - Hero block:
+        * Name "Saadhya" with an entrance animation (letters fade/slide up,
+          staggered) and a subtle gradient text fill or glow.
+        * Typed rotating subtitle that cycles placeholder phrases
+          (e.g. "builder.", "writer.", "paper-folder.", "student.").
+        * One-line tagline (placeholder copy, easily editable).
+    - Portal cards (5): Writing & Thoughts -> blog.html; Book Reviews ->
+      books.html; Resume -> resume.html; Project Gallery -> projects.html;
+      Origami Gallery -> origami.html.
+        * Each card hints its destination theme on hover:
+            Writing  : teal/accent ink motif
+            Books    : classy gold (#d4af37) library motif
+            Resume   : clean monochrome / document motif
+            Projects : Netflix red (#E50914) motif
+            Origami  : warm paper texture motif
+        * Hover effect: 3D tilt toward cursor (parallax) + glow + label reveal.
+    - Footer hint: subtle "scroll" or social links row (placeholder).
+
+1.5 DATA
+    - Inline (no JSON required). Card definitions can live in a small JS array
+      at top of an inline <script> for easy editing:
+          const PORTALS = [{ title, href, theme, blurb }...]
+
+1.6 INTERACTION & ANIMATION SPEC
+    - On load: background fades in; hero letters stagger in (~30-50ms apart);
+      cards rise/fade in with stagger after hero.
+    - Mouse move: background parallax + each hovered card tilts (max ~10deg)
+      using transform: perspective() rotateX/rotateY.
+    - Typed subtitle: type -> pause -> delete -> next phrase, looping.
+    - prefers-reduced-motion: disable canvas animation (static gradient),
+      disable typing (show a single static subtitle), disable tilt.
+
+1.7 RESPONSIVE BEHAVIOR
+    - >= 992px: cards in a single row (5 across) or wrap to a tidy grid.
+    - 600-991px: cards in a 2-3 column grid.
+    - < 600px: cards stack 1 column; reduce particle count; smaller hero type.
+
+1.8 TECH NOTES
+    - index.html self-contained: inline <style> + inline <script> for canvas and
+      interactions, plus link to style.css for shared vars. A small ".home-page"
+      block may also be appended to style.css.
+    - Canvas must cap particle count and use requestAnimationFrame; pause when
+      tab hidden (visibilitychange) to save battery.
+
+1.9 ACCEPTANCE CRITERIA
+    [ ] Placeholder text replaced; page looks intentional and unique.
+    [ ] All five portal cards link to the correct pages and are keyboard
+        accessible.
+    [ ] Hero animation + typed subtitle work; background animates smoothly
+        (>= 50fps on a typical laptop) and pauses when tab hidden.
+    [ ] prefers-reduced-motion path produces a calm, static version.
+    [ ] No layout shift on load; fully responsive at the breakpoints above.
+
+
+================================================================================
+2. RESUME PAGE  (resume.html) - "INTERACTIVE RESUME"
+================================================================================
+
+2.1 GOAL
+    Build, from the currently-empty resume.html, a polished single-page
+    interactive resume on the site's dark theme that also prints cleanly to PDF.
+
+2.2 TARGET FEEL
+    Confident, recruiter-friendly, and tactile. Easy to skim on screen with
+    animated reveals, but produces a crisp, conventional one/two-page PDF when
+    printed.
+
+2.3 LAYOUT / WIREFRAME (desktop)
+
+    +--------------------------------------------------------------+
+    | [<- Home]  About  Experience  Education  Skills  ... [PDF]   |  <- sticky nav (scroll-spy)
+    +--------------------------------------------------------------+
+    |  SAADHYA <Lastname>                                          |
+    |  Role / Title . Location . email . github . linkedin        |  <- hero header
+    |  short professional summary paragraph                       |
+    +--------------------------------------------------------------+
+    |  EXPERIENCE                                                  |
+    |   o---- Company - Role (dates)                               |
+    |   |       bullet, bullet, bullet                             |  <- animated timeline
+    |   o---- Company - Role (dates)                               |
+    +--------------------------------------------------------------+
+    |  EDUCATION  (timeline)                                       |
+    +--------------------------------------------------------------+
+    |  SKILLS    [chips/bars grouped by category]                 |
+    +--------------------------------------------------------------+
+    |  PROJECTS / HIGHLIGHTS  (brief, links to project gallery)   |
+    +--------------------------------------------------------------+
+    |  CONTACT  (email / links)                                   |
+    +--------------------------------------------------------------+
+
+2.4 COMPONENTS
+    - Sticky top nav: anchors (About, Experience, Education, Skills, Projects,
+      Contact) + "<- Home" link + "Download PDF" button (calls window.print()).
+      Active section highlighted via scroll-spy (IntersectionObserver).
+    - Hero header: name, role/title, location, contact icons/links
+      (email, GitHub, LinkedIn) - placeholders to be swapped.
+    - Experience & Education: vertical timeline; each entry = title, org, dates,
+      location, and bullet achievements. Entries reveal on scroll.
+    - Skills: grouped categories (e.g. Languages, Frameworks, Tools), each as
+      animated proficiency bars and/or chips. Bars animate width on first view.
+    - Projects/Highlights: compact cards linking to projects.html (and external
+      links). Optional.
+    - Footer/contact block.
+
+2.5 DATA
+    - Default: content inline in HTML for simplicity.
+    - The PRD notes a future option to drive content from resume.json (same
+      trio pattern) without changing layout; not required for v1.
+    - Use realistic PLACEHOLDER content the owner can swap in.
+
+2.6 INTERACTION & ANIMATION SPEC
+    - Smooth-scroll on nav anchor clicks (scroll-behavior or JS).
+    - Scroll-spy: nav link for the section currently in view gets an active
+      style.
+    - IntersectionObserver reveals timeline entries (fade/slide) once.
+    - Skill bars fill from 0 to target width when first scrolled into view.
+    - prefers-reduced-motion: show everything immediately (no reveal/fill anim).
+
+2.7 PRINT / PDF
+    - A dedicated @media print block:
+        * Hide nav, buttons, background animation, decorative chrome.
+        * Switch to white background, black text, single column.
+        * Compact spacing; ensure it fits ~1-2 pages.
+        * Show link URLs where useful (optional a[href]::after).
+    - "Download PDF" button triggers window.print(); user saves as PDF.
+
+2.8 RESPONSIVE BEHAVIOR
+    - Nav collapses (wraps or compact) on small screens; remains usable.
+    - Timeline switches to a single-rail left-aligned layout on mobile.
+    - Skills grid reflows to 1 column.
+
+2.9 ACCEPTANCE CRITERIA
+    [ ] Sticky nav with working smooth-scroll anchors and scroll-spy active
+        states.
+    [ ] Timeline + skill animations play on scroll (and are skipped under
+        reduced-motion).
+    [ ] "Download PDF"/print yields a clean, single-column, ink-friendly
+        document on 1-2 pages.
+    [ ] Fully responsive; readable on mobile.
+    [ ] Uses dark site theme on screen; placeholder content clearly swappable.
+
+
+================================================================================
+3. PROJECT GALLERY  (projects.html) - "NETFLIX CLONE"  [PRIMARY FOCUS]
+================================================================================
+
+3.1 GOAL
+    Build a project gallery whose UI is as visually identical to Netflix's
+    "browse" experience as possible. It is JSON-driven so the owner can add many
+    projects/links over time. This is the highest-effort section; iterate at
+    least 3 passes against reference screenshots to maximize fidelity.
+
+3.2 TARGET FEEL
+    "This is literally Netflix." Dark, edge-to-edge, big cinematic billboard,
+    horizontally scrolling category rows of poster cards that expand on hover,
+    and a detail/preview modal ("the jaw") on click.
+
+3.3 VISUAL SYSTEM (match Netflix precisely)
+    - Background: #141414. Text: #fff and #e5e5e5. Muted gray: #808080.
+    - Brand red (logo + primary accents): #E50914.
+    - Font stack approximating Netflix Sans:
+        "Helvetica Neue", Helvetica, Arial, sans-serif.
+    - Generous black negative space; rows tightly stacked; poster cards have
+      slight rounding (Netflix uses ~4px) and subtle shadows on hover.
+
+3.4 LAYOUT / WIREFRAME (desktop)
+
+    +--------------------------------------------------------------+
+    | SAADHYAFLIX  Home  Projects  ...            [search] [@]     |  <- top nav (transparent->solid)
+    +--------------------------------------------------------------+
+    |                                                              |
+    |   FEATURED PROJECT TITLE                                     |
+    |   short featured description ...                             |  <- billboard / hero
+    |   [ > Play ]  [ (i) More Info ]                              |
+    |   (background image + left + bottom gradient scrims)         |
+    +--------------------------------------------------------------+
+    |  EdTech                                            o o o      |  <- row title + progress pips
+    |  [card][card][card][card][card][card] ...   < / >  scroll    |
+    |--------------------------------------------------------------|
+    |  Games                                                       |
+    |  [card][card][card][card] ...                                |
+    |--------------------------------------------------------------|
+    |  Web Apps / AI&ML / Research / Hackathons / Tools / ...      |
+    +--------------------------------------------------------------+
+
+3.5 COMPONENTS
+    A) TOP NAVBAR
+       - Fixed at top. Transparent over the billboard at scrollY=0; fades to
+         solid #141414 background as the user scrolls (scroll listener toggling
+         a class around ~scrollY > 60).
+       - Left: red wordmark logo "SAADHYAFLIX" (placeholder brand name).
+       - Center/left links: Home, Projects (and optionally others); current is
+         bold/white, others muted.
+       - Right: a search icon and a profile avatar glyph (decorative;
+         search may be wired as a simple title filter - optional for v1).
+
+    B) BILLBOARD / HERO
+       - Driven by the project flagged "featured": true (fallback: first item).
+       - Full-bleed background image with a left-to-right dark gradient scrim and
+         a bottom fade into #141414 so rows blend in.
+       - Content: large title, 1-3 line description (clamped), and two buttons:
+            * "> Play"  : solid white button, dark text (primary). Opens the
+                          project's primary link (Live Demo) in a new tab, OR
+                          opens the modal - see 3.7.
+            * "(i) More Info" : translucent gray button; opens the preview modal.
+
+    C) CATEGORY ROWS ("sliders")
+       - One row per category (derived from each project's "categories" array).
+       - Row header: category name (Netflix-style, bold, slightly small).
+       - Track: horizontally scrollable strip of poster cards. Hide scrollbar.
+       - Left/right chevron arrows appear on row hover and scroll the track by
+         ~one viewport of cards. Arrows are tall, semi-transparent black
+         overlays (like Netflix).
+       - Progress pips (small segments) top-right of the row indicating pages
+         (optional but desired for fidelity).
+
+    D) POSTER CARD + HOVER EXPAND
+       - Default: a landscape thumbnail (Netflix uses ~16:9 for these "boxart"
+         tiles) with the title overlaid or below.
+       - Hover (desktop): after a short delay (~300-400ms) the card scales up
+         (~1.4-1.5x), lifts with a shadow, and pushes neighbors aside; an
+         expanded info panel drops below the image showing:
+            * action buttons: round Play, Add(+), Like(thumbs), and a "more"
+              (chevron) that opens the modal.
+            * a match line: "<match>% Match", year, and a small "maturity"
+              style tag box (we repurpose as a primary tech tag).
+            * a row of genre/tags separated by dots.
+       - The first and last cards in a row must not get clipped when scaling
+         (transform-origin adjusts at edges).
+
+    E) PREVIEW MODAL ("the jaw")
+       - Opened by clicking a card / "More Info" / the card chevron.
+       - Implemented via hash routing: location.hash = "#project-<id>"; a
+         hashchange handler opens/renders the modal (mirrors books.js
+         handleRouting / renderSingleBook). Closing clears the hash.
+       - Layout:
+            * Big hero image header with bottom gradient and the title; a "> Play"
+              and round Add/Like buttons overlaid at the bottom (Netflix style).
+            * A close (X) button top-right.
+            * Body: left column = synopsis paragraph; right column = metadata:
+              year, "<match>% Match", tech tags, categories.
+            * Project LINKS rendered as buttons: Live Demo, GitHub, Video,
+              Writeup, etc. (from the project's "links" array). Open in new tab.
+            * "More Like This" grid: other projects sharing >=1 category, as
+              smaller cards that also open their own modal.
+       - Modal has a dark scrim backdrop; clicking the scrim or pressing Escape
+         closes it; body scroll locked while open.
+
+3.6 DATA SCHEMA  (projects.json - array of project objects)
+    A project may appear in multiple rows via the "categories" array.
+
+    {
+      "id": "1",                         // unique string id, used in hash route
+      "title": "Project Name",
+      "image": "project-1.jpg",          // filename in projects_images/ (16:9)
+      "portrait": "project-1-tall.jpg",  // OPTIONAL portrait art (else reuse image)
+      "categories": ["EdTech", "Games"], // one row per unique category
+      "year": 2025,
+      "match": 98,                       // 0-100 "match %" flavor number
+      "tags": ["React", "Firebase"],     // tech tags shown as dotted list
+      "featured": true,                  // billboard candidate
+      "synopsis": "What it is, 1-3 sentences.",
+      "links": [
+        { "label": "Live Demo", "url": "https://..." },
+        { "label": "GitHub",    "url": "https://..." }
+      ]
+    }
+
+    Image handling:
+      - Mirror books.js normalizeImagePath(): trim, normalize slashes, strip
+        leading "./" or "/", leave http(s)/data URIs untouched, and prefix
+        "projects_images/" when no directory is given.
+      - Missing images fall back to a gray placeholder tile (CSS background),
+        matching the books "gray placeholder" convention.
+
+    SEED CATEGORIES (editable):
+      EdTech, Games, Web Apps, AI/ML, Research, Hackathons, Tools, Experiments.
+    Seed with several placeholder projects spread across categories, with gray
+    placeholder thumbnails, so the page looks full before real content/links are
+    added.
+
+3.7 CONTROLLER (projects.js) RESPONSIBILITIES
+    - On DOMContentLoaded: fetch projects.json, normalize image paths.
+    - Build the billboard from the featured project.
+    - Compute the ordered list of categories (preserve a preferred order; append
+      any extras). For each category, render a row containing the projects whose
+      "categories" include it.
+    - Wire hover-expand behavior (delay, scale, neighbor push, edge handling).
+    - Wire row arrow scrolling and (optional) progress pips.
+    - Hash routing: handleRouting() reads location.hash; "#project-<id>" renders
+      and shows the modal; empty/other hash hides it. Listen to hashchange and
+      run once on load.
+    - "More Like This": from the open project's categories, gather other
+      projects sharing a category, dedupe, render as mini-cards.
+    - Navbar scroll-fade: toggle a "scrolled" class on scroll.
+    - Optional: simple search filter by title.
+
+3.8 INTERACTION & ANIMATION SPEC (fidelity details)
+    - Card hover scale uses transform + transition (~200-300ms ease); the
+      expanded info panel fades/slides in.
+    - Hover is debounced via a short delay so quick mouse passes don't trigger
+      expansion (Netflix-like).
+    - Arrows slide the track using scrollTo({behavior:'smooth'}) or transform.
+    - Navbar transition is a CSS transition on background-color.
+    - Modal open/close has a fade + slight scale-in on the panel.
+    - prefers-reduced-motion: disable hover-scale growth (or make instant),
+      disable modal scale-in; keep functionality.
+
+3.9 RESPONSIVE BEHAVIOR
+    - Desktop: multiple cards visible per row; full billboard height (~56-80vh).
+    - Tablet: fewer cards per row; smaller billboard; arrows still work.
+    - Mobile: rows become touch-scroll (no arrows needed); hover-expand replaced
+      by tap-opens-modal; billboard shorter; nav condenses. Card scaling on
+      hover disabled for touch.
+
+3.10 ITERATION PLAN (do at least 3 passes; compare to reference screenshots)
+    - PASS 1 (structure): navbar, billboard, rows, basic cards, JSON wiring,
+      hash-routed modal skeleton.
+    - PASS 2 (signature interactions): hover-expand info card with buttons +
+      metadata, neighbor push, edge clipping fixes, navbar transparent->solid
+      fade, billboard gradients.
+    - PASS 3 (polish): modal "jaw" styling + "More Like This", spacing,
+      typography scale, rounding, shadows, arrow styling, progress pips, and
+      animation timing tuned to read as authentic Netflix.
+
+3.11 ACCEPTANCE CRITERIA
+    [ ] Placed side-by-side with Netflix, the layout/feel reads as "the same UI".
+    [ ] Navbar starts transparent over the billboard and fades to solid on
+        scroll.
+    [ ] Billboard renders from "featured"; Play/More Info buttons work.
+    [ ] Each category renders a row; rows scroll via arrows (desktop) and touch
+        (mobile); cards expand on hover (desktop) with action buttons + metadata.
+    [ ] Clicking a card / More Info opens the preview modal; modal deep-links via
+        "#project-<id>"; Escape/scrim/X closes it; body scroll locks.
+    [ ] Modal shows synopsis, metadata, ALL project links (open new tab), and a
+        working "More Like This" grid.
+    [ ] JSON-driven: adding a project object (and image) makes it appear in the
+        correct rows with no HTML edits.
+    [ ] Reduced-motion and mobile behaviors degrade gracefully.
+
+
+================================================================================
+4. ORIGAMI GALLERY  (origami.html) - "PAPER GALLERY"
+================================================================================
+
+4.1 GOAL
+    Build, from the empty origami.html, an inventive, JSON-driven gallery of
+    folded models with a distinct "paper" aesthetic that contrasts the dark
+    sections.
+
+4.2 TARGET FEEL
+    Tactile and warm: off-white paper texture, soft shadows, crisp typography.
+    The signature delight is a card that reveals the model's CREASE PATTERN -
+    flipping/cross-fading from the finished photo - so visitors see "the math
+    behind the fold."
+
+4.3 LAYOUT / WIREFRAME (desktop)
+
+    +--------------------------------------------------------------+
+    | [<- Home]   Origami Gallery        [filters] [sort v]        |
+    +--------------------------------------------------------------+
+    |  [model] [model] [model] [model]                            |
+    |  [model] [model] [model] [model]      <- responsive masonry  |
+    |  [model] [model] ...                                         |
+    +--------------------------------------------------------------+
+
+    Card (default)              Card (hover/tap)
+    +----------------+          +----------------+
+    |                |          |   //crease//   |
+    |  finished foto |   --->   |  //pattern //  |
+    |                |          |  //  grid  //  |
+    | Title   ★★★☆☆  |          | Title   ★★★☆☆  |
+    | designer  37 f |          | designer  37 f |   (f = fold count badge)
+    +----------------+          +----------------+
+
+4.4 COMPONENTS
+    - Header: "<- Home" link, title, filter controls, sort dropdown.
+    - Filters: by difficulty (e.g. 1-5), designer, and paper type. Multi or
+      single select; clearing returns to all.
+    - Sort: Recent, Difficulty (asc/desc).
+    - Model card: finished photo, title, designer, difficulty meter (stars or
+      pips), fold-count badge. On hover/tap it flips/cross-fades to the crease
+      pattern image.
+    - Lightbox detail (hash route "#model-<id>"): larger view with multiple
+      angle photos (thumbnails to switch the main image), the crease pattern,
+      and metadata: designer, paper, steps/folds, time, notes, and a diagram
+      link if available. Close via X / scrim / Escape.
+
+4.5 DATA SCHEMA  (origami.json - array)
+    {
+      "id": "1",
+      "title": "Model Name",
+      "designer": "Designer Name",
+      "image": "model-1.jpg",            // finished photo (front)
+      "creasePattern": "model-1-cp.jpg", // crease pattern (back/flip)
+      "difficulty": 3,                    // 1-5
+      "folds": 37,                        // approximate fold/step count
+      "paper": "Kami 15cm",               // paper type/size
+      "angles": ["model-1-a.jpg", "model-1-b.jpg"], // OPTIONAL extra photos
+      "diagramUrl": "https://...",        // OPTIONAL link to diagram/CP source
+      "notes": "Anything interesting about the fold."
+    }
+    - Image handling mirrors the projects/books normalizer, prefixing
+      "origami_images/" when no directory is given; gray placeholder fallback.
+
+4.6 INTERACTION & ANIMATION SPEC
+    - Card flip: CSS 3D flip (rotateY) OR cross-fade between front (photo) and
+      back (crease pattern) on hover; on touch devices, tap toggles the flip.
+    - Difficulty meter animates/fills subtly on entrance (optional).
+    - Filter/sort updates re-render the grid with a quick fade.
+    - Lightbox: open/close fade; thumbnail click swaps the main image.
+    - prefers-reduced-motion: replace flip with instant swap; no entrance anim.
+
+4.7 RESPONSIVE BEHAVIOR
+    - Masonry/grid columns: ~4 (desktop) -> ~2-3 (tablet) -> 1-2 (mobile).
+    - Filters/sort wrap on small screens.
+    - Touch: tap flips card; tap title/figure opens lightbox.
+
+4.8 ACCEPTANCE CRITERIA
+    [ ] Distinct paper aesthetic, clearly different from the dark sections.
+    [ ] Grid renders from origami.json; adding an entry + images requires no
+        HTML edits.
+    [ ] Hover/tap flip reveals the crease pattern smoothly.
+    [ ] Filters (difficulty/designer/paper) and sort work and combine sensibly.
+    [ ] Lightbox (hash "#model-<id>") shows angles, crease pattern, and metadata;
+        closes via X/scrim/Escape.
+    [ ] Fully responsive; reduced-motion degrades gracefully.
+
+
+================================================================================
+5. CROSS-CUTTING REQUIREMENTS (ALL SECTIONS)
+================================================================================
+    [ ] Consistent "Home" affordance on every new page; index.html links remain
+        valid.
+    [ ] Page-namespaced styles appended to style.css (.projects-page,
+        .origami-page, .resume-page, .home-page) reusing existing CSS vars; no
+        regressions to books/blog styling.
+    [ ] prefers-reduced-motion respected everywhere; visible keyboard focus;
+        alt text on images.
+    [ ] No new build tooling or dependencies; stays vanilla HTML/CSS/JS.
+    [ ] Each page verified by opening locally; no console errors; JSON loads.
+
+================================================================================
+END OF PRD
+================================================================================

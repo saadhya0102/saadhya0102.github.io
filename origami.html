@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saadhya | Origami Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { box-sizing: border-box; }
+        body.origami-page {
+            margin: 0;
+            padding: 0;
+            display: block;
+            color: #2c2620;
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: #efe9dd;
+            background-image:
+                radial-gradient(circle at 20% 15%, rgba(255,255,255,0.6), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(214,198,170,0.5), transparent 45%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+        .origami-page a { color: #b5651d; }
+
+        .org-wrap { max-width: 1180px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem) 4rem; }
+
+        /* Header */
+        .org-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.5rem; }
+        .org-home {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: #6b5d49; font-weight: 600; text-decoration: none;
+            border: 1px solid #c9bca3; padding: 0.4rem 0.9rem; border-radius: 999px;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .org-home:hover { background: #fff; border-color: #b5651d; text-decoration: none; }
+        .org-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 800;
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            margin: 0.5rem 0 0.2rem;
+            border: none;
+            padding: 0;
+            color: #2c2620;
+            letter-spacing: -0.01em;
+        }
+        .org-sub { color: #6b5d49; max-width: 60ch; margin: 0 0 1.8rem; font-size: 1.02rem; }
+
+        /* Controls */
+        .org-controls {
+            display: flex; flex-wrap: wrap; gap: 1.2rem 1.6rem; align-items: flex-end;
+            padding: 1rem 1.2rem; margin-bottom: 2rem;
+            background: rgba(255,255,255,0.55);
+            border: 1px solid #d8ccb4;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px -18px rgba(80,60,30,0.5);
+        }
+        .ctrl { display: flex; flex-direction: column; gap: 0.35rem; }
+        .ctrl label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: #8a7a60; font-weight: 600; }
+        .ctrl select {
+            font-family: inherit; font-size: 0.92rem; color: #2c2620;
+            padding: 0.5rem 0.7rem; border-radius: 8px;
+            border: 1px solid #c9bca3; background: #fffdf8; cursor: pointer; min-width: 150px;
+        }
+        .ctrl-count { margin-left: auto; align-self: center; color: #8a7a60; font-size: 0.9rem; }
+        .btn-clear {
+            font-family: inherit; cursor: pointer; align-self: center;
+            background: none; border: none; color: #b5651d; font-weight: 600; text-decoration: underline; font-size: 0.85rem;
+        }
+
+        /* Grid (masonry-ish via columns) */
+        .org-grid { columns: 4 240px; column-gap: 1.2rem; }
+        .org-card-wrap { break-inside: avoid; margin-bottom: 1.2rem; }
+
+        /* Flip card */
+        .flip {
+            perspective: 1200px;
+            cursor: pointer;
+        }
+        .flip-inner {
+            position: relative;
+            transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+            transform-style: preserve-3d;
+            border-radius: 14px;
+        }
+        .flip.flipped .flip-inner, .flip:hover .flip-inner { transform: rotateY(180deg); }
+        .flip-face {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 14px 30px -14px rgba(70,50,20,0.55), 0 2px 6px rgba(0,0,0,0.08);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .flip-front { position: relative; }
+        .flip-back {
+            position: absolute;
+            inset: 0;
+            transform: rotateY(180deg);
+            display: flex; flex-direction: column;
+        }
+        .face-img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-size: cover; background-position: center;
+            display: flex; align-items: flex-end;
+        }
+        /* paper placeholder for finished side */
+        .ph-paper {
+            background:
+                linear-gradient(135deg, #fbf7ee, #e7dcc6);
+            position: relative;
+        }
+        .ph-paper::after {
+            content: "";
+            position: absolute; inset: 12% 14%;
+            border: 1.5px dashed rgba(120,95,55,0.35);
+            border-radius: 6px;
+        }
+        .ph-paper .ph-emoji {
+            position: absolute; inset: 0; display: grid; place-items: center;
+            font-size: 3rem; opacity: 0.75;
+        }
+        /* generated crease pattern placeholder */
+        .ph-crease {
+            background-color: #fcf9f1;
+            background-image:
+                repeating-linear-gradient(45deg, rgba(150,80,40,0.28) 0 1px, transparent 1px 26px),
+                repeating-linear-gradient(-45deg, rgba(40,90,150,0.22) 0 1px, transparent 1px 26px),
+                repeating-linear-gradient(0deg, rgba(60,60,60,0.12) 0 1px, transparent 1px 26px),
+                repeating-linear-gradient(90deg, rgba(60,60,60,0.12) 0 1px, transparent 1px 26px);
+        }
+        .face-caption {
+            width: 100%;
+            padding: 0.7rem 0.85rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,253,247,0.96) 45%);
+            position: relative;
+        }
+        .fc-title { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.1rem; line-height: 1.15; color: #2c2620; }
+        .fc-sub { font-size: 0.82rem; color: #8a7a60; margin-top: 0.15rem; }
+        .fc-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+        .stars { font-size: 0.95rem; letter-spacing: 1px; color: #b5651d; }
+        .stars .off { color: rgba(120,95,55,0.3); }
+        .fold-badge {
+            font-size: 0.72rem; font-weight: 600; color: #6b5d49;
+            background: rgba(181,101,29,0.12); border: 1px solid rgba(181,101,29,0.3);
+            padding: 0.15rem 0.5rem; border-radius: 999px;
+        }
+        .flip-back .face-body {
+            flex: 1;
+            background: #fffdf8;
+            padding: 0.85rem;
+            display: flex; flex-direction: column; gap: 0.4rem;
+        }
+        .flip-back .cp-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: #8a7a60; font-weight: 600; }
+        .flip-back .cp-notes { font-size: 0.85rem; color: #5c5040; line-height: 1.45; }
+        .flip-back .cp-foot { margin-top: auto; font-size: 0.78rem; color: #8a7a60; }
+        .flip-hint {
+            position: absolute; top: 0.6rem; right: 0.6rem;
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em;
+            background: rgba(44,38,32,0.65); color: #fff; padding: 0.2rem 0.5rem; border-radius: 999px;
+            z-index: 3; pointer-events: none;
+        }
+
+        /* Lightbox */
+        .org-lb-backdrop {
+            position: fixed; inset: 0; z-index: 500;
+            background: rgba(40,33,25,0.78);
+            backdrop-filter: blur(3px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 1.5rem; opacity: 0; transition: opacity 0.3s;
+        }
+        .org-lb-backdrop.show { opacity: 1; }
+        .org-lb-backdrop[hidden] { display: none; }
+        .org-lb {
+            background: #fffdf8;
+            border-radius: 16px;
+            max-width: 880px; width: 100%;
+            max-height: 90vh; overflow-y: auto;
+            display: grid; grid-template-columns: 1.1fr 1fr;
+            transform: scale(0.96); transition: transform 0.3s;
+            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+        }
+        .org-lb-backdrop.show .org-lb { transform: scale(1); }
+        .lb-media { background: #efe9dd; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+        .lb-main {
+            aspect-ratio: 1 / 1; border-radius: 10px; background-size: cover; background-position: center;
+            box-shadow: 0 10px 24px -12px rgba(0,0,0,0.4);
+        }
+        .lb-thumbs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .lb-thumb {
+            width: 56px; height: 56px; border-radius: 8px; background-size: cover; background-position: center;
+            cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s;
+        }
+        .lb-thumb.active { border-color: #b5651d; }
+        .lb-info { padding: 1.6rem; position: relative; }
+        .lb-info h2 { font-family: 'Fraunces', serif; font-size: 1.9rem; margin: 0 0 0.2rem; border: none; padding: 0; color: #2c2620; }
+        .lb-designer { color: #b5651d; font-weight: 600; margin-bottom: 1rem; }
+        .lb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem 1rem; margin-bottom: 1.2rem; }
+        .lb-stat .k { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #8a7a60; }
+        .lb-stat .v { font-size: 1rem; color: #2c2620; font-weight: 600; }
+        .lb-notes { color: #5c5040; line-height: 1.6; margin-bottom: 1.2rem; }
+        .lb-diagram {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: #b5651d; color: #fff; padding: 0.55rem 1.1rem; border-radius: 999px;
+            font-weight: 600; text-decoration: none; font-size: 0.9rem;
+        }
+        .lb-diagram:hover { background: #9a5315; text-decoration: none; }
+        .lb-close {
+            position: absolute; top: 1rem; right: 1rem;
+            width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
+            background: #efe9dd; color: #2c2620; font-size: 1.3rem; display: grid; place-items: center;
+        }
+        .lb-close:hover { background: #e0d6c2; }
+
+        @media (max-width: 640px) {
+            .org-lb { grid-template-columns: 1fr; }
+            .flip:hover .flip-inner { transform: none; } /* touch uses tap to flip */
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .flip-inner { transition: none; }
+            .org-lb, .org-lb-backdrop { transition: none; }
+        }
+    </style>
+</head>
+<body class="origami-page">
+    <div class="org-wrap">
+        <div class="org-top">
+            <a class="org-home" href="index.html">&larr; Home</a>
+        </div>
+        <h1 class="org-title">Origami Gallery</h1>
+        <p class="org-sub">Folded models, one sheet of paper each &mdash; no cuts, no glue. Hover (or tap) any model to flip it over and see the crease pattern behind the fold.</p>
+
+        <div class="org-controls">
+            <div class="ctrl">
+                <label for="fDifficulty">Difficulty</label>
+                <select id="fDifficulty">
+                    <option value="">All</option>
+                    <option value="1">1 - Simple</option>
+                    <option value="2">2 - Easy</option>
+                    <option value="3">3 - Intermediate</option>
+                    <option value="4">4 - Complex</option>
+                    <option value="5">5 - Super Complex</option>
+                </select>
+            </div>
+            <div class="ctrl">
+                <label for="fDesigner">Designer</label>
+                <select id="fDesigner"><option value="">All</option></select>
+            </div>
+            <div class="ctrl">
+                <label for="fPaper">Paper</label>
+                <select id="fPaper"><option value="">All</option></select>
+            </div>
+            <div class="ctrl">
+                <label for="fSort">Sort</label>
+                <select id="fSort">
+                    <option value="recent">Recent</option>
+                    <option value="diff-desc">Difficulty (high &rarr; low)</option>
+                    <option value="diff-asc">Difficulty (low &rarr; high)</option>
+                    <option value="folds-desc">Most folds</option>
+                </select>
+            </div>
+            <button class="btn-clear" id="clearFilters">Clear</button>
+            <span class="ctrl-count" id="count"></span>
+        </div>
+
+        <div class="org-grid" id="grid"></div>
+    </div>
+
+    <div class="org-lb-backdrop" id="lbBackdrop" hidden>
+        <div class="org-lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+            <div class="lb-media">
+                <div class="lb-main" id="lbMain"></div>
+                <div class="lb-thumbs" id="lbThumbs"></div>
+            </div>
+            <div class="lb-info">
+                <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+                <h2 id="lbTitle"></h2>
+                <div class="lb-designer" id="lbDesigner"></div>
+                <div class="lb-stats" id="lbStats"></div>
+                <p class="lb-notes" id="lbNotes"></p>
+                <a class="lb-diagram" id="lbDiagram" target="_blank" rel="noopener">View Diagram / CP &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="origami.js"></script>
+</body>
+</html>

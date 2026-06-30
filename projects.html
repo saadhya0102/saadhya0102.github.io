@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saadhya | Project Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="projects-page">
+
+    <!-- TOP NAV -->
+    <header class="nfx-nav" id="nfxNav">
+        <div class="nfx-nav-left">
+            <a class="nfx-logo" href="index.html">hastorFlix</a>
+            <nav class="nfx-links" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="books.html">Books</a>
+                <a href="blog.html">Writing</a>
+                <a href="origami.html">Origami</a>
+            </nav>
+        </div>
+        <div class="nfx-nav-right">
+            <div class="nfx-search">
+                <span class="nfx-search-icon" id="searchToggle" role="button" tabindex="0" aria-label="Search">&#128269;</span>
+                <input type="text" id="searchInput" class="nfx-search-input" placeholder="Search projects..." aria-label="Search projects">
+            </div>
+            <a href="index.html" class="nfx-home-pill">&larr; Home</a>
+            <span class="nfx-avatar" aria-hidden="true">S</span>
+        </div>
+    </header>
+
+    <!-- BILLBOARD -->
+    <section class="nfx-billboard" id="billboard" aria-label="Featured project"></section>
+
+    <!-- ROWS -->
+    <main class="nfx-rows" id="rows"></main>
+
+    <footer class="nfx-footer">
+        <p>A Netflix-style gallery of things I've built. &copy; <span id="yr"></span> Saadhya.</p>
+    </footer>
+
+    <!-- PREVIEW MODAL ("the jaw") -->
+    <div class="nfx-modal-backdrop" id="modalBackdrop" hidden>
+        <div class="nfx-modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="nfx-modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <div class="nfx-modal-hero" id="modalHero">
+                <div class="nfx-modal-hero-fade"></div>
+                <div class="nfx-modal-hero-content">
+                    <h2 class="nfx-modal-title" id="modalTitle"></h2>
+                    <div class="nfx-modal-hero-actions" id="modalHeroActions"></div>
+                </div>
+            </div>
+            <div class="nfx-modal-body">
+                <div class="nfx-modal-main">
+                    <div class="nfx-modal-meta" id="modalMeta"></div>
+                    <p class="nfx-modal-synopsis" id="modalSynopsis"></p>
+                </div>
+                <aside class="nfx-modal-side" id="modalSide"></aside>
+            </div>
+            <div class="nfx-modal-more">
+                <h3 class="nfx-modal-more-title">More Like This</h3>
+                <div class="nfx-more-grid" id="modalMore"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+    <script src="projects.js"></script>
+</body>
+</html>
