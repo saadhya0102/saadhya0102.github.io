@@ -2,6 +2,8 @@
   "categoryOrder": [
     "Featured",
     "EdTech",
+    "Systems",
+    "AI",
     "Games"
   ],
   "projects": [
@@ -17,21 +19,6 @@
       "synopsis": "A dark-mode, Brilliant-style learning platform where every concept is taught through short interactive steps, instant feedback, and a path that remembers exactly where you left off. Includes a full course catalog, daily streaks, and a leaderboard to keep you coming back.",
       "links": [
         { "label": "Live Site", "url": "https://brilliant-clone-5c11e.web.app" }
-      ]
-    },
-    {
-      "id": "hastos",
-      "title": "HastOS",
-      "image": "hastos.png",
-      "categories": ["EdTech"],
-      "year": 2026,
-      "match": 98,
-      "tags": ["Systems Programming", "IDE", "AI Tutor"],
-      "featured": false,
-      "synopsis": "Systems programming education, by doing. A full collegiate systems curriculum with an integrated multi-language IDE, automatic test-harness grading, interview prep tracks, and SLAVA — your Systems Learning Assistant for Verification and Assessment.",
-      "links": [
-        { "label": "Live Site", "url": "https://hastos.web.app" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/hastos" }
       ]
     },
     {
@@ -62,6 +49,50 @@
       "links": [
         { "label": "Live Site", "url": "https://saadhya0102.github.io/monkey-sense/" },
         { "label": "GitHub", "url": "https://github.com/saadhya0102/monkey-sense" }
+      ]
+    },
+    {
+      "id": "anki",
+      "title": "Anki",
+      "image": "anki.png",
+      "categories": ["EdTech"],
+      "year": 2026,
+      "match": 92,
+      "tags": ["Spaced Repetition", "Desktop App", "Rust"],
+      "featured": false,
+      "synopsis": "The industry-standard spaced repetition flashcard app — smart scheduling that tells you what to review and when, so knowledge actually sticks. My fork and ongoing work on the core Anki codebase (Rust + TypeScript, cross-platform desktop).",
+      "links": [
+        { "label": "Readme", "url": "https://github.com/saadhya0102/anki/blob/main/README.md" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/anki" }
+      ]
+    },
+    {
+      "id": "hastos",
+      "title": "HastOS",
+      "image": "hastos.png",
+      "categories": ["Systems"],
+      "year": 2026,
+      "match": 98,
+      "tags": ["Systems Programming", "IDE", "AI Tutor"],
+      "featured": false,
+      "synopsis": "Systems programming education, by doing. A full collegiate systems curriculum with an integrated multi-language IDE, automatic test-harness grading, interview prep tracks, and SLAVA — your Systems Learning Assistant for Verification and Assessment.",
+      "links": [
+        { "label": "Live Site", "url": "https://hastos.web.app" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/hastos" }
+      ]
+    },
+    {
+      "id": "tracetick",
+      "title": "TraceTick",
+      "image": "tracetick.png",
+      "categories": ["AI"],
+      "year": 2026,
+      "match": 91,
+      "tags": ["Fine-Tuning", "LoRA", "Cursor", "Python"],
+      "featured": false,
+      "synopsis": "Mines your Cursor agent transcripts and turns them into a clean fine-tuning dataset — then distills that into a small LoRA model that learns your conventions, tone, and the answers that have worked for you before. Local-first; your chats never leave your machine.",
+      "links": [
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/tracetick" }
       ]
     },
     {
