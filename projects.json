@@ -20,6 +20,51 @@
       ]
     },
     {
+      "id": "hastos",
+      "title": "HastOS",
+      "image": "hastos.png",
+      "categories": ["EdTech"],
+      "year": 2026,
+      "match": 98,
+      "tags": ["Systems Programming", "IDE", "AI Tutor"],
+      "featured": false,
+      "synopsis": "Systems programming education, by doing. A full collegiate systems curriculum with an integrated multi-language IDE, automatic test-harness grading, interview prep tracks, and SLAVA — your Systems Learning Assistant for Verification and Assessment.",
+      "links": [
+        { "label": "Live Site", "url": "https://hastos.web.app" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/hastos" }
+      ]
+    },
+    {
+      "id": "studybuddy",
+      "title": "StudyBuddy",
+      "image": "studybuddy.png",
+      "categories": ["EdTech"],
+      "year": 2025,
+      "match": 94,
+      "tags": ["AI", "Cloudflare Workers", "EdTech"],
+      "featured": false,
+      "synopsis": "Your AI study partner. An intelligent tutoring app powered by Llama 3.3 on Cloudflare Workers AI — explain topics in plain language, quiz you in real time, remember your progress across sessions, and adapt as you learn.",
+      "links": [
+        { "label": "Live Site", "url": "https://cf-ai-study-assistant.saadhyav.workers.dev" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/cf_ai_study_assistant" }
+      ]
+    },
+    {
+      "id": "monkey-sense",
+      "title": "Monkey Sense",
+      "image": "monkey-sense.png",
+      "categories": ["EdTech"],
+      "year": 2024,
+      "match": 93,
+      "tags": ["Math", "UIL", "Practice Tool"],
+      "featured": false,
+      "synopsis": "A drill engine for Texas UIL Number Sense — timed mental-math practice with configurable modes, hardcore scoring, and live stats. Used by dozens of state qualifiers across 4A, 5A, and 6A divisions.",
+      "links": [
+        { "label": "Live Site", "url": "https://saadhya0102.github.io/monkey-sense/" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/monkey-sense" }
+      ]
+    },
+    {
       "id": "dungeon-core",
       "title": "Dungeon Core",
       "image": "dungeon-core.png",
