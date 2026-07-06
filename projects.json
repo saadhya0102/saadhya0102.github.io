@@ -11,11 +11,11 @@
       "id": "pathwise",
       "title": "Pathwise",
       "image": "brilliant-clone.png",
-      "categories": ["EdTech", "Featured"],
+      "categories": ["EdTech"],
       "year": 2026,
       "match": 99,
       "tags": ["EdTech", "Interactive Learning", "Web App"],
-      "featured": true,
+      "featured": false,
       "synopsis": "A dark-mode, Brilliant-style learning platform where every concept is taught through short interactive steps, instant feedback, and a path that remembers exactly where you left off. Includes a full course catalog, daily streaks, and a leaderboard to keep you coming back.",
       "links": [
         { "label": "Live Site", "url": "https://brilliant-clone-5c11e.web.app" }
@@ -70,11 +70,11 @@
       "id": "hastos",
       "title": "HastOS",
       "image": "hastos.png",
-      "categories": ["Systems"],
+      "categories": ["Systems", "Featured"],
       "year": 2026,
       "match": 98,
       "tags": ["Systems Programming", "IDE", "AI Tutor"],
-      "featured": false,
+      "featured": true,
       "synopsis": "Systems programming education, by doing. A full collegiate systems curriculum with an integrated multi-language IDE, automatic test-harness grading, interview prep tracks, and SLAVA — your Systems Learning Assistant for Verification and Assessment.",
       "links": [
         { "label": "Live Site", "url": "https://hastos.web.app" },
