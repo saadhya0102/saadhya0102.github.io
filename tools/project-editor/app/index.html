@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Project editor</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#editorMain">Skip to project editor</a>
+
+    <header class="app-header">
+        <div class="app-title">
+            <strong>Project editor</strong>
+            <span id="projectPath">projects.json</span>
+        </div>
+        <div class="save-controls">
+            <span class="save-state" id="saveState" aria-live="polite">Loading projects</span>
+            <button class="button secondary" id="reloadButton" type="button">Reload file</button>
+            <button class="button primary" id="saveButton" type="button" disabled>Save changes</button>
+        </div>
+    </header>
+
+    <div class="error-banner" id="errorBanner" role="alert" hidden>
+        <strong id="errorTitle">Could not load projects.</strong>
+        <span id="errorMessage"></span>
+        <button class="text-button" id="retryButton" type="button">Try again</button>
+    </div>
+
+    <div class="workspace" id="workspace" aria-busy="true">
+        <aside class="project-sidebar" aria-labelledby="projectsHeading">
+            <div class="sidebar-heading">
+                <div>
+                    <h1 id="projectsHeading">Projects</h1>
+                    <span id="projectCount">0 projects</span>
+                </div>
+                <button class="button primary compact" id="newProjectButton" type="button">New project</button>
+            </div>
+
+            <label class="search-field" for="projectSearch">
+                <span>Search projects</span>
+                <input id="projectSearch" type="search" autocomplete="off" placeholder="Title, tag, or category">
+            </label>
+
+            <ol class="project-list" id="projectList" aria-label="Project order"></ol>
+            <p class="list-empty" id="listEmpty" hidden>No projects match this search.</p>
+        </aside>
+
+        <main class="editor-main" id="editorMain" tabindex="-1">
+            <section class="loading-panel" id="loadingPanel" aria-label="Loading project editor">
+                <div class="loading-line wide"></div>
+                <div class="loading-line"></div>
+                <div class="loading-block"></div>
+            </section>
+
+            <section class="empty-panel" id="emptyPanel" hidden>
+                <h2>No project selected</h2>
+                <p>Select a project from the list or create a new one.</p>
+                <button class="button primary" id="emptyNewButton" type="button">New project</button>
+            </section>
+
+            <form id="projectForm" novalidate hidden>
+                <div class="editor-heading">
+                    <div>
+                        <p class="position-label" id="positionLabel">Project 1 of 1</p>
+                        <h2 id="editorTitle">Project details</h2>
+                    </div>
+                    <div class="project-actions" aria-label="Project actions">
+                        <button class="button secondary compact" id="moveUpButton" type="button">Move up</button>
+                        <button class="button secondary compact" id="moveDownButton" type="button">Move down</button>
+                        <button class="button secondary compact" id="duplicateButton" type="button">Duplicate</button>
+                        <button class="button danger compact" id="deleteButton" type="button">Delete</button>
+                    </div>
+                </div>
+
+                <div class="validation-summary" id="validationSummary" role="alert" tabindex="-1" hidden>
+                    <strong>Fix the highlighted fields before saving.</strong>
+                    <ul id="validationList"></ul>
+                </div>
+
+                <section class="image-section" aria-labelledby="imageHeading">
+                    <div class="section-heading">
+                        <h3 id="imageHeading">Project image</h3>
+                        <span>PNG, JPEG, WebP, or GIF. Maximum 20 MB.</span>
+                    </div>
+                    <div class="image-layout">
+                        <figure class="image-preview">
+                            <img id="imagePreview" alt="" hidden>
+                            <figcaption id="imagePlaceholder">No image selected</figcaption>
+                        </figure>
+                        <div class="image-fields">
+                            <label class="drop-zone" id="dropZone" for="imageUpload">
+                                <input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                                <strong id="dropTitle">Drop an image here</strong>
+                                <span>or choose one from your computer</span>
+                            </label>
+
+                            <label class="field" for="imageInput">
+                                <span>Image filename or URL</span>
+                                <input id="imageInput" name="image" type="text" autocomplete="off" placeholder="project-image.png">
+                                <small class="field-error" id="imageError"></small>
+                            </label>
+
+                            <div class="existing-image-row">
+                                <label class="field" for="existingImageSelect">
+                                    <span>Use an existing image</span>
+                                    <select id="existingImageSelect">
+                                        <option value="">Choose an image</option>
+                                    </select>
+                                </label>
+                                <button class="button secondary" id="useExistingImageButton" type="button">Use image</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-section" aria-labelledby="detailsHeading">
+                    <div class="section-heading">
+                        <h3 id="detailsHeading">Details</h3>
+                    </div>
+                    <div class="field-grid">
+                        <label class="field span-2" for="titleInput">
+                            <span>Title</span>
+                            <input id="titleInput" name="title" type="text" autocomplete="off" required>
+                            <small class="field-error" id="titleError"></small>
+                        </label>
+
+                        <label class="field span-2" for="idInput">
+                            <span>ID</span>
+                            <input id="idInput" name="id" type="text" autocomplete="off" spellcheck="false" required>
+                            <small>Lowercase letters, numbers, and hyphens. Used in project links.</small>
+                            <small class="field-error" id="idError"></small>
+                        </label>
+
+                        <label class="field" for="yearInput">
+                            <span>Year</span>
+                            <input id="yearInput" name="year" type="number" min="1900" max="2100" step="1" inputmode="numeric" required>
+                            <small class="field-error" id="yearError"></small>
+                        </label>
+
+                        <label class="field" for="matchInput">
+                            <span>Match score</span>
+                            <div class="suffix-input">
+                                <input id="matchInput" name="match" type="number" min="0" max="100" step="1" inputmode="numeric" required>
+                                <span aria-hidden="true">%</span>
+                            </div>
+                            <small class="field-error" id="matchError"></small>
+                        </label>
+
+                        <label class="checkbox-row span-2" for="featuredInput">
+                            <input id="featuredInput" name="featured" type="checkbox">
+                            <span>
+                                <strong>Featured project</strong>
+                                <small>Replaces the current project in the billboard.</small>
+                            </span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="form-section" aria-labelledby="categoriesHeading">
+                    <div class="section-heading">
+                        <h3 id="categoriesHeading">Categories</h3>
+                        <button class="text-button" id="editCategoriesButton" type="button">Edit categories</button>
+                    </div>
+                    <fieldset class="choice-grid">
+                        <legend class="sr-only">Project categories</legend>
+                        <div id="categoryChoices"></div>
+                    </fieldset>
+                    <small class="field-error group-error" id="categoriesError"></small>
+                </section>
+
+                <section class="form-section" aria-labelledby="tagsHeading">
+                    <div class="section-heading">
+                        <h3 id="tagsHeading">Tags</h3>
+                        <span>Press Enter or comma to add a tag.</span>
+                    </div>
+                    <div class="tag-editor" id="tagEditor">
+                        <div class="tag-list" id="tagList"></div>
+                        <label class="sr-only" for="tagInput">Add a tag</label>
+                        <input id="tagInput" type="text" autocomplete="off" placeholder="Add tag">
+                    </div>
+                    <small class="field-error group-error" id="tagsError"></small>
+                </section>
+
+                <section class="form-section" aria-labelledby="synopsisHeading">
+                    <div class="section-heading">
+                        <h3 id="synopsisHeading">Synopsis</h3>
+                        <span id="synopsisCount">0 characters</span>
+                    </div>
+                    <label class="field" for="synopsisInput">
+                        <span class="sr-only">Synopsis</span>
+                        <textarea id="synopsisInput" name="synopsis" rows="7" required></textarea>
+                        <small class="field-error" id="synopsisError"></small>
+                    </label>
+                </section>
+
+                <section class="form-section" aria-labelledby="linksHeading">
+                    <div class="section-heading">
+                        <h3 id="linksHeading">Links</h3>
+                        <button class="text-button" id="addLinkButton" type="button">Add link</button>
+                    </div>
+                    <div class="link-list" id="linkList"></div>
+                    <p class="inline-empty" id="linksEmpty">No links added.</p>
+                    <small class="field-error group-error" id="linksError"></small>
+                </section>
+            </form>
+        </main>
+    </div>
+
+    <dialog class="category-dialog" id="categoryDialog" aria-labelledby="categoryDialogTitle">
+        <form id="categoryForm">
+            <div class="dialog-heading">
+                <div>
+                    <h2 id="categoryDialogTitle">Edit categories</h2>
+                    <p>Featured is reserved for the billboard.</p>
+                </div>
+                <button class="icon-text-button" id="closeCategoryButton" type="button" aria-label="Close category editor">Close</button>
+            </div>
+            <div class="category-list" id="categoryList"></div>
+            <button class="button secondary" id="addCategoryButton" type="button">Add category</button>
+            <p class="dialog-error" id="categoryDialogError" role="alert"></p>
+            <div class="dialog-actions">
+                <button class="button secondary" id="cancelCategoryButton" type="button">Keep categories</button>
+                <button class="button primary" type="submit">Apply categories</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+        <span id="toastMessage"></span>
+        <button class="text-button" id="toastAction" type="button" hidden></button>
+    </div>
+</body>
+</html>
