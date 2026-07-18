@@ -13,6 +13,7 @@
       "*.ps1",
       "*.py",
       "prd.txt",
+      "remainingbooks.txt",
       "skills-lock.json"
     ]
   }

@@ -72,6 +72,7 @@ async function run() {
     const fixtureRoot = await fs.mkdtemp(path.join(os.tmpdir(), 'book-editor-'));
     const port = await freePort();
     const url = `http://127.0.0.1:${port}`;
+    const sourceBooks = JSON.parse(await fs.readFile(path.join(ROOT, 'books.json'), 'utf8'));
     let child;
 
     try {
@@ -94,7 +95,7 @@ async function run() {
         const stateResponse = await fetch(`${url}/api/state`);
         assert.equal(stateResponse.status, 200);
         const editorState = await stateResponse.json();
-        assert.equal(editorState.data.length, 24);
+        assert.equal(editorState.data.length, sourceBooks.length);
 
         const invalid = normalizedBooks(editorState.data);
         invalid[0].id = invalid[1].id;
