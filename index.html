@@ -7,7 +7,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
@@ -72,19 +72,27 @@
             letter-spacing: 0;
         }
 
+        .term-bar > span:first-child,
+        .term-footer > span:first-child { white-space: nowrap; }
+
         .status-ok { color: var(--term-fg); }
         .status-warn { color: var(--term-dim); }
 
         .top-links {
             display: flex;
+            align-items: center;
             flex-wrap: wrap;
             gap: 0.4rem;
+            margin: 0;
         }
 
         .top-links a {
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
             color: var(--term-fg);
             border: 1px solid var(--term-line);
-            padding: 0.25rem 0.5rem;
+            padding: 0 0.55rem;
             text-decoration: none;
             font-weight: 500;
         }
@@ -117,6 +125,7 @@
 
         .term-title {
             display: flex;
+            align-items: center;
             justify-content: space-between;
             gap: 1rem;
             padding: 0.55rem 0.8rem;
@@ -188,6 +197,7 @@
         .command-panel {
             border-top: 1px solid var(--term-line);
             padding-top: clamp(0.9rem, 2vw, 1.2rem);
+            margin: 0;
         }
 
         .command-panel-title {
@@ -297,7 +307,7 @@
         }
 
         .skill-meter {
-            margin-top: 1rem;
+            margin-top: 0;
         }
 
         .skill-meter-top {
@@ -348,6 +358,8 @@
         }
 
         .term-footer a {
+            display: inline-block;
+            padding: 0.15rem 0.2rem;
             color: var(--term-fg);
             text-decoration: none;
         }
@@ -364,11 +376,18 @@
         @keyframes sweep { to { transform: translateX(100%); } }
 
         @media (max-width: 940px) {
-            .term-bar,
-            .term-footer { align-items: flex-start; flex-direction: column; }
             .command-list { grid-template-columns: 1fr; }
             .command-link { min-height: 0; }
             .system-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 700px) {
+            .term-bar,
+            .term-footer {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.55rem;
+            }
         }
 
         @media (max-width: 520px) {
@@ -387,6 +406,14 @@
                 max-width: calc(100vw - 1rem);
                 overflow: hidden;
             }
+            .term-bar,
+            .term-footer { padding: 0.6rem 0.65rem; }
+            .top-links {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            .top-links a { justify-content: center; }
             .term-body { padding: 1rem; }
             .term-title span:last-child { display: none; }
             .hero-copy {
@@ -416,642 +443,97 @@
             .skill-sweep { display: none; }
         }
     </style>
-    <style>
-        :root {
-            --home-bg: #0b0d10;
-            --home-surface: #111419;
-            --home-surface-raised: #171b21;
-            --home-ink: #edf1f5;
-            --home-copy: #b8c0ca;
-            --home-muted: #7e8996;
-            --home-line: #2a3038;
-            --home-line-strong: #3b444f;
-            --home-accent: #ff6b35;
-            --home-accent-soft: rgba(255, 107, 53, 0.12);
-            --home-max: 1180px;
-        }
-
-        body.home-page {
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            display: block;
-            overflow-x: hidden;
-            color: var(--home-ink);
-            background-color: var(--home-bg);
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            background-size: 64px 64px;
-            font-family: "Onest", Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        body.home-page::after { display: none; }
-
-        .home-wrap {
-            width: min(calc(100% - 3rem), var(--home-max));
-            margin: 0 auto;
-        }
-
-        .home-header {
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--home-line);
-            background: rgba(11, 13, 16, 0.94);
-        }
-
-        .home-header-inner {
-            min-height: 76px;
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            gap: clamp(1rem, 3vw, 2.5rem);
-        }
-
-        .home-brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            min-height: 44px;
-            color: var(--home-ink);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .home-brand:hover { text-decoration: none; }
-
-        .home-brand-mark {
-            width: 36px;
-            height: 36px;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--home-line-strong);
-            border-radius: 6px;
-            color: var(--home-accent);
-            background: var(--home-surface);
-            font: 600 0.75rem/1 "JetBrains Mono", monospace;
-        }
-
-        .home-brand-copy {
-            display: grid;
-            line-height: 1.1;
-        }
-
-        .home-brand-copy small {
-            margin-top: 0.3rem;
-            color: var(--home-muted);
-            font: 400 0.68rem/1 "JetBrains Mono", monospace;
-        }
-
-        .home-nav {
-            justify-self: center;
-            display: flex;
-            align-items: center;
-            gap: 0.2rem;
-            margin: 0;
-        }
-
-        .home-nav a {
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            padding: 0 0.85rem;
-            border-radius: 5px;
-            color: var(--home-copy);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 160ms ease, background-color 160ms ease;
-        }
-
-        .home-nav a:hover,
-        .home-nav a:focus-visible {
-            color: var(--home-ink);
-            background: var(--home-surface-raised);
-            text-decoration: none;
-        }
-
-        .home-contact {
-            min-height: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            padding: 0 0.9rem;
-            border: 1px solid var(--home-line-strong);
-            border-radius: 5px;
-            color: var(--home-ink);
-            background: var(--home-surface);
-            text-decoration: none;
-            font-size: 0.84rem;
-            font-weight: 600;
-            transition: border-color 160ms ease, background-color 160ms ease;
-        }
-
-        .home-contact:hover,
-        .home-contact:focus-visible {
-            border-color: var(--home-accent);
-            background: var(--home-accent-soft);
-            text-decoration: none;
-        }
-
-        .home-page :is(a, button):focus-visible {
-            outline: 2px solid var(--home-accent);
-            outline-offset: 3px;
-        }
-
-        .home-main { padding: clamp(3.5rem, 8vw, 7.5rem) 0 3.5rem; }
-
-        .home-hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-            align-items: center;
-            gap: clamp(2.5rem, 6vw, 6rem);
-        }
-
-        .home-kicker {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            margin: 0 0 1.25rem;
-            color: var(--home-copy);
-            font: 500 0.76rem/1.4 "JetBrains Mono", monospace;
-        }
-
-        .home-kicker::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            background: var(--home-accent);
-            box-shadow: 0 0 0 4px var(--home-accent-soft);
-        }
-
-        .home-title {
-            max-width: 12ch;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            color: var(--home-ink);
-            font-family: "Onest", Arial, sans-serif;
-            font-size: clamp(3rem, 7vw, 5.75rem);
-            font-weight: 750;
-            line-height: 0.94;
-            letter-spacing: -0.04em;
-            text-wrap: balance;
-        }
-
-        .home-title span { color: var(--home-accent); }
-
-        .home-lede {
-            max-width: 58ch;
-            margin: 1.6rem 0 0;
-            color: var(--home-copy);
-            font-size: clamp(1rem, 1.8vw, 1.15rem);
-            line-height: 1.72;
-            text-wrap: pretty;
-        }
-
-        .home-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 2rem;
-        }
-
-        .home-action {
-            min-height: 46px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            padding: 0 1.1rem;
-            border: 1px solid var(--home-line-strong);
-            border-radius: 6px;
-            color: var(--home-ink);
-            background: var(--home-surface);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 650;
-            transition: transform 180ms cubic-bezier(.22, 1, .36, 1), border-color 180ms ease, background-color 180ms ease;
-        }
-
-        .home-action.primary {
-            border-color: var(--home-accent);
-            color: #17100d;
-            background: var(--home-accent);
-        }
-
-        .home-action:hover,
-        .home-action:focus-visible {
-            transform: translateY(-2px);
-            border-color: var(--home-accent);
-            text-decoration: none;
-        }
-
-        .home-action.primary:hover,
-        .home-action.primary:focus-visible { background: #ff8257; }
-
-        .featured-artifact {
-            margin: 0;
-            border: 1px solid var(--home-line-strong);
-            border-radius: 10px;
-            overflow: hidden;
-            background: var(--home-surface);
-            box-shadow: 18px 18px 0 rgba(255, 107, 53, 0.08);
-        }
-
-        .artifact-bar {
-            min-height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0 0.9rem;
-            border-bottom: 1px solid var(--home-line);
-            color: var(--home-muted);
-            font: 500 0.7rem/1 "JetBrains Mono", monospace;
-        }
-
-        .artifact-state {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            color: var(--home-copy);
-        }
-
-        .artifact-state::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--home-accent);
-        }
-
-        .artifact-link {
-            position: relative;
-            display: block;
-            color: inherit;
-            overflow: hidden;
-        }
-
-        .artifact-link::after {
-            content: "Open live build ↗";
-            position: absolute;
-            right: 0.9rem;
-            bottom: 0.9rem;
-            padding: 0.5rem 0.65rem;
-            border-radius: 4px;
-            color: var(--home-ink);
-            background: rgba(11, 13, 16, 0.9);
-            font: 500 0.7rem/1 "JetBrains Mono", monospace;
-            transform: translateY(0.35rem);
-            opacity: 0;
-            transition: opacity 180ms ease, transform 180ms cubic-bezier(.22, 1, .36, 1);
-        }
-
-        .artifact-link:hover::after,
-        .artifact-link:focus-visible::after {
-            opacity: 1;
-            transform: none;
-        }
-
-        .artifact-link img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            object-position: center top;
-            filter: saturate(0.84) contrast(1.04);
-            transition: transform 400ms cubic-bezier(.22, 1, .36, 1), filter 250ms ease;
-        }
-
-        .artifact-link:hover img,
-        .artifact-link:focus-visible img {
-            transform: scale(1.018);
-            filter: saturate(1) contrast(1.03);
-        }
-
-        .artifact-caption {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: end;
-            gap: 1rem;
-            padding: 1rem;
-        }
-
-        .artifact-caption strong {
-            display: block;
-            color: var(--home-ink);
-            font-size: 1.05rem;
-        }
-
-        .artifact-caption span {
-            color: var(--home-muted);
-            font: 400 0.72rem/1.5 "JetBrains Mono", monospace;
-        }
-
-        .artifact-caption > span { text-align: right; }
-
-        .home-work { padding: clamp(5rem, 10vw, 8rem) 0 2rem; }
-
-        .home-section-head {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .home-section-head h2 {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            color: var(--home-ink);
-            font-family: "Onest", Arial, sans-serif;
-            font-size: clamp(1.6rem, 3vw, 2.35rem);
-            line-height: 1.1;
-            letter-spacing: -0.025em;
-        }
-
-        .home-section-head a {
-            min-height: 40px;
-            display: inline-flex;
-            align-items: center;
-            color: var(--home-copy);
-            font-size: 0.85rem;
-            text-decoration: none;
-        }
-
-        .home-section-head a:hover { color: var(--home-accent); }
-
-        .work-list { border-top: 1px solid var(--home-line-strong); }
-
-        .work-row {
-            display: grid;
-            grid-template-columns: minmax(170px, 0.65fr) minmax(260px, 1.35fr) auto 24px;
-            align-items: center;
-            gap: clamp(1rem, 3vw, 2rem);
-            min-height: 106px;
-            padding: 1.1rem 0.3rem;
-            border-bottom: 1px solid var(--home-line);
-            color: var(--home-ink);
-            text-decoration: none;
-            transition: background-color 180ms ease, padding 180ms cubic-bezier(.22, 1, .36, 1);
-        }
-
-        .work-row:hover,
-        .work-row:focus-visible {
-            padding-left: 0.9rem;
-            padding-right: 0.9rem;
-            color: var(--home-ink);
-            background: var(--home-accent-soft);
-            text-decoration: none;
-        }
-
-        .work-name {
-            display: grid;
-            gap: 0.25rem;
-            font-size: 1.08rem;
-            font-weight: 700;
-        }
-
-        .work-name small,
-        .work-type {
-            color: var(--home-muted);
-            font: 400 0.72rem/1.45 "JetBrains Mono", monospace;
-        }
-
-        .work-summary {
-            max-width: 54ch;
-            color: var(--home-copy);
-            font-size: 0.9rem;
-            line-height: 1.55;
-            text-wrap: pretty;
-        }
-
-        .work-arrow {
-            color: var(--home-accent);
-            font-size: 1.05rem;
-            transition: transform 180ms cubic-bezier(.22, 1, .36, 1);
-        }
-
-        .work-row:hover .work-arrow,
-        .work-row:focus-visible .work-arrow { transform: translate(2px, -2px); }
-
-        .home-footer {
-            margin-top: clamp(3rem, 7vw, 5.5rem);
-            border-top: 1px solid var(--home-line);
-        }
-
-        .home-footer-inner {
-            min-height: 88px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            color: var(--home-muted);
-            font-size: 0.8rem;
-        }
-
-        .home-socials {
-            display: flex;
-            align-items: center;
-            gap: 1.1rem;
-        }
-
-        .home-socials a {
-            min-height: 40px;
-            display: inline-flex;
-            align-items: center;
-            color: var(--home-copy);
-            text-decoration: none;
-        }
-
-        .home-socials a:hover { color: var(--home-accent); }
-
-        @media (max-width: 900px) {
-            .home-header-inner {
-                grid-template-columns: auto 1fr;
-                padding: 0.7rem 0;
-            }
-
-            .home-nav {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                justify-self: stretch;
-                border-top: 1px solid var(--home-line);
-                padding-top: 0.55rem;
-            }
-
-            .home-nav a { flex: 1; justify-content: center; }
-            .home-contact { justify-self: end; }
-
-            .home-hero {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .home-title { max-width: 14ch; }
-            .featured-artifact { max-width: 720px; }
-
-            .work-row {
-                grid-template-columns: minmax(150px, 0.7fr) minmax(240px, 1.3fr) 24px;
-            }
-
-            .work-type { display: none; }
-        }
-
-        @media (max-width: 620px) {
-            .home-wrap { width: min(calc(100% - 1.5rem), var(--home-max)); }
-            .home-main { padding-top: 3rem; }
-            .home-brand-copy small { display: none; }
-            .home-nav { gap: 0; }
-            .home-nav a { padding: 0 0.5rem; font-size: 0.82rem; }
-            .home-title { font-size: clamp(2.65rem, 13vw, 4rem); }
-            .home-lede { font-size: 1rem; }
-            .home-action { flex: 1; }
-            .artifact-caption { grid-template-columns: 1fr; }
-            .artifact-caption > span { text-align: left; }
-
-            .home-section-head {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 0.35rem;
-            }
-
-            .work-row {
-                grid-template-columns: 1fr 24px;
-                min-height: 0;
-                padding: 1.15rem 0.25rem;
-            }
-
-            .work-summary {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                font-size: 0.86rem;
-            }
-
-            .work-arrow {
-                grid-column: 2;
-                grid-row: 1;
-            }
-
-            .home-footer-inner {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 1.2rem 0;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .home-page *,
-            .home-page *::before,
-            .home-page *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-    </style>
 </head>
 <body class="home-page">
-    <header class="home-header">
-        <div class="home-wrap home-header-inner">
-            <a class="home-brand" href="index.html" aria-label="Saadhya Vijayvargiya, home">
-                <span class="home-brand-mark" aria-hidden="true">SV</span>
-                <span class="home-brand-copy">
-                    Saadhya Vijayvargiya
-                    <small>systems / ai / web</small>
-                </span>
-            </a>
-
-            <nav class="home-nav" aria-label="Primary navigation">
-                <a href="projects.html">Projects</a>
-                <a href="resume.html">Résumé</a>
-                <a href="books.html">Books</a>
+    <div class="terminal-shell">
+        <header class="term-bar" aria-label="Site status">
+            <span><span class="status-ok">ok</span> saadhya@portfolio:~</span>
+            <nav class="top-links" aria-label="Primary">
+                <a href="resume.html">resume</a>
+                <a href="projects.html">projects</a>
+                <a href="books.html">books</a>
             </nav>
+        </header>
 
-            <a class="home-contact" href="mailto:saadhya0102@gmail.com">
-                <span>Contact</span><span aria-hidden="true">↗</span>
-            </a>
-        </div>
-    </header>
-
-    <main class="home-main">
-        <div class="home-wrap">
-            <section class="home-hero" aria-labelledby="home-title">
-                <div>
-                    <p class="home-kicker">UT Austin CS Honors · Austin, TX</p>
-                    <h1 class="home-title" id="home-title">Saadhya Vijayvargiya<span>.</span></h1>
-                    <p class="home-lede">
-                        I build systems for learning, programming, and play. Current work includes
-                        a systems curriculum with an embedded IDE, local AI tooling, and browser games.
-                    </p>
-                    <div class="home-actions">
-                        <a class="home-action primary" href="projects.html">View projects <span aria-hidden="true">↗</span></a>
-                        <a class="home-action" href="https://github.com/saadhya0102">Open GitHub <span aria-hidden="true">↗</span></a>
-                    </div>
+        <main class="terminal-grid">
+            <section class="terminal-main" aria-labelledby="home-title">
+                <div class="term-title">
+                    <span>~/saadhya</span>
+                    <span>interactive shell</span>
                 </div>
-
-                <figure class="featured-artifact">
-                    <div class="artifact-bar">
-                        <span>featured_build / HastOS</span>
-                        <span class="artifact-state">live</span>
+                <div class="term-body">
+                    <div class="identity-block">
+                        <p class="prompt"><strong>$</strong> whoami</p>
+                        <h1 class="hero-name" id="home-title">Saadhya Vijayvargiya<span class="cursor" aria-hidden="true"></span></h1>
+                        <p class="hero-copy">
+                            CS honors student at UT Austin. I build AI systems, web products,
+                            and programming tools.
+                        </p>
+                        <div class="inline-status" aria-label="System status">
+                            <ul class="system-list">
+                                <li><span>location</span><b>Austin, TX</b></li>
+                                <li><span>school</span><b>UT Austin CS Honors</b></li>
+                                <li><span>mode</span><b>builder</b></li>
+                                <li><span>signal</span><b class="status-warn">high contrast</b></li>
+                            </ul>
+                            <div class="skill-meter" aria-label="Skill load: 78 percent">
+                                <div class="skill-meter-top">
+                                    <span>skill-load</span>
+                                    <span>78%</span>
+                                </div>
+                                <div class="skill-track" aria-hidden="true">
+                                    <span class="skill-fill"></span>
+                                    <span class="skill-sweep"></span>
+                                </div>
+                                <code>loading: ai systems / algorithms / product engineering</code>
+                            </div>
+                        </div>
                     </div>
-                    <a class="artifact-link" href="https://hastos.web.app" aria-label="Open the live HastOS site">
-                        <img src="projects_images/hastos.png" alt="HastOS systems-programming dashboard showing curriculum progress, problems, and the SLAVA assistant">
-                    </a>
-                    <figcaption class="artifact-caption">
-                        <span>
-                            <strong>HastOS</strong>
-                            systems programming education platform
-                        </span>
-                        <span>Vite · Firebase · Cloudflare</span>
-                    </figcaption>
-                </figure>
+
+                    <nav class="command-panel" aria-labelledby="nav-title">
+                        <p class="command-panel-title" id="nav-title"><strong>$</strong> ls ./public</p>
+                        <ul class="command-list">
+                            <li>
+                                <a class="command-link" href="resume.html">
+                                    <span class="cmd-index">01</span>
+                                    <span>
+                                        <span class="cmd-title">resume</span>
+                                        <span class="cmd-meta">experience, education, skills</span>
+                                    </span>
+                                    <span class="cmd-exec">./resume</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="command-link" href="projects.html">
+                                    <span class="cmd-index">02</span>
+                                    <span>
+                                        <span class="cmd-title">project gallery</span>
+                                        <span class="cmd-meta">selected builds and shipped work</span>
+                                    </span>
+                                    <span class="cmd-exec">./projects</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="command-link" href="books.html">
+                                    <span class="cmd-index">03</span>
+                                    <span>
+                                        <span class="cmd-title">book reviews</span>
+                                        <span class="cmd-meta">reading log, ratings, notes</span>
+                                    </span>
+                                    <span class="cmd-exec">./books</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </section>
 
-            <section class="home-work" aria-labelledby="selected-work-title">
-                <div class="home-section-head">
-                    <h2 id="selected-work-title">Selected work</h2>
-                    <a href="projects.html">Open the full project gallery ↗</a>
-                </div>
+        </main>
 
-                <div class="work-list">
-                    <a class="work-row" href="projects.html#project-hastos">
-                        <span class="work-name">HastOS <small>live platform</small></span>
-                        <span class="work-summary">A collegiate systems curriculum with an IDE, automatic grading, interview prep, and an AI tutor.</span>
-                        <span class="work-type">systems / education</span>
-                        <span class="work-arrow" aria-hidden="true">↗</span>
-                    </a>
-                    <a class="work-row" href="projects.html#project-tracetick">
-                        <span class="work-name">TraceTick <small>open source</small></span>
-                        <span class="work-summary">Turns Cursor transcripts into fine-tuning datasets and local LoRA models.</span>
-                        <span class="work-type">ai / developer tools</span>
-                        <span class="work-arrow" aria-hidden="true">↗</span>
-                    </a>
-                    <a class="work-row" href="projects.html#project-pathwise">
-                        <span class="work-name">Pathwise <small>live platform</small></span>
-                        <span class="work-summary">Interactive lessons with immediate feedback, persistent course progress, and daily practice.</span>
-                        <span class="work-type">edtech / web</span>
-                        <span class="work-arrow" aria-hidden="true">↗</span>
-                    </a>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="home-footer">
-        <div class="home-wrap home-footer-inner">
-            <span>Saadhya Vijayvargiya · 2026</span>
-            <nav class="home-socials" aria-label="Social links">
-                <a href="mailto:saadhya0102@gmail.com">Email</a>
-                <a href="https://github.com/saadhya0102">GitHub</a>
-                <a href="https://www.linkedin.com/in/saadhya-vijayvargiya-a49856288/">LinkedIn</a>
-            </nav>
-        </div>
-    </footer>
+        <footer class="term-footer">
+            <span><span class="status-ok">ok</span> 3 public routes advertised</span>
+            <span><a href="mailto:saadhya0102@gmail.com">email</a> / <a href="https://github.com/saadhya0102">github</a> / <a href="https://www.linkedin.com/in/saadhya-vijayvargiya-a49856288/">linkedin</a></span>
+        </footer>
+    </div>
 </body>
 </html>
