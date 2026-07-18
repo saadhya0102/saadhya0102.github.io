@@ -1,0 +1,87 @@
+.book-editor {
+    --accent: #caa431;
+    --accent-hover: #dfb83d;
+    --accent-soft: rgba(202, 164, 49, 0.14);
+    --sidebar-width: 22rem;
+}
+
+.book-editor .button.primary {
+    color: #17130a;
+}
+
+.book-editor .project-item {
+    min-height: 5.25rem;
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+}
+
+.book-editor .project-thumb {
+    width: 3rem;
+    aspect-ratio: 2 / 3;
+}
+
+.book-editor .project-copy {
+    gap: 0.1rem;
+}
+
+.book-editor .project-rating {
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.book-editor .cover-layout {
+    grid-template-columns: 14rem minmax(20rem, 1fr);
+}
+
+.book-editor .cover-preview {
+    width: 12rem;
+    max-width: 100%;
+    aspect-ratio: 2 / 3;
+    justify-self: center;
+}
+
+.book-editor .cover-preview img {
+    object-position: center;
+}
+
+.book-editor .book-field-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 60rem) {
+    .book-editor {
+        --sidebar-width: 18rem;
+    }
+
+    .book-editor .cover-layout {
+        grid-template-columns: 12rem minmax(18rem, 1fr);
+    }
+
+    .book-editor .cover-preview {
+        width: 11rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .book-editor .cover-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .book-editor .cover-preview {
+        justify-self: start;
+    }
+
+    .book-editor .book-field-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 32rem) {
+    .book-editor .book-field-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-editor .cover-preview {
+        justify-self: center;
+    }
+}

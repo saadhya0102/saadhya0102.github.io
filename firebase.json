@@ -9,6 +9,7 @@
       "functions/**",
       "tools/**",
       "project-editor.cmd",
+      "book-editor.cmd",
       "*.ps1",
       "*.py",
       "prd.txt",
