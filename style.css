@@ -343,29 +343,82 @@ body.projects-page {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.85rem clamp(1rem, 4vw, 3.5rem);
+    min-height: 68px;
+    padding: 0 clamp(1rem, 4vw, 3.5rem);
     background: linear-gradient(180deg, rgba(0,0,0,0.75) 10%, rgba(0,0,0,0));
     transition: background-color 0.4s ease;
 }
 .nfx-nav.scrolled { background: var(--nfx-bg); }
-.nfx-nav-left { display: flex; align-items: center; gap: 2rem; }
+.nfx-nav-left,
+.nfx-nav-right {
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+}
+.nfx-nav-left { gap: clamp(1.25rem, 2.2vw, 2rem); }
 .nfx-logo {
     color: var(--nfx-red) !important;
     font-weight: 900;
     font-size: 1.5rem;
+    line-height: 1;
     letter-spacing: 0.5px;
     white-space: nowrap;
 }
-.nfx-links { display: flex; gap: 1.25rem; }
-.nfx-links a { color: #e5e5e5; font-size: 0.9rem; transition: color 0.2s; }
+.nfx-links {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 1.5vw, 1.25rem);
+    margin: 0;
+}
+.nfx-links a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    color: #e5e5e5;
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: color 0.2s;
+}
 .nfx-links a:hover { color: #b3b3b3; text-decoration: none; }
 .nfx-links a.active { font-weight: 700; color: #fff; }
 
-.nfx-nav-right { display: flex; align-items: center; gap: 1.1rem; }
-.nfx-search { display: flex; align-items: center; }
-.nfx-search-icon { cursor: pointer; font-size: 1.05rem; line-height: 1; }
+.nfx-nav-right { gap: clamp(0.65rem, 1.3vw, 1.1rem); }
+.nfx-search {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.nfx-search-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    padding: 0;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+}
+.nfx-search-icon svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+.nfx-search-icon:hover,
+.nfx-search-icon:focus-visible { color: #b3b3b3; }
+.nfx-search-icon:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
 .nfx-search-input {
     width: 0;
+    height: 36px;
     opacity: 0;
     padding: 0;
     border: 0;
@@ -377,15 +430,19 @@ body.projects-page {
 .nfx-search.open .nfx-search-input {
     width: 200px;
     opacity: 1;
-    padding: 0.45rem 0.6rem;
-    margin-left: 0.5rem;
+    padding: 0 0.65rem;
+    margin-left: 0.25rem;
     border: 1px solid rgba(255,255,255,0.35);
 }
 .nfx-home-pill {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
     font-size: 0.85rem;
+    line-height: 1;
     color: #e5e5e5;
     border: 1px solid rgba(255,255,255,0.4);
-    padding: 0.3rem 0.7rem;
+    padding: 0 0.7rem;
     border-radius: 4px;
     transition: background 0.2s, color 0.2s;
 }
@@ -706,6 +763,11 @@ body.projects-page {
 /* ---- Responsive ---- */
 @media (max-width: 740px) {
     .nfx-links { display: none; }
+    .nfx-nav { min-height: 60px; }
+    .nfx-nav-left,
+    .nfx-nav-right { min-height: 60px; }
+    .nfx-logo { font-size: 1.25rem; }
+    .nfx-home-pill { display: none; }
     .nfx-billboard { height: 70vh; min-height: 440px; }
     .nfx-modal-body { grid-template-columns: 1fr; }
     .nfx-search.open .nfx-search-input { width: 130px; }

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-18T02:10:00Z",
+  "title": "Design System: Saadhya Technical Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "signal-orange": {
+        "role": "primary",
+        "displayName": "Signal Orange",
+        "canonical": "#ff6b35",
+        "tonalRamp": ["#2b1008", "#532111", "#7c321a", "#a94324", "#d1542d", "#ff6b35", "#ffa17e", "#ffe1d5"]
+      },
+      "workbench-black": {
+        "role": "neutral",
+        "displayName": "Workbench Black",
+        "canonical": "#0b0d10",
+        "tonalRamp": ["#0b0d10", "#171a1f", "#2a2f36", "#444b55", "#68717d", "#939ba5", "#c3c8ce", "#f0f2f4"]
+      },
+      "surface-low": {
+        "role": "neutral",
+        "displayName": "Low Surface",
+        "canonical": "#111419",
+        "tonalRamp": ["#0a0c0f", "#111419", "#232831", "#3b424d", "#5c6571", "#858e99", "#b8bec5", "#edf0f2"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Owner name and primary identity only."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Project summaries and explanatory copy."
+      },
+      "label": {
+        "displayName": "Technical Label",
+        "purpose": "Build metadata, state, and category details."
+      }
+    },
+    "shadows": [
+      {
+        "name": "signal-offset",
+        "value": "18px 18px 0 rgba(255, 107, 53, 0.08)",
+        "purpose": "Single hard offset behind the featured artifact."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-responsive",
+        "value": "cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "Short hover shifts and image focus changes."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "620px"
+      },
+      {
+        "name": "stacked",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "action-primary",
+      "description": "The single highest-priority action in a region.",
+      "html": "<a class=\"ds-action-primary\" href=\"#\">View projects <span aria-hidden=\"true\">↗</span></a>",
+      "css": ".ds-action-primary{min-height:46px;display:inline-flex;align-items:center;gap:10px;padding:0 18px;border:1px solid var(--home-accent,#ff6b35);border-radius:6px;color:#17100d;background:var(--home-accent,#ff6b35);font:650 14px/1.2 Onest,Arial,sans-serif;text-decoration:none;transition:transform 180ms cubic-bezier(.22,1,.36,1),background-color 180ms ease}.ds-action-primary:hover{transform:translateY(-2px);background:#ff8257}.ds-action-primary:focus-visible{outline:2px solid var(--home-accent,#ff6b35);outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Action",
+      "kind": "button",
+      "refersTo": "action-secondary",
+      "description": "Supporting route or external destination.",
+      "html": "<a class=\"ds-action-secondary\" href=\"#\">Open GitHub <span aria-hidden=\"true\">↗</span></a>",
+      "css": ".ds-action-secondary{min-height:46px;display:inline-flex;align-items:center;gap:10px;padding:0 18px;border:1px solid var(--home-line-strong,#3b444f);border-radius:6px;color:var(--home-ink,#edf1f5);background:var(--home-surface,#111419);font:650 14px/1.2 Onest,Arial,sans-serif;text-decoration:none;transition:transform 180ms cubic-bezier(.22,1,.36,1),border-color 180ms ease}.ds-action-secondary:hover{transform:translateY(-2px);border-color:var(--home-accent,#ff6b35)}.ds-action-secondary:focus-visible{outline:2px solid var(--home-accent,#ff6b35);outline-offset:3px}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "navigation-link",
+      "description": "Compact primary route within the aligned site header.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Projects</a>",
+      "css": ".ds-nav-link{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:5px;color:var(--home-copy,#b8c0ca);background:transparent;font:500 14px/1 Onest,Arial,sans-serif;text-decoration:none;transition:color 160ms ease,background-color 160ms ease}.ds-nav-link:hover{color:var(--home-ink,#edf1f5);background:var(--home-surface-raised,#171b21)}.ds-nav-link:focus-visible{outline:2px solid var(--home-accent,#ff6b35);outline-offset:3px}"
+    },
+    {
+      "name": "Featured Artifact",
+      "kind": "custom",
+      "refersTo": "artifact-frame",
+      "description": "A framed screenshot of the current featured build.",
+      "html": "<figure class=\"ds-artifact\"><div class=\"ds-artifact-bar\"><span>featured_build / HastOS</span><span>live</span></div><div class=\"ds-artifact-media\"></div><figcaption>HastOS</figcaption></figure>",
+      "css": ".ds-artifact{width:420px;margin:0;border:1px solid var(--home-line-strong,#3b444f);border-radius:10px;overflow:hidden;color:var(--home-ink,#edf1f5);background:var(--home-surface,#111419);box-shadow:18px 18px 0 rgba(255,107,53,.08)}.ds-artifact-bar{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid var(--home-line,#2a3038);color:var(--home-muted,#7e8996);font:500 11px/1 'JetBrains Mono',monospace}.ds-artifact-media{aspect-ratio:16/9;background:#232831}.ds-artifact figcaption{padding:16px;font:700 16px/1.3 Onest,Arial,sans-serif}"
+    },
+    {
+      "name": "Work Row",
+      "kind": "custom",
+      "description": "A flat, evidence-first project destination.",
+      "html": "<a class=\"ds-work-row\" href=\"#\"><strong>TraceTick <small>open source</small></strong><span>Turns Cursor transcripts into fine-tuning datasets and local LoRA models.</span><b aria-hidden=\"true\">↗</b></a>",
+      "css": ".ds-work-row{width:720px;min-height:96px;display:grid;grid-template-columns:170px 1fr 24px;align-items:center;gap:24px;padding:16px 4px;border-top:1px solid var(--home-line,#2a3038);border-bottom:1px solid var(--home-line,#2a3038);color:var(--home-ink,#edf1f5);background:transparent;font:400 14px/1.55 Onest,Arial,sans-serif;text-decoration:none;transition:padding 180ms cubic-bezier(.22,1,.36,1),background-color 180ms ease}.ds-work-row strong{display:grid;gap:4px}.ds-work-row small{color:var(--home-muted,#7e8996);font:400 11px/1.4 'JetBrains Mono',monospace}.ds-work-row>span{color:var(--home-copy,#b8c0ca)}.ds-work-row>b{color:var(--home-accent,#ff6b35)}.ds-work-row:hover{padding-left:14px;padding-right:14px;background:rgba(255,107,53,.12)}.ds-work-row:focus-visible{outline:2px solid var(--home-accent,#ff6b35);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Workbench",
+    "overview": "A carefully maintained workspace where active builds are visible, labels are useful, and every control has a clear job. The system is technical without imitating a movie terminal.",
+    "keyCharacteristics": [
+      "Actual projects appear before decorative claims.",
+      "Crisp borders and tonal layers organize information.",
+      "Orange marks action, live state, and focus.",
+      "Monospace is reserved for technical metadata.",
+      "Motion responds to interaction instead of decorating every element."
+    ],
+    "rules": [
+      {
+        "name": "The Signal Rule",
+        "body": "Orange occupies less than ten percent of a page. Its scarcity makes state and action obvious.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Boundary Rule",
+        "body": "Monospace never carries paragraphs or primary navigation. It labels the work; it does not become the work.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-at-Rest Rule",
+        "body": "Ordinary controls and rows have no shadow. If every surface floats, nothing has hierarchy.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do show shipped projects and source links before decorative status information.",
+      "Do align headers and page sections to one shared content width.",
+      "Do use Signal Orange only for meaningful action and state.",
+      "Do provide 44-pixel touch targets and visible keyboard focus.",
+      "Do use real project screenshots with descriptive alt text."
+    ],
+    "donts": [
+      "Don't use generic portfolio grids made from interchangeable icon cards.",
+      "Don't use generic SaaS landing pages with filler copy and ornamental gradients.",
+      "Don't use fake hacker-terminal cosplay, noisy scanlines, arbitrary system metrics, or commands that do not help navigation.",
+      "Don't use corporate résumé-template styling that removes personality.",
+      "Don't use excessive animation or decorative effects that compete with the work.",
+      "Don't use gradient text, decorative glassmorphism, or repeated tiny uppercase eyebrows."
+    ]
+  }
+}

@@ -279,7 +279,11 @@ function setupSearch() {
     const toggle = document.getElementById('searchToggle');
     const input = document.getElementById('searchInput');
 
-    const openSearch = () => { wrap.classList.add('open'); input.focus(); };
+    const openSearch = () => {
+        wrap.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        input.focus();
+    };
     toggle.addEventListener('click', openSearch);
     toggle.addEventListener('keydown', e => { if (e.key === 'Enter') openSearch(); });
 
@@ -302,7 +306,11 @@ function setupSearch() {
     });
 
     input.addEventListener('blur', () => {
-        if (!input.value.trim()) { wrap.classList.remove('open'); renderRows(); }
+        if (!input.value.trim()) {
+            wrap.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            renderRows();
+        }
     });
 }
 
