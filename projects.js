@@ -129,7 +129,10 @@ function renderRows() {
     container.innerHTML = '';
 
     // Synthesized "Trending Now" row (top by match)
-    const trending = [...allProjects].sort((a, b) => (b.match || 0) - (a.match || 0)).slice(0, 8);
+    const trending = [...allProjects].sort((a, b) =>
+        Number(a.id === 'studybuddy') - Number(b.id === 'studybuddy') ||
+        (b.match || 0) - (a.match || 0)
+    ).slice(0, 8);
     container.appendChild(buildRow('Trending Now', trending));
 
     categoryOrder.forEach(cat => {

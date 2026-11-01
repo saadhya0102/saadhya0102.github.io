@@ -13,6 +13,7 @@ firebase-debug.*.log*
 # Local project editor backups
 .project-editor-backups/
 .book-editor-backups/
+.problem-editor-backups/
 
 # Firebase config
 

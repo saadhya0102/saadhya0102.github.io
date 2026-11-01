@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem-Setting | Saadhya Vijayvargiya</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="terminal.css">
+</head>
+<body class="home-page problem-setting-page">
+    <div class="terminal-shell">
+        <header class="term-bar" aria-label="Site status">
+            <span><span class="status-ok">ok</span> saadhya@portfolio:~</span>
+            <nav class="top-links" aria-label="Primary">
+                <a href="resume.html">Resume</a>
+                <a href="books.html">Books</a>
+                <a href="psetter.html" aria-current="page">Problem-Setting</a>
+                <a href="projects.html">Projects</a>
+            </nav>
+        </header>
+        <main class="terminal-main" id="main">
+            <div class="term-title"><span>~/saadhya/problem-setting</span><a href="index.html">../home</a></div>
+            <div class="term-body">
+                <p class="prompt"><strong>$</strong> ls ./problems</p>
+                <h1 class="hero-name">Problem-Setting</h1>
+                <p class="hero-copy">Programming problems I've written for Codeforces and other contests.</p>
+                <section aria-label="Programming problems">
+                    <div class="problem-tools" id="problem-tools" hidden>
+                        <input id="problem-search" type="search" placeholder="Search problems or contests" aria-label="Search problems or contests">
+                        <span id="problem-count" role="status"></span>
+                    </div>
+                    <div id="problem-list" aria-live="polite"><p>Loading problems...</p></div>
+                </section>
+            </div>
+        </main>
+        <footer class="term-footer">
+            <span><span class="status-ok">ok</span> 4 public routes advertised</span>
+            <span><a href="mailto:saadhya0102@gmail.com">email</a> / <a href="https://github.com/saadhya0102">github</a> / <a href="https://www.linkedin.com/in/saadhya-vijayvargiya-a49856288/">linkedin</a></span>
+        </footer>
+    </div>
+    <script src="psetter.js"></script>
+</body>
+</html>

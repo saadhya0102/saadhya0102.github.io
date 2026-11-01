@@ -236,12 +236,13 @@
     <nav class="cv-nav" aria-label="Resume sections">
         <a href="index.html">../home</a>
         <div class="nav-links">
-            <a href="#education">education</a>
-            <a href="#experience">experience</a>
-            <a href="#projects">projects</a>
-            <a href="#achievements">achievements</a>
-            <a href="#skills">skills</a>
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#skills">Skills</a>
         </div>
+        <a href="psetter.html">Problem-Setting</a>
         <button id="pdfBtn" type="button">print</button>
     </nav>
 
@@ -269,181 +270,124 @@
         </header>
 
         <section class="cv-window cv-section" id="education">
-            <div class="cv-titlebar">
-                <span>education</span>
-                <span>01</span>
-            </div>
-            <div class="cv-body">
-                <h2>$ cat education.log</h2>
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">The University of Texas at Austin</span> / <span class="entry-place">B.S. Computer Science Honors</span></span>
-                        <span class="entry-meta">Austin, TX / May 2028</span>
-                    </div>
-                    <ul>
-                        <li>Relevant coursework: Vector Calculus (H), Data Structures (H), Discrete Math (H), Business Communication (H), Computer Architecture (H).</li>
-                        <li>(H) indicates honors coursework.</li>
-                    </ul>
-                </article>
-            </div>
+            <div class="cv-titlebar"><span>Education</span><span>01</span></div>
+            <div class="cv-body"><h2>$ cat education.log</h2>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">The University of Texas at Austin</span>
+<span class="entry-meta">May 2028</span>
+</div>
+<p class="entry-place">Bachelor of Science, Computer Science Honors · Austin, TX</p>
+<p>
+<strong>Relevant coursework:</strong> Vector Calculus (H), Data Structures (H), Discrete Math (H), Business Communication (H), Computer Architecture (H).</p>
+<p>(H) = Honors</p>
+</article>
+</div>
         </section>
 
         <section class="cv-window cv-section" id="experience">
-            <div class="cv-titlebar">
-                <span>experience</span>
-                <span>04</span>
-            </div>
-            <div class="cv-body">
-                <h2>$ tail -f experience.log</h2>
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">AI Development Intern</span> / <span class="entry-place">Alpha AI</span></span>
-                        <span class="entry-meta">Austin, TX / June 2026 - Present</span>
-                    </div>
-                    <ul>
-                        <li>Designed and fine-tuned a 7B-parameter language model for competitive programming.</li>
-                        <li>Constructed a pipeline to process web-scraped data into labeled datasets for model development.</li>
-                        <li>Fine-tuned with QLoRA, reducing training memory by 65% compared with full fine-tuning.</li>
-                    </ul>
-                </article>
-
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">Software Engineering Intern</span> / <span class="entry-place">Students Teaching Finance</span></span>
-                        <span class="entry-meta">Greencastle, IN / May 2025 - August 2025</span>
-                    </div>
-                    <ul>
-                        <li>Architected and deployed a full-stack Node.js platform, enabling onboarding that fueled a 4x increase in international chapter launches within 12 months.</li>
-                        <li>Engineered scalable infrastructure supporting 100+ global chapters and approximately 4,000 active student users.</li>
-                    </ul>
-                </article>
-
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">Research Assistant</span> / <span class="entry-place">UC Berkeley</span></span>
-                        <span class="entry-meta">Berkeley, CA / December 2024 - September 2025</span>
-                    </div>
-                    <ul>
-                        <li>Researched the intersection of AI and legal sentencing, developing a machine learning model achieving 83% accuracy on in-distribution cases and 71% accuracy on out-of-distribution datasets.</li>
-                        <li>Engineered model architecture that reduced bias in sentencing predictions by 34% compared to the baseline approach.</li>
-                        <li>Processed and analyzed over 2M anonymized federal and state sentencing records to train and validate models.</li>
-                    </ul>
-                </article>
-
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">Research Fellow</span> / <span class="entry-place">Nontrivial Fellowship</span></span>
-                        <span class="entry-meta">Remote / July 2024 - August 2024</span>
-                    </div>
-                    <ul>
-                        <li>Investigated quantum-inspired neural architectures to reduce training energy consumption, achieving a 28% lower compute cost on MNIST and CIFAR-10 benchmarks.</li>
-                        <li>Implemented a quantum kernel classifier using Qiskit's Aer simulator, outperforming classical SVMs by 14%.</li>
-                    </ul>
-                </article>
-            </div>
+            <div class="cv-titlebar"><span>Experience</span><span>02</span></div>
+            <div class="cv-body"><h2>$ tail -f experience.log</h2>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">Software Development Intern</span>
+<span class="entry-meta">June 2026 – August 2026</span>
+</div>
+<p class="entry-place">Alpha AI · Austin, TX</p>
+<ul>
+<li>Designed and fine-tuned a 7B-parameter Language model for competitive programming.</li>
+<li>Constructed a distributed pipeline to process web-scraped data into labeled datasets for model development.</li>
+<li>Fine-tuned with QLoRA, reducing training memory by 65% compared with full fine-tuning.</li>
+</ul>
+</article>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">Software Engineering Intern</span>
+<span class="entry-meta">May 2025 – August 2025</span>
+</div>
+<p class="entry-place">Students Teaching Finance · Greencastle, IN</p>
+<ul>
+<li>Architected and deployed a full-stack Node.js platform, enabling seamless onboarding that fueled a 4× increase in international chapter launches within 12 months</li>
+<li>Engineered scalable infrastructure supporting 100+ global chapters and approximately 4,000 active student users.</li>
+</ul>
+</article>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">Research Assistant</span>
+<span class="entry-meta">December 2024 – September 2025</span>
+</div>
+<p class="entry-place">UC Berkeley · Berkeley, CA</p>
+<ul>
+<li>Developed custom LLVM/MLIR optimization passes to accelerate ML inference workloads, improving code generation and execution efficiency for large-scale predictive models.</li>
+<li>Engineered model architecture that reduced bias in sentencing predictions by 34% compared to baseline approach</li>
+<li>Processed and analyzed over 2M+ anonymized federal and state sentencing records to train and validate models</li>
+</ul>
+</article>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">Research Fellow</span>
+<span class="entry-meta">July 2024 – August 2024</span>
+</div>
+<p class="entry-place">Nontrivial Fellowship · Remote</p>
+<ul>
+<li>Developed a NUMA-aware memory management framework for parallel workloads, dynamically placing data based on access patterns that reduced cache-miss rates by 41%.</li>
+<li>Developed an adaptive data-packing algorithm to improve throughput by 2.3×.</li>
+</ul>
+</article>
+</div>
         </section>
 
         <section class="cv-window cv-section" id="projects">
-            <div class="cv-titlebar">
-                <span>projects</span>
-                <span>02</span>
-            </div>
-            <div class="cv-body">
-                <h2>$ ls ./projects</h2>
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">Hastorium</span> / <span class="entry-place">C++, NumPy</span></span>
-                        <span class="entry-meta">2025</span>
-                    </div>
-                    <ul>
-                        <li>Built an AI-powered telemetry analysis system that processes high-performance computing output to develop real-time strategies for F1 racing.</li>
-                        <li>Engineered modular C++ architecture with a regression model for generative analysis and ElevenLabs text-to-speech, enabling actionable performance recommendations 43% faster than the previous baseline.</li>
-                    </ul>
-                </article>
-
-                <article class="entry">
-                    <div class="entry-head">
-                        <span><span class="entry-title">TraceTune</span> / <span class="entry-place">Python, Git, PEFT, Hugging Face</span></span>
-                        <span class="entry-meta">2025</span>
-                    </div>
-                    <ul>
-                        <li>Developed a pipeline that converts LLM conversation transcripts into supervised fine-tuning datasets by extracting user preferences, formatting conventions, and behavioral patterns.</li>
-                        <li>Distilled the dataset into a small model that learns conventions and styles more effectively; fine-tuned with LoRA to reduce token usage per session by roughly 28%.</li>
-                    </ul>
-                </article>
-            </div>
+            <div class="cv-titlebar"><span>Projects</span><span>03</span></div>
+            <div class="cv-body"><h2>$ ls ./projects</h2>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">Hastorium</span>
+<span class="entry-meta">2026</span>
+</div>
+<p class="entry-place">C++, NumPy</p>
+<ul>
+<li>AI powered telemetry analysis system that processes high performant computing output to develop real-time strategies for F1 racing.</li>
+<li>Engineered modular C++ architecture developing a regression model for generative analysis and ElevenLabs for text-to-speech, enabling actionable performance recommendations 43% faster than former baseline.</li>
+</ul>
+</article>
+<article class="entry">
+<div class="entry-head">
+<span class="entry-title">TraceTune</span>
+<span class="entry-meta">2025</span>
+</div>
+<p class="entry-place">Python, Git, PEFT, Hugging Face</p>
+<ul>
+<li>Developed a pipeline that converts LLM conversation transcripts into supervised fine-tuning datasets by extracting user preferences, formatting conventions, and behavioral patterns.</li>
+<li>Distilled the dataset into a small model which learns your conventions and styles more effectively and fine-tuned with LoRA, with approximately 28% lower token usage per session.</li>
+</ul>
+</article>
+</div>
         </section>
 
         <section class="cv-window cv-section" id="achievements">
-            <div class="cv-titlebar">
-                <span>achievements</span>
-                <span>03</span>
-            </div>
-            <div class="cv-body">
-                <h2>$ grep awards achievements.txt</h2>
-                <ul>
-                    <li>American Computer Science League - 1st Place.</li>
-                    <li>USACO Platinum Division Contestant.</li>
-                    <li>International Collegiate Programming Contest SCUSA - 7th place.</li>
-                </ul>
-            </div>
+            <div class="cv-titlebar"><span>Achievements</span><span>04</span></div>
+            <div class="cv-body"><h2>$ grep awards achievements.txt</h2>
+<ul class="achievements">
+<li>International Collegiate Programming Contest SCUSA 7th place</li>
+<li>USACO Platinum Division Contestant</li>
+<li>1st Place Internationally Quantified Intuitions Forecasting and Estimation Game</li>
+</ul>
+</div>
         </section>
 
         <section class="cv-window cv-section" id="skills">
-            <div class="cv-titlebar">
-                <span>additional information</span>
-                <span>05</span>
-            </div>
-            <div class="cv-body info-grid">
-                <div>
-                    <h2>$ languages</h2>
-                    <div class="chips">
-                        <span class="chip">Java</span>
-                        <span class="chip">Python</span>
-                        <span class="chip">C/C++</span>
-                        <span class="chip">SQL</span>
-                        <span class="chip">JavaScript</span>
-                        <span class="chip">TypeScript</span>
-                        <span class="chip">HTML/CSS</span>
-                        <span class="chip">LaTeX</span>
-                        <span class="chip">Swift</span>
-                        <span class="chip">Go</span>
-                        <span class="chip">Perl</span>
-                        <span class="chip">R</span>
-                    </div>
-                </div>
-                <div>
-                    <h2>$ frameworks</h2>
-                    <div class="chips">
-                        <span class="chip">Next.js</span>
-                        <span class="chip">Tailwind</span>
-                        <span class="chip">TensorFlow</span>
-                        <span class="chip">Pandas</span>
-                        <span class="chip">PyTorch</span>
-                        <span class="chip">Oracle</span>
-                        <span class="chip">Greenfield</span>
-                        <span class="chip">Radius</span>
-                        <span class="chip">Azure</span>
-                        <span class="chip">CUDA</span>
-                        <span class="chip">MATLAB</span>
-                    </div>
-                </div>
-                <div>
-                    <h2>$ interests</h2>
-                    <div class="chips">
-                        <span class="chip">Algorithm Design</span>
-                        <span class="chip">Machine Learning</span>
-                        <span class="chip">Applied Mathematics</span>
-                        <span class="chip">Docker and Kubernetes</span>
-                        <span class="chip">Competitive Programming</span>
-                        <span class="chip">Data Science</span>
-                        <span class="chip">Statistics</span>
-                        <span class="chip">Computer Vision</span>
-                        <span class="chip">Deep Learning</span>
-                        <span class="chip">Quantitative Finance</span>
-                    </div>
-                </div>
-            </div>
+            <div class="cv-titlebar"><span>Additional information</span><span>05</span></div>
+            <div class="cv-body"><h2>$ cat additional-information.txt</h2>
+<div class="skills">
+<p>
+<strong>Languages:</strong> Java, Python, C/C++, SQL, JavaScript, TypeScript, HTML/CSS, LaTeX, Swift, Go, Perl, R</p>
+<p>
+<strong>Frameworks:</strong> Next.js, Tailwind, TensorFlow, Pandas, Pytorch, Radius, Azure, CUDA, MATLAB</p>
+<p>
+<strong>Interests:</strong> Algorithm Design, Machine Learning, Applied Mathematics, Docker and Kubernetes, Competitive Programming, Data Science, Statistics, Deep Learning, Quantitative Finance</p>
+</div>
+</div>
         </section>
     </main>
 

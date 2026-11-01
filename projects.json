@@ -16,24 +16,9 @@
       "match": 99,
       "tags": ["EdTech", "Interactive Learning", "Web App"],
       "featured": false,
-      "synopsis": "A dark-mode, Brilliant-style learning platform where every concept is taught through short interactive steps, instant feedback, and a path that remembers exactly where you left off. Includes a full course catalog, daily streaks, and a leaderboard to keep you coming back.",
+      "synopsis": "A learning platform inspired by Brilliant, with courses broken into short interactive lessons. It includes practice questions, feedback, saved progress, daily streaks, and a leaderboard.",
       "links": [
         { "label": "Live Site", "url": "https://brilliant-clone-5c11e.web.app" }
-      ]
-    },
-    {
-      "id": "studybuddy",
-      "title": "StudyBuddy",
-      "image": "studybuddy.png",
-      "categories": ["EdTech"],
-      "year": 2025,
-      "match": 94,
-      "tags": ["AI", "Cloudflare Workers", "EdTech"],
-      "featured": false,
-      "synopsis": "Your AI study partner. An intelligent tutoring app powered by Llama 3.3 on Cloudflare Workers AI — explain topics in plain language, quiz you in real time, remember your progress across sessions, and adapt as you learn.",
-      "links": [
-        { "label": "Live Site", "url": "https://cf-ai-study-assistant.saadhyav.workers.dev" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/cf_ai_study_assistant" }
       ]
     },
     {
@@ -45,7 +30,7 @@
       "match": 93,
       "tags": ["Math", "UIL", "Practice Tool"],
       "featured": false,
-      "synopsis": "A drill engine for Texas UIL Number Sense — timed mental-math practice with configurable modes, hardcore scoring, and live stats. Used by dozens of state qualifiers across 4A, 5A, and 6A divisions.",
+      "synopsis": "A practice site for Texas UIL Number Sense, with timed mental math tests, configurable practice modes, scoring, and performance stats.",
       "links": [
         { "label": "Live Site", "url": "https://saadhya0102.github.io/monkey-sense/" },
         { "label": "GitHub", "url": "https://github.com/saadhya0102/monkey-sense" }
@@ -60,7 +45,7 @@
       "match": 92,
       "tags": ["Spaced Repetition", "Desktop App", "Rust"],
       "featured": false,
-      "synopsis": "The industry-standard spaced repetition flashcard app — smart scheduling that tells you what to review and when, so knowledge actually sticks. My fork and ongoing work on the core Anki codebase (Rust + TypeScript, cross-platform desktop).",
+      "synopsis": "My fork of Anki, the spaced repetition flashcard app. The desktop app uses Rust and TypeScript to manage flashcard collections and schedule reviews.",
       "links": [
         { "label": "Readme", "url": "https://github.com/saadhya0102/anki/blob/main/README.md" },
         { "label": "GitHub", "url": "https://github.com/saadhya0102/anki" }
@@ -75,7 +60,7 @@
       "match": 98,
       "tags": ["Systems Programming", "IDE", "AI Tutor"],
       "featured": true,
-      "synopsis": "Systems programming education, by doing. A full collegiate systems curriculum with an integrated multi-language IDE, automatic test-harness grading, interview prep tracks, and SLAVA — your Systems Learning Assistant for Verification and Assessment.",
+      "synopsis": "A site for learning systems programming through coursework and coding exercises. It includes a browser IDE, automated grading, interview practice, and an AI tutor called SLAVA.",
       "links": [
         { "label": "Live Site", "url": "https://hastos.web.app" },
         { "label": "GitHub", "url": "https://github.com/saadhya0102/hastos" }
@@ -90,7 +75,7 @@
       "match": 91,
       "tags": ["Fine-Tuning", "LoRA", "Cursor", "Python"],
       "featured": false,
-      "synopsis": "Mines your Cursor agent transcripts and turns them into a clean fine-tuning dataset — then distills that into a small LoRA model that learns your conventions, tone, and the answers that have worked for you before. Local-first; your chats never leave your machine.",
+      "synopsis": "A local tool that turns Cursor conversation transcripts into training data for a small model. It uses LoRA fine-tuning to learn coding conventions and response styles from past conversations.",
       "links": [
         { "label": "GitHub", "url": "https://github.com/saadhya0102/tracetick" }
       ]
@@ -104,7 +89,7 @@
       "match": 97,
       "tags": ["Strategy", "Roguelike", "Web Game"],
       "featured": false,
-      "synopsis": "Build your lair, crush the heroes, become legend. A dungeon-building strategy game where you ARE the dungeon - design rooms, lay traps, and fend off waves of adventurers. Features guided fast-start runs, head-to-head mode, achievements, and cloud-saved progress.",
+      "synopsis": "A dungeon-building strategy game about designing rooms, placing traps, and defending against waves of heroes. It includes solo runs, a head-to-head mode, achievements, and cloud saves.",
       "links": [
         { "label": "Play Now", "url": "https://dungeon-core.web.app" }
       ]
@@ -118,7 +103,7 @@
       "match": 96,
       "tags": ["Arcade", "Multiplayer", "Game Hub"],
       "featured": false,
-      "synopsis": "A whole arcade in your browser - big full-size games plus 31 classic arcade, puzzle, and party games gathered in one place. Built for game nights with friends, with quick search, featured titles, and player profiles.",
+      "synopsis": "A browser game collection with arcade, puzzle, and party games, including multiplayer options. The site has search, featured games, and player profiles.",
       "links": [
         { "label": "Play Now", "url": "https://coolhastorgames.web.app" }
       ]
@@ -132,9 +117,24 @@
       "match": 95,
       "tags": ["Strategy", "Multiplayer", "Web Game"],
       "featured": false,
-      "synopsis": "Freeze. Merge. Conquer. A fantasy strategy game of frozen towers and merged armies set across a sprawling realm of castles and jungles. Fight through a story campaign, test yourself in skirmishes against the AI, go head-to-head in multiplayer, and dig into a full lore codex.",
+      "synopsis": "A fantasy strategy game built around towers and merging armies. It includes a story campaign, skirmishes against the AI, multiplayer matches, and a lore codex.",
       "links": [
         { "label": "Play Now", "url": "https://stacker-war.web.app/" }
+      ]
+    },
+    {
+      "id": "studybuddy",
+      "title": "StudyBuddy",
+      "image": "studybuddy.png",
+      "categories": ["EdTech"],
+      "year": 2025,
+      "match": 94,
+      "tags": ["AI", "Cloudflare Workers", "EdTech"],
+      "featured": false,
+      "synopsis": "An AI tutoring app built with Llama 3.3 and Cloudflare Workers AI. It explains topics, generates quizzes, and keeps track of study progress across sessions.",
+      "links": [
+        { "label": "Live Site", "url": "https://cf-ai-study-assistant.saadhyav.workers.dev" },
+        { "label": "GitHub", "url": "https://github.com/saadhya0102/cf_ai_study_assistant" }
       ]
     }
   ]

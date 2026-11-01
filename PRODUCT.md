@@ -23,13 +23,13 @@ Precise, cerebral, and slightly playful. The voice is concise and self-assured. 
 - Generic portfolio grids made from interchangeable icon cards
 - Generic SaaS landing pages with filler copy and ornamental gradients
 - Fake hacker-terminal cosplay, noisy scanlines, arbitrary system metrics, and commands that do not help navigation
-- Corporate résumé-template styling that removes personality
+- Impersonal marketing copy that removes personality
 - Excessive animation or decorative effects that compete with the work
 
 ## Design Principles
 
 1. Show the work early. Projects and source links matter more than decorative status readouts.
-2. Keep the console metaphor functional. Use technical structure to clarify navigation, not to imitate a movie terminal.
+2. Preserve the original Linux terminal presentation. The primary sections are Resume, Books, Problem-Setting, and Projects.
 3. Make hierarchy obvious at a glance. Identity, focus, current work, and navigation each need distinct visual weight.
 4. Reward technical curiosity. Small details can be playful, but every interaction should remain direct and legible.
 5. Prefer evidence over claims. Use shipped projects, repositories, and specific areas of focus instead of invented metrics.
@@ -37,3 +37,7 @@ Precise, cerebral, and slightly playful. The voice is concise and self-assured. 
 ## Accessibility & Inclusion
 
 Meet WCAG AA contrast and keyboard-navigation expectations. Keep visible focus states, semantic landmarks, useful labels, and responsive layouts. Respect `prefers-reduced-motion` for every non-essential animation. Do not rely on color alone to communicate state.
+
+## Problem setting
+
+The public Problem-Setting (`psetter.html`) page reads `problems.json`. Add and edit real contest problems with `problem-editor.cmd`; see `tools/problem-editor/README.md`. Start with an honest empty state until real problem details are supplied. The local editor saves data and backups without deploying.
