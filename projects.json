@@ -4,6 +4,7 @@
     "EdTech",
     "Systems",
     "AI",
+    "Research",
     "Games"
   ],
   "projects": [
@@ -11,130 +12,381 @@
       "id": "pathwise",
       "title": "Pathwise",
       "image": "brilliant-clone.png",
-      "categories": ["EdTech"],
+      "categories": [
+        "EdTech"
+      ],
       "year": 2026,
       "match": 99,
-      "tags": ["EdTech", "Interactive Learning", "Web App"],
+      "tags": [
+        "EdTech",
+        "Interactive Learning",
+        "Web App"
+      ],
       "featured": false,
       "synopsis": "A learning platform inspired by Brilliant, with courses broken into short interactive lessons. It includes practice questions, feedback, saved progress, daily streaks, and a leaderboard.",
       "links": [
-        { "label": "Live Site", "url": "https://brilliant-clone-5c11e.web.app" }
+        {
+          "label": "Live Site",
+          "url": "https://brilliant-clone-5c11e.web.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/brilliant-clone"
+        }
       ]
     },
     {
       "id": "monkey-sense",
       "title": "Monkey Sense",
       "image": "monkey-sense.png",
-      "categories": ["EdTech"],
+      "categories": [
+        "EdTech"
+      ],
       "year": 2024,
       "match": 93,
-      "tags": ["Math", "UIL", "Practice Tool"],
+      "tags": [
+        "Math",
+        "UIL",
+        "Practice Tool"
+      ],
       "featured": false,
       "synopsis": "A practice site for Texas UIL Number Sense, with timed mental math tests, configurable practice modes, scoring, and performance stats.",
       "links": [
-        { "label": "Live Site", "url": "https://saadhya0102.github.io/monkey-sense/" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/monkey-sense" }
+        {
+          "label": "Live Site",
+          "url": "https://saadhya0102.github.io/monkey-sense/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/monkey-sense"
+        }
       ]
     },
     {
       "id": "anki",
       "title": "Anki",
       "image": "anki.png",
-      "categories": ["EdTech"],
+      "categories": [
+        "EdTech"
+      ],
       "year": 2026,
       "match": 92,
-      "tags": ["Spaced Repetition", "Desktop App", "Rust"],
+      "tags": [
+        "Spaced Repetition",
+        "Desktop App",
+        "Rust"
+      ],
       "featured": false,
       "synopsis": "My fork of Anki, the spaced repetition flashcard app. The desktop app uses Rust and TypeScript to manage flashcard collections and schedule reviews.",
       "links": [
-        { "label": "Readme", "url": "https://github.com/saadhya0102/anki/blob/main/README.md" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/anki" }
+        {
+          "label": "Readme",
+          "url": "https://github.com/saadhya0102/anki/blob/main/README.md"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/anki"
+        }
       ]
     },
     {
       "id": "hastos",
       "title": "HastOS",
       "image": "hastos.png",
-      "categories": ["Systems", "Featured"],
+      "categories": [
+        "Systems",
+        "Featured"
+      ],
       "year": 2026,
       "match": 98,
-      "tags": ["Systems Programming", "IDE", "AI Tutor"],
+      "tags": [
+        "Systems Programming",
+        "IDE",
+        "AI Tutor"
+      ],
       "featured": true,
       "synopsis": "A site for learning systems programming through coursework and coding exercises. It includes a browser IDE, automated grading, interview practice, and an AI tutor called SLAVA.",
       "links": [
-        { "label": "Live Site", "url": "https://hastos.web.app" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/hastos" }
+        {
+          "label": "Live Site",
+          "url": "https://hastos.web.app"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/hastos"
+        }
       ]
     },
     {
       "id": "tracetick",
       "title": "TraceTick",
       "image": "tracetick.png",
-      "categories": ["AI"],
+      "categories": [
+        "AI"
+      ],
       "year": 2026,
       "match": 91,
-      "tags": ["Fine-Tuning", "LoRA", "Cursor", "Python"],
+      "tags": [
+        "Fine-Tuning",
+        "LoRA",
+        "Cursor",
+        "Python"
+      ],
       "featured": false,
       "synopsis": "A local tool that turns Cursor conversation transcripts into training data for a small model. It uses LoRA fine-tuning to learn coding conventions and response styles from past conversations.",
       "links": [
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/tracetick" }
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/tracetick"
+        }
       ]
     },
     {
       "id": "dungeon-core",
       "title": "Dungeon Core",
       "image": "dungeon-core.png",
-      "categories": ["Games"],
+      "categories": [
+        "Games"
+      ],
       "year": 2026,
       "match": 97,
-      "tags": ["Strategy", "Roguelike", "Web Game"],
+      "tags": [
+        "Strategy",
+        "Roguelike",
+        "Web Game"
+      ],
       "featured": false,
       "synopsis": "A dungeon-building strategy game about designing rooms, placing traps, and defending against waves of heroes. It includes solo runs, a head-to-head mode, achievements, and cloud saves.",
       "links": [
-        { "label": "Play Now", "url": "https://dungeon-core.web.app" }
+        {
+          "label": "Play Now",
+          "url": "https://dungeon-core.web.app"
+        }
       ]
     },
     {
       "id": "coolhastorgames",
       "title": "CoolHastorGames",
       "image": "coolhastorgames.png",
-      "categories": ["Games"],
+      "categories": [
+        "Games"
+      ],
       "year": 2026,
       "match": 96,
-      "tags": ["Arcade", "Multiplayer", "Game Hub"],
+      "tags": [
+        "Arcade",
+        "Multiplayer",
+        "Game Hub"
+      ],
       "featured": false,
       "synopsis": "A browser game collection with arcade, puzzle, and party games, including multiplayer options. The site has search, featured games, and player profiles.",
       "links": [
-        { "label": "Play Now", "url": "https://coolhastorgames.web.app" }
+        {
+          "label": "Play Now",
+          "url": "https://coolhastorgames.web.app"
+        }
       ]
     },
     {
       "id": "stacker-wars",
       "title": "Stacker Wars",
       "image": "stacker-war.png",
-      "categories": ["Games"],
+      "categories": [
+        "Games"
+      ],
       "year": 2026,
       "match": 95,
-      "tags": ["Strategy", "Multiplayer", "Web Game"],
+      "tags": [
+        "Strategy",
+        "Multiplayer",
+        "Web Game"
+      ],
       "featured": false,
       "synopsis": "A fantasy strategy game built around towers and merging armies. It includes a story campaign, skirmishes against the AI, multiplayer matches, and a lore codex.",
       "links": [
-        { "label": "Play Now", "url": "https://stacker-war.web.app/" }
+        {
+          "label": "Play Now",
+          "url": "https://stacker-war.web.app/"
+        }
+      ]
+    },
+    {
+      "id": "debate-lab",
+      "title": "Debate Lab",
+      "categories": [
+        "EdTech",
+        "AI"
+      ],
+      "tags": [
+        "Debate",
+        "React",
+        "Speech"
+      ],
+      "synopsis": "A debate practice app with source packets, timed rounds, AI opponents, and feedback tied to the round transcript. It supports voice input and spoken opponent responses.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/gt-debate-lab"
+        }
+      ]
+    },
+    {
+      "id": "edu-llm",
+      "title": "EduLLM",
+      "categories": [
+        "AI",
+        "Research"
+      ],
+      "tags": [
+        "Python",
+        "LoRA",
+        "Education"
+      ],
+      "synopsis": "A research project that fine-tunes small language models to predict how students distribute their answers across multiple-choice options. It includes data preparation, baseline comparisons, training scripts, and evaluation tools.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/EduLLM1"
+        }
+      ]
+    },
+    {
+      "id": "crux",
+      "title": "Crux",
+      "image": "crux.png",
+      "categories": [
+        "EdTech",
+        "Systems"
+      ],
+      "tags": [
+        "Rust",
+        "Anki",
+        "Android"
+      ],
+      "synopsis": "Exam-readiness tools built on Anki and AnkiDroid, with a Rust engine for identifying weak areas and practice drills for the GRE Mathematics Subject Test. The project keeps the original Anki and AnkiDroid credits and licenses.",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/crux"
+        }
+      ]
+    },
+    {
+      "id": "mit-readiness-atlas",
+      "title": "MIT Readiness Atlas",
+      "categories": [
+        "EdTech",
+        "Research"
+      ],
+      "tags": [
+        "Tauri",
+        "React",
+        "TypeScript"
+      ],
+      "synopsis": "A local desktop app for exploring fictional student profiles and comparing activities against source-linked rubrics. It focuses on evidence and similarity between profiles rather than predicting admission outcomes.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/mit-readiness-atlas"
+        }
+      ]
+    },
+    {
+      "id": "mit-readiness-data",
+      "title": "MIT Readiness Research Pipeline",
+      "categories": [
+        "Research"
+      ],
+      "tags": [
+        "Data Processing",
+        "Research",
+        "JavaScript"
+      ],
+      "synopsis": "Scripts for collecting, cleaning, and checking public-source research records. The public repository contains the pipeline code; person-level datasets and raw page captures are excluded.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/mit-readiness-data"
+        }
+      ]
+    },
+    {
+      "id": "tetrio-bot",
+      "title": "TETR.IO Bot",
+      "categories": [
+        "Games",
+        "AI"
+      ],
+      "tags": [
+        "TypeScript",
+        "Search",
+        "Simulation"
+      ],
+      "synopsis": "A Tetris bot with board evaluation, move search, offline simulations, and benchmarking tools. It includes a TETR.IO controller designed for approved bot accounts in private rooms.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/tetrio-bot"
+        }
+      ]
+    },
+    {
+      "id": "tetherfall",
+      "title": "Tetherfall",
+      "categories": [
+        "Games"
+      ],
+      "tags": [
+        "Unity",
+        "C#",
+        "RPG"
+      ],
+      "synopsis": "A Unity RPG prototype with exploration, combat, recruitable companions, and settlement building. The source includes the game assets, package configuration, and project settings.",
+      "image": "",
+      "featured": false,
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/Tetherfall"
+        }
       ]
     },
     {
       "id": "studybuddy",
       "title": "StudyBuddy",
       "image": "studybuddy.png",
-      "categories": ["EdTech"],
+      "categories": [
+        "EdTech"
+      ],
       "year": 2025,
       "match": 94,
-      "tags": ["AI", "Cloudflare Workers", "EdTech"],
+      "tags": [
+        "AI",
+        "Cloudflare Workers",
+        "EdTech"
+      ],
       "featured": false,
       "synopsis": "An AI tutoring app built with Llama 3.3 and Cloudflare Workers AI. It explains topics, generates quizzes, and keeps track of study progress across sessions.",
       "links": [
-        { "label": "Live Site", "url": "https://cf-ai-study-assistant.saadhyav.workers.dev" },
-        { "label": "GitHub", "url": "https://github.com/saadhya0102/cf_ai_study_assistant" }
+        {
+          "label": "Live Site",
+          "url": "https://cf-ai-study-assistant.saadhyav.workers.dev"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/saadhya0102/cf_ai_study_assistant"
+        }
       ]
     }
   ]

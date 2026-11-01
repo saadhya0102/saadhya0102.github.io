@@ -101,7 +101,7 @@ function renderBillboard() {
             <div class="nfx-bb-tagline">Featured Project</div>
             <h1 class="nfx-bb-title">${escapeHtml(p.title)}</h1>
             <div class="nfx-bb-tags">
-                <span style="color:#46d369;font-weight:700">${p.match || 95}% Match</span>
+                ${typeof p.match === 'number' ? `<span style="color:#46d369;font-weight:700">${p.match}% Match</span>` : ''}
                 <span>${escapeHtml(p.year || '')}</span>
                 <span>${escapeHtml((p.tags || []).slice(0, 3).join(' \u00b7 '))}</span>
             </div>
@@ -128,12 +128,11 @@ function renderRows() {
     const container = document.getElementById('rows');
     container.innerHTML = '';
 
-    // Synthesized "Trending Now" row (top by match)
-    const trending = [...allProjects].sort((a, b) =>
-        Number(a.id === 'studybuddy') - Number(b.id === 'studybuddy') ||
-        (b.match || 0) - (a.match || 0)
-    ).slice(0, 8);
-    container.appendChild(buildRow('Trending Now', trending));
+    // Keep every personal project available in one row, with StudyBuddy last.
+    const personalProjects = [...allProjects].sort((a, b) =>
+        Number(a.id === 'studybuddy') - Number(b.id === 'studybuddy')
+    );
+    container.appendChild(buildRow('Personal projects', personalProjects));
 
     categoryOrder.forEach(cat => {
         if (cat === 'Featured') return; // reserved for billboard
@@ -218,7 +217,7 @@ function buildCard(p) {
                 <button class="nfx-icon-btn more" title="More info" data-act="more">&#8964;</button>
             </div>
             <div class="nfx-card-line">
-                <span class="nfx-card-match">${p.match || 90}% Match</span>
+                ${typeof p.match === 'number' ? `<span class="nfx-card-match">${p.match}% Match</span>` : ''}
                 <span class="yr">${escapeHtml(p.year || '')}</span>
             </div>
             <div class="nfx-card-genres">${genreText(p)}</div>
@@ -367,7 +366,7 @@ function renderModal(id) {
     document.getElementById('modalLike').addEventListener('click', e => { e.currentTarget.style.borderColor = '#fff'; });
 
     document.getElementById('modalMeta').innerHTML = `
-        <span class="match">${p.match || 90}% Match</span>
+        ${typeof p.match === 'number' ? `<span class="match">${p.match}% Match</span>` : ''}
         <span class="yr">${escapeHtml(p.year || '')}</span>
         <span>${(p.tags || []).map(escapeHtml).join(' \u00b7 ')}</span>`;
     document.getElementById('modalSynopsis').textContent = p.synopsis || '';
@@ -412,7 +411,7 @@ function renderMoreLikeThis(p) {
         <div class="nfx-more-card" data-id="${escapeHtml(q.id)}" role="button" tabindex="0">
             <div class="nfx-more-thumb" style="${bgStyleFor(q, true)}">${lbl}</div>
             <div class="nfx-more-body">
-                <span class="m">${q.match || 90}% Match</span>
+                ${typeof q.match === 'number' ? `<span class="m">${q.match}% Match</span>` : ''}
                 <div class="t">${escapeHtml(q.title)}</div>
             </div>
         </div>`;
