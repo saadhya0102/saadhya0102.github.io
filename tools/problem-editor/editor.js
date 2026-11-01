@@ -6,6 +6,7 @@ const add = document.getElementById('add');
 const fields = [
     ['title', 'Title', 'text', true], ['platform', 'Platform (e.g. Codeforces)', 'text'],
     ['contest', 'Contest / round', 'text'], ['date', 'Date or year', 'text'],
+    ['difficulty', 'Rough difficulty', 'select', true],
     ['url', 'Problem URL', 'url', true], ['editorial', 'Editorial URL', 'url'],
     ['tags', 'Topics (comma separated)', 'text'], ['notes', 'Notes / your contribution', 'textarea']
 ];
@@ -20,11 +21,18 @@ function addEntry(data = {}) {
     for (const [name, text, type, required] of fields) {
         const label = document.createElement('label');
         label.textContent = text + (required ? ' *' : '');
-        const input = document.createElement(type === 'textarea' ? 'textarea' : 'input');
-        if (type !== 'textarea') input.type = type;
+        const input = document.createElement(type === 'textarea' ? 'textarea' : type === 'select' ? 'select' : 'input');
+        if (type === 'select') {
+            for (const [value, text] of [['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard'], ['very-hard', 'Very hard']]) {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = text;
+                input.append(option);
+            }
+        } else if (type !== 'textarea') input.type = type;
         if (type === 'textarea') label.className = 'wide';
         input.name = name;
-        input.value = data[name] || '';
+        input.value = data[name] || (name === 'difficulty' ? 'medium' : '');
         input.required = !!required;
         input.maxLength = 10000;
         label.append(input);

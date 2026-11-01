@@ -13,6 +13,8 @@ function validate(data) {
     return { problems: data.problems.map((p, i) => {
         if (!p || fields.some(key => typeof p[key] !== 'string' || p[key].length > 10000)) throw new Error(`Check the fields for problem ${i + 1}.`);
         const result = Object.fromEntries(fields.map(key => [key, p[key].trim()]));
+        result.difficulty = p.difficulty ?? 'medium';
+        if (!['easy', 'medium', 'hard', 'very-hard'].includes(result.difficulty)) throw new Error(`Choose a valid difficulty for problem ${i + 1}.`);
         if (!result.title || !result.url) throw new Error(`Problem ${i + 1} needs a title and URL.`);
         for (const key of ['url', 'editorial']) {
             if (result[key] && !['http:', 'https:'].includes(new URL(result[key]).protocol)) throw new Error('Links must use http or https.');

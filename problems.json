@@ -1,3 +1,37 @@
 {
-  "problems": []
+  "problems": [
+    {
+      "title": "B. The Amazing Adventures of Coffee Man!",
+      "difficulty": "easy",
+      "platform": "Codeforces Gym",
+      "contest": "UTPC Contest 9-30-2026",
+      "date": "September 2026",
+      "url": "https://codeforces.com/gym/106733/problem/B",
+      "editorial": "",
+      "tags": "",
+      "notes": ""
+    },
+    {
+      "title": "A. Hastorius and the Haunted Candies",
+      "difficulty": "medium",
+      "platform": "Codeforces Gym",
+      "contest": "UTPC Contest 10-28-2026 Div. 2 (Beginner)",
+      "date": "October 2026",
+      "url": "https://codeforces.com/gym/106794/problem/A",
+      "editorial": "",
+      "tags": "",
+      "notes": ""
+    },
+    {
+      "title": "F. Chippa Rank",
+      "difficulty": "medium",
+      "platform": "Codeforces Gym",
+      "contest": "UTPC Contest 3-11-26 (Beginner)",
+      "date": "March 2026",
+      "url": "https://codeforces.com/gym/106420/problem/F",
+      "editorial": "https://codeforces.com/gym/106420/attachments/download/36436/utpc_31126.pdf",
+      "tags": "",
+      "notes": ""
+    }
+  ]
 }

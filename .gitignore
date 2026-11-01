@@ -15,6 +15,10 @@ firebase-debug.*.log*
 .book-editor-backups/
 .problem-editor-backups/
 
+# Browser verification artifacts
+/output/playwright/
+/.playwright-cli/
+
 # Firebase config
 
 # Uncomment this if you'd like others to create their own Firebase project.

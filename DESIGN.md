@@ -9,3 +9,4 @@ The homepage, resume, and Problem-Setting page use the original Linux terminal t
 - Books and projects retain their existing layouts. StudyBuddy stays at the end of project lists.
 - `personal.css` is used by the local problem editor only.
 - Preserve responsive layouts, visible focus states, semantic navigation, and reduced-motion support.
+- The homepage includes a symbolic site terminal below its navigation cards. It browses the public catalogs with bounded listings, previews, and normal page links. Keep the commands documented in `help`, preserve keyboard focus navigation, and render all command output as text.
